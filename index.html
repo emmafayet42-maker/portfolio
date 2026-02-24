@@ -630,56 +630,87 @@
 <body>
   <!-- NAVBAR -->
   <nav class="nav">
-    <input type="checkbox" id="checkbox">
-    <label for="checkbox" class="toggle" aria-label="Menu mobile">
-      <div class="bars" id="bar1"></div>
-      <div class="bars" id="bar2"></div>
-      <div class="bars" id="bar3"></div>
-    </label>
+  <input type="checkbox" id="checkbox">
+  <label for="checkbox" class="toggle" aria-label="Menu mobile">
+    <div class="bars" id="bar1"></div>
+    <div class="bars" id="bar2"></div>
+    <div class="bars" id="bar3"></div>
+  </label>
 
-    <!-- Menu nav style Uiverse -->
-      <div class="nav-menu">
-        <a class="nav-item" href="#about" aria-label="À propos">
-          <!-- icône profil -->
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m1.5 13v1a.5.5 0 0 0 .338.473 18.97 18.97 0 0 0 6.162 1.027 18.963 18.963 0 0 0 6.162-1.027.5.5 0 0 0 .338-.473v-1a6.508 6.508 0 0 0-4.461-6.168 3.5 3.5 0 1 0-4.078 0A6.508 6.508 0 0 0 1.5 13Zm4-9A2.5 2.5 0 1 1 8 6.5 2.503 2.503 0 0 1 5.5 4Z" fill="currentColor"/></svg>
-          À propos
-        </a>
-        <a class="nav-item" href="#skills" aria-label="Mon parcours">
-          <!-- icône engrenage -->
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M17.074 30h-2.148a2 2 0 0 1-1.994-1.846l-.125-1.635a11.6 11.6 0 0 1-1.985-.824l-1.246 1.067a2 2 0 0 1-2.715-.104l-1.52-1.52a2 2 0 0 1-.104-2.715l1.067-1.246a11.6 11.6 0 0 1-.824-1.985l-1.634-.125A2 2 0 0 1 1.9 17.074v-2.148a2 2 0 0 1 1.846-1.994l1.635-.125c.208-.687.484-1.351.824-1.985L5.97 9.547a2 2 0 0 1 .104-2.715l1.52-1.52a2 2 0 0 1 2.715-.104l1.246 1.067c.635-.34 1.299-.616 1.985-.824l.125-1.634A2 2 0 0 1 14.926 1.9h2.148a2 2 0 0 1 1.994 1.846l.125 1.635c.687.208 1.351.484 1.985.824l1.246-1.067a2 2 0 0 1 2.715.104l1.52 1.52a2 2 0 0 1 .104 2.715l-1.067 1.246c.34.635.616 1.299.824 1.985l1.634.125A2 2 0 0 1 30.1 14.926v2.148a2 2 0 0 1-1.846 1.994l-1.635.125c-.208.687-.484 1.351-.824 1.985l1.067 1.246a2 2 0 0 1-.104 2.715l-1.52 1.52a2 2 0 0 1-2.715.104l-1.246-1.067c-.635.34-1.299.616-1.985.824l-.125 1.634A2 2 0 0 1 17.074 30ZM16 23a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7Z" fill="currentColor"/></svg>
-          Mon parcours
-        </a>
-        <a class="nav-item" href="#projects" aria-label="Expériences">
-          <!-- icône grilles -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3V3Zm10 0h8v8h-8V3ZM3 13h8v8H3v-8Zm10 0h8v8h-8v-8Z" fill="currentColor"/></svg>
-          Expériences
-        </a>
-        <a class="nav-item" href="#projects" aria-label="Compétences">
-          <!-- icône grilles -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3V3Zm10 0h8v8h-8V3ZM3 13h8v8H3v-8Zm10 0h8v8h-8v-8Z" fill="currentColor"/></svg>
-          Compétences
-        </a>
-        <a class="nav-item" href="#resume" aria-label="CV">
-          <!-- icône CV -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm8 1.5V8h4.5L14 3.5Z" fill="currentColor"/></svg>
-          CV
-        </a>
-        <a class="nav-item" href="#contact" aria-label="Contact">
-          <!-- icône cloche -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2Zm6-6V11a6 6 0 1 0-12 0v5L4 18v1h16v-1l-2-2Z" fill="currentColor"/></svg>
-          Contact
-        </a>
-           <div class="nav-cta">
-        <a class="btn" href="C:\Portfolio\assets" download>
-          <!-- simple icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>Télécharger CV</span>
-        </a>
-      </div>
-      </div>
+  <div class="nav-menu">
+
+    <!-- À propos -->
+    <a class="nav-item" href="#about" aria-label="À propos">
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="m1.5 13v1a.5.5 0 0 0 .338.473 18.97 18.97 0 0 0 6.162 1.027 18.963 18.963 0 0 0 6.162-1.027.5.5 0 0 0 .338-.473v-1a6.508 6.508 0 0 0-4.461-6.168 3.5 3.5 0 1 0-4.078 0A6.508 6.508 0 0 0 1.5 13Z" fill="currentColor"/>
+      </svg>
+      À propos
+    </a>
+
+    <!-- Mon parcours -->
+    <a class="nav-item" href="#parcours" aria-label="Mon parcours">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3l13 7-13 7L3 10l13-7Zm0 18l10-5v7l-10 5-10-5v-7l10 5Z" fill="currentColor"/>
+      </svg>
+      Mon parcours
+    </a>
+
+    <!-- Expériences -->
+    <a class="nav-item" href="#experiences" aria-label="Expériences">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 3h8v8H3V3Zm10 0h8v8h-8V3ZM3 13h8v8H3v-8Zm10 0h8v8h-8v-8Z" fill="currentColor"/>
+      </svg>
+      Expériences
+    </a>
+
+    <!-- Compétences -->
+    <a class="nav-item" href="#skills" aria-label="Compétences">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 3h8v8H3V3Zm10 0h8v8h-8V3ZM3 13h8v8H3v-8Zm10 0h8v8h-8v-8Z" fill="currentColor"/>
+      </svg>
+      Compétences
+    </a>
+
+    <!-- Projets -->
+    <a class="nav-item" href="#projects" aria-label="Projets">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2 2 7l10 5 10-5-10-5Zm0 7L2 14l10 5 10-5-10-5Z" fill="currentColor"/>
+      </svg>
+      Projets
+    </a>
+
+    <!-- CV -->
+    <a class="nav-item" href="#resume" aria-label="CV">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" fill="currentColor"/>
+      </svg>
+      CV
+    </a>
+
+    <!-- Contact -->
+    <a class="nav-item" href="#contact" aria-label="Contact">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 4h16v16H4V4Zm2 2v12h12V6H6Z" fill="currentColor"/>
+      </svg>
+      Contact
+    </a>
+
+    <!-- Bouton Télécharger CV -->
+    <div class="nav-cta">
+      <a class="btn" href="assets/CV-Emma-Fayet.pdf" download>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+        </svg>
+        <span>Télécharger CV</span>
+      </a>
     </div>
-  </nav>
 
+  </div>
+</nav>
   <!-- HERO -->
   <header class="hero" id="home">
     <div class="orbs" aria-hidden="true">
@@ -921,6 +952,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
