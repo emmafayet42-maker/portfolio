@@ -746,6 +746,40 @@
     </div>
   </div>
 </nav>
+  <!-- CSS à ajouter -->
+<style>
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 1rem;
+  background: linear-gradient(270deg, #7b5cf5, #3b82f6, #7b5cf5);
+  background-size: 600% 600%;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: gradientShift 3s ease infinite;
+}
+
+.btn-cv svg {
+  width: 16px;
+  height: 16px;
+  stroke: #fff;
+}
+
+.btn-cv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+</style>
   <!-- HERO -->
   <header class="hero" id="home">
     <div class="orbs" aria-hidden="true">
@@ -1199,6 +1233,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
