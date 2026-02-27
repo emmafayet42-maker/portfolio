@@ -10,55 +10,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="basket.png" type="image/png">
  <style>
-  :root {
-    --bg: #050507;      /* noir plus profond */
-    --panel: #0d0f14;   /* panels plus sombres */
-    --text: #e6e6e6;
-    --muted: #a6a8ad;
-    --brand: #7c3aed;   /* violet */
-    --brand-2: #06b6d4; /* cyan */
-    --accent: #22c55e;  /* green */
-    --ring: rgba(124,58,237,0.35);
-    --shadow: 0 10px 30px rgba(0,0,0,.45);
-    --radius: 16px;
-  }
-
-  @media (prefers-color-scheme: light) {
+    /* ====== VARIABLES ET STYLES GLOBAUX ====== */
     :root {
-      --bg: #ffffff;
-      --panel: #f7f7fb;
-      --text: #14151a;
-      --muted: #586174;
-      --ring: rgba(124,58,237,0.2);
+      --bg: #050507;      /* noir plus profond */
+      --panel: #0d0f14;   /* panels plus sombres */
+      --text: #e6e6e6;
+      --muted: #a6a8ad;
+      --brand: #7c3aed;   /* violet */
+      --brand-2: #06b6d4; /* cyan */
+      --accent: #22c55e;  /* green */
+      --ring: rgba(124,58,237,0.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --radius: 16px;
     }
-  }
 
-  /* Styles globaux */
-  * {
-    box-sizing: border-box;
-  }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --panel: #f7f7fb;
+        --text: #14151a;
+        --muted: #586174;
+        --ring: rgba(124,58,237,0.2);
+      }
+    }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    margin: 0;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  img {
-    max-width: 100%;
-    display: block;
-  }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
 
     /* ───────── NAVBAR ───────── */
@@ -1224,6 +1210,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
