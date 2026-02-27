@@ -832,7 +832,8 @@
   <div class="container">
     <h2 class="section-title">Ma formation</h2>
 
-    <div class="card reveal">
+    <!-- Présentation BTS -->
+    <div class="card reveal" style="margin-bottom:20px;">
       <h3>Qu'est ce que le BTS SIO ?</h3>
 
       <p>
@@ -841,11 +842,46 @@
         et du développement d'applications, et apporte des enseignements sur le
         fonctionnement d'une entreprise.
       </p>
+    </div>
+
+    <!-- Cartes SISR / SLAM -->
+    <div class="grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+
+      <!-- SISR -->
+      <div class="card">
+        <h3>Option SISR</h3>
+        <p style="color:var(--muted);">
+          Solutions d’Infrastructure, Systèmes et Réseaux
+        </p>
+
+        <ul>
+          <li>Administration systèmes et réseaux</li>
+          <li>Gestion des serveurs Windows & Linux</li>
+          <li>Cybersécurité et protection des données</li>
+          <li>Virtualisation et maintenance</li>
+          <li>Supervision des infrastructures</li>
+        </ul>
+      </div>
+
+      <!-- SLAM -->
+      <div class="card">
+        <h3>Option SLAM</h3>
+        <p style="color:var(--muted);">
+          Solutions Logicielles et Applications Métiers
+        </p>
+
+        <ul>
+          <li>Développement d’applications</li>
+          <li>Programmation web et logicielle</li>
+          <li>Gestion de bases de données</li>
+          <li>Conception d’interfaces utilisateurs</li>
+          <li>Tests et maintenance applicative</li>
+        </ul>
+      </div>
 
     </div>
   </div>
 </section>
-
 
   
 <!-- Section Compétences avec cartes interactives -->
@@ -1000,6 +1036,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
