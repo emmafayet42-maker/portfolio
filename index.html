@@ -1155,8 +1155,8 @@ body.light-mode .card {
   <div class="container">
     <h2 class="section-title"> Mes Projets en SIO</h2>
 
-    <!-- Projet 1 : Site vitrine -->
-<div class="hero-spec-card reveal">
+   <!-- Projet 1 : Site vitrine -->
+<div class="hero-spec-card reveal project">
   <h3>Site Vitrine 🖥️ ✅</h3>
   <p class="project-subtitle" style="color:var(--muted);">Projet réalisé en SLAM</p>
   <p>
@@ -1176,9 +1176,31 @@ body.light-mode .card {
   </ul>
 
   <!-- Bouton pour plus de détails -->
-  <a class="btn-project" href="#projets" style="margin-top:10px; display:inline-block; background-color:var(--accent); color:white; padding:8px 16px; border-radius:5px;">Voir le projet</a>
-</div>
+  <button class="details-btn" style="margin-top:10px;">Voir le projet</button>
 
+  <!-- Détails cachés -->
+  <div class="project-details">
+    <h4>Objectif</h4>
+    <p>Concevoir un portfolio professionnel moderne et responsive pour présenter mon parcours et mes compétences.</p>
+    
+    <h4>Tâches réalisées</h4>
+    <ul>
+      <li>Conception de la structure HTML</li>
+      <li>Stylisation avec CSS moderne (Glassmorphism, animations)</li>
+      <li>Ajout d'interactivité avec JavaScript</li>
+      <li>Optimisation SEO et performance</li>
+    </ul>
+
+    <h4>Compétences développées</h4>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ul>
+
+    <button class="close-btn">Fermer</button>
+  </div>
+</div>
     <!-- Projet 2 : Appel d'offre PC -->
 <div class="hero-spec-card reveal">
   <h3>Appel d'offre PC 💻 ✅</h3>
@@ -1346,7 +1368,6 @@ body.light-mode .card {
    rel="noopener noreferrer">
    LinkedIn
 </a>
-
   <footer>
     <div class="container">© <span id="year"></span> Emma Fayet — Portfolio
       <span style="opacity:.6"></span></div>
@@ -1374,11 +1395,26 @@ toggleBtn.addEventListener("click", () => {
     localStorage.setItem("theme", "dark");
   }
 });
-</script>
-          
+</script>  
   <script>
-          
+          document.querySelectorAll('.details-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.project');
+    const details = card.querySelector('.project-details');
+    details.style.display = 'block';
+    card.classList.add('expanded');
+  });
+});
 
+document.querySelectorAll('.close-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.project');
+    const details = card.querySelector('.project-details');
+    details.style.display = 'none';
+    card.classList.remove('expanded');
+  });
+});
+   <script>
     // ─────────────────────────────────────────────────────────────────────
     // Reveal on Scroll (IntersectionObserver)
     // ─────────────────────────────────────────────────────────────────────
@@ -1444,6 +1480,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
