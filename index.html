@@ -237,67 +237,63 @@
 }
 
 /* ────────────────────────────────────────────── */
-/* Cards normales */
+/* Cards normales AVEC amélioration halo animé */
+/* ────────────────────────────────────────────── */
+
 .cards .card {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* important */
+  justify-content: flex-start;
   text-align: center;
 
-  width: 300px;        /* un peu plus large */
-  min-height: 160px;   /* hauteur minimum */
-  height: auto;        /* s’adapte au texte */
+  width: 300px;
+  min-height: 160px;
+  padding: 20px;
 
-  padding: 20px;       /* espace intérieur */
-  border-radius: 16px;
   background: #0f1117;
+  border-radius: 16px;
   border: 1px solid rgba(124,58,237,0.25);
   color: white;
   cursor: pointer;
   overflow: hidden;
   font-weight: 500;
-  transition: all 0.4s ease;
 
   opacity: 0;
   transform: translateY(12px);
+  transition: all 0.4s ease;
 }
 
-   .project-card {
-  background: #0f1117;
-  border-radius: 16px;
-  padding: 20px;
-  max-width: 350px; /* limite la largeur */
-  margin-bottom: 20px; /* espace entre les cartes */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-}
-.project-card.expanded {
-  max-width: 500px; /* s’agrandit au clic */
-  box-shadow: 0 8px 20px rgba(124,58,237,0.6);
+/* Halo violet */
+.cards .card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #8b5cf6,
+    #3b82f6,
+    #06b6d4,
+    #8b5cf6
+  );
+  border-radius: inherit;
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
 }
 
-/* Animation d'apparition (stagger) */
-.cards.visible .card { 
-  opacity: 1; 
-  transform: translateY(0); 
+/* Apparition progressive */
+.cards.visible .card {
+  opacity: 1;
+  transform: translateY(0);
 }
 .cards.visible .card:nth-child(1){ transition-delay: 40ms; }
 .cards.visible .card:nth-child(2){ transition-delay: 120ms; }
 .cards.visible .card:nth-child(3){ transition-delay: 200ms; }
 .cards.visible .card:nth-child(4){ transition-delay: 280ms; }
 .cards.visible .card:nth-child(5){ transition-delay: 360ms; }
-
-/* Halo violet */
-.cards .card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(124,58,237,0.4), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
 
 .cards .card > * { position: relative; z-index: 1; }
 
@@ -307,63 +303,130 @@
   border: 1px solid rgba(124,58,237,0.6);
   box-shadow: 0 0 40px rgba(124,58,237,0.4);
 }
-
 .cards .card:hover::before { opacity: 1; }
 
 /* ────────────────────────────────────────────── */
-/* Couleurs par catégorie */
-.cards .red, .cards .blue, .cards .green, .cards .purple, .cards .cyan{
-  background: linear-gradient(135deg, var(--brand), var(--brand-2)) !important;
+/* Cartes Project-card avec effet YUMI */
+/* ────────────────────────────────────────────── */
+
+.project-card {
+  position: relative;
+  background: #0f1117;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 350px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(124,58,237,0.25);
+  overflow: hidden;
+  transition: all .3s ease;
+}
+
+/* Halo + bordure animée style YUMI */
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #8b5cf6,
+    #3b82f6,
+    #06b6d4,
+    #8b5cf6
+  );
+  border-radius: inherit;
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity .4s ease;
+  z-index: -1;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--angle),
+    #8b5cf6,
+    #3b82f6,
+    #06b6d4,
+    #8b5cf6
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  animation: border-spin 4s linear infinite;
+  opacity: .75;
+}
+
+@keyframes border-spin { 
+  to { --angle: 360deg; } 
+}
+
+/* Hover */
+.project-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+}
+.project-card:hover::before { opacity: 1; }
+
+/* Version étendue au clic */
+.project-card.expanded {
+  max-width: 500px;
+  box-shadow: 0 8px 20px rgba(124,58,237,0.6);
+}
+
+/* ────────────────────────────────────────────── */
+/* Boutons animés (Voir le projet / Fermer / etc.) */
+/* ────────────────────────────────────────────── */
+
+.btn-anim {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  box-shadow: 0 0 12px rgba(109, 40, 217, 0.45);
+  transition: transform .2s ease, box-shadow .3s ease;
+}
+
+.btn-anim:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.55);
+}
+
+.btn-anim:active {
+  transform: scale(0.97);
 }
 
 /* ────────────────────────────────────────────── */
 /* Highlight card */
+/* ────────────────────────────────────────────── */
+
 .card.highlight {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   width: 240px;
   height: 260px;
-  margin: 10px;
-  border-radius: 20px;
   background: #0f1117;
-  overflow: hidden;
+  border-radius: 20px;
   border: 1px solid rgba(124,58,237,0.25);
+  overflow: hidden;
   cursor: pointer;
-  font-weight: 500;
   transition: all 0.4s ease;
+  text-align: center;
 }
 
-.card.highlight h2 {
-  z-index: 1;
-  color: white;
-  font-size: 1.6em;
-  margin-bottom: 0.5em;
-}
-
-.card.highlight p,
-.card.highlight li {
-  z-index: 1;
-  color: #cfcfcf;
-  font-size: 0.9em;
-  margin: 3px 0;
-  list-style: none;
-}
-
-/* Halo violet animé pour highlight */
 .card.highlight::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(124,58,237,0.4), transparent 70%);
+  background: radial-gradient(circle, rgba(124,58,237,0.4), transparent 70%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
-
-.card.highlight > * { position: relative; z-index: 1; }
 
 .card.highlight:hover {
   transform: translateY(-8px) scale(1.05);
@@ -372,17 +435,15 @@
 }
 
 .card.highlight:hover::before { opacity: 1; }
-@keyframes rotBGimg {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
 .card.highlight::after {
   content: '';
   position: absolute;
-  background: #07182E;
   inset: 5px;
+  background: #07182E;
   border-radius: 15px;
 }
+
 
 /* Cartes Uiverse remplaçant les deux blocs de droite du hero */
 .hero-spec-card {
@@ -1521,6 +1582,7 @@ document.querySelectorAll(".close-btn").forEach((btn) => {
 </script>
 </body>
 </html>
+
 
 
 
