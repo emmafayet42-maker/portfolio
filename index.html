@@ -322,7 +322,7 @@
 }
 
 /* Halo + bordure animée style YUMI */
-.project-card::before {
+.project-card::before,
   content: "";
   position: absolute;
   inset: -2px;
@@ -358,6 +358,14 @@
   -webkit-mask-composite: xor;
   animation: border-spin 4s linear infinite;
   opacity: .75;
+}
+   /* Grille des cartes */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    width: 100%;
+    margin-top: 20px;
 }
 
 @keyframes border-spin { 
@@ -1582,6 +1590,7 @@ document.querySelectorAll(".close-btn").forEach((btn) => {
 </script>
 </body>
 </html>
+
 
 
 
