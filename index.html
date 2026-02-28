@@ -1397,12 +1397,14 @@ body.light-mode .card {
   </div>
 </div>
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Tout votre head existant (métadonnées, styles, etc.) -->
+  <style>
+    /* Tous vos styles CSS existants */
 
-<section id="projets">
-  <div class="container">
-    <h2 class="section-title">Mes Projets en SIO</h2>
-    <style>
-    /* CSS pour les cartes */
+    /* Ajoutez ces styles pour les cartes */
     .projects-grid {
       display: flex;
       flex-wrap: wrap;
@@ -1417,7 +1419,9 @@ body.light-mode .card {
       background: #0f1117;
       border-radius: 16px;
       padding: 20px;
-      width: 300px;
+      width: calc(25% - 20px); /* 4 cartes par ligne */
+      min-width: 300px;
+      margin: 10px;
       border: 1px solid rgba(124, 58, 237, 0.25);
       overflow: hidden;
       transition: all 0.3s ease;
@@ -1429,6 +1433,9 @@ body.light-mode .card {
       max-height: 0;
       overflow: hidden;
       transition: opacity 0.3s ease, max-height 0.3s ease;
+      margin-top: 10px;
+      padding: 10px;
+      border-top: 1px solid rgba(124, 58, 237, 0.3);
     }
 
     .project-details.active {
@@ -1445,26 +1452,76 @@ body.light-mode .card {
       color: white;
       font-weight: 600;
       background: linear-gradient(135deg, #6a11cb, #2575fc);
-      box-shadow:
-    <div class="projects-grid">
-      <!-- Projet 1 -->
-      <div class="project-card reveal">
-        <h3>Site Vitrine 🖥️ ✅</h3>
-        <p class="project-subtitle" style="color:var(--muted);">Projet réalisé en SLAM</p>
-        <button class="btn-anim details-btn">Voir le projet</button>
-        <div class="project-details">
-          <p><strong>Objectif :</strong> Concevoir un portfolio professionnel moderne et responsive pour présenter mon parcours et mes compétences.</p>
-          <p><strong>Tâches réalisées :</strong></p>
-          <ul>
-            <li>Conception de la structure HTML</li>
-            <li>Stylisation avec CSS moderne (animations)</li>
-            <li>Ajout d'interactivité JavaScript</li>
-            <li>Optimisation SEO et performance</li>
-          </ul>
-          <p><strong>Compétences développées :</strong> HTML, CSS, JS</p>
-          <button class="btn-anim close-btn">Fermer</button>
+      box-shadow: 0 0 12px rgba(109, 40, 217, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      margin-top: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Votre contenu existant (navbar, hero, etc.) -->
+
+  <!-- Section Projets -->
+  <section id="projets">
+    <div class="container">
+      <h2 class="section-title">Mes Projets en SIO</h2>
+      <div class="projects-grid">
+        <!-- Projet 1 -->
+        <div class="project-card reveal">
+          <h3>Site Vitrine 🖥️ ✅</h3>
+          <p class="project-subtitle" style="color:var(--muted);">Projet réalisé en SLAM</p>
+          <button class="btn-anim details-btn">Voir le projet</button>
+          <div class="project-details">
+            <p><strong>Objectif :</strong> Concevoir un portfolio professionnel moderne et responsive.</p>
+            <ul>
+              <li>Conception de la structure HTML</li>
+              <li>Stylisation avec CSS moderne</li>
+              <li>Ajout d'interactivité JavaScript</li>
+            </ul>
+            <button class="btn-anim close-btn">Fermer</button>
+          </div>
         </div>
+
+        <!-- Ajoutez vos autres projets ici -->
       </div>
+    </div>
+  </section>
+
+  <!-- JavaScript à ajouter avant la fermeture de </body> -->
+  <script>
+    // Votre JavaScript existant
+
+    // Ajoutez ce code pour gérer les boutons
+    document.addEventListener('DOMContentLoaded', function() {
+      const detailsButtons = document.querySelectorAll('.details-btn');
+      const closeButtons = document.querySelectorAll('.close-btn');
+
+      detailsButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const projectDetails = this.nextElementSibling;
+          projectDetails.classList.add('active');
+          this.style.display = 'none';
+        });
+      });
+
+      closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const projectDetails = this.parentElement;
+          projectDetails.classList.remove('active');
+          const detailsBtn = projectDetails.previousElementSibling;
+          if (detailsBtn && detailsBtn.classList.contains('details-btn')) {
+            detailsBtn.style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
 
       <!-- Projet 2 -->
       <div class="project-card reveal">
@@ -1699,6 +1756,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
