@@ -1485,43 +1485,6 @@ body.light-mode .card {
           </div>
         </div>
 
-        <!-- Ajoutez vos autres projets ici -->
-      </div>
-    </div>
-  </section>
-
-  <!-- JavaScript à ajouter avant la fermeture de </body> -->
-  <script>
-    // Votre JavaScript existant
-
-    // Ajoutez ce code pour gérer les boutons
-    document.addEventListener('DOMContentLoaded', function() {
-      const detailsButtons = document.querySelectorAll('.details-btn');
-      const closeButtons = document.querySelectorAll('.close-btn');
-
-      detailsButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const projectDetails = this.nextElementSibling;
-          projectDetails.classList.add('active');
-          this.style.display = 'none';
-        });
-      });
-
-      closeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const projectDetails = this.parentElement;
-          projectDetails.classList.remove('active');
-          const detailsBtn = projectDetails.previousElementSibling;
-          if (detailsBtn && detailsBtn.classList.contains('details-btn')) {
-            detailsBtn.style.display = 'block';
-          }
-        });
-      });
-    });
-  </script>
-</body>
-</html>
-
 
       <!-- Projet 2 -->
       <div class="project-card reveal">
@@ -1756,6 +1719,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
