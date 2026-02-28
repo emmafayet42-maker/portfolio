@@ -1606,32 +1606,12 @@ document.querySelectorAll(".close-btn").forEach((btn) => {
     details.classList.remove("active");
   });
 });
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Gestion des boutons "Voir les détails"
-    const detailsButtons = document.querySelectorAll('.details-btn');
-    detailsButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const details = this.nextElementSibling;
-        details.classList.add('active');
-      });
-    });
-
-    // Gestion des boutons "Fermer"
-    const closeButtons = document.querySelectorAll('.close-btn');
-    closeButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const details = this.parentElement;
-        details.classList.remove('active');
-      });
-    });
-  });
 </script>
             
 </script>
 </body>
 </html>
+
 
 
 
