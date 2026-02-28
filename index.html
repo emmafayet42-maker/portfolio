@@ -1455,85 +1455,84 @@ body.light-mode .card {
   <!-- Votre contenu existant (navbar, hero, etc.) -->
 
   <!-- Section Projets -->
- <section id="projets">
+<section id="projets">
   <div class="container">
     <h2 class="section-title">Mes Projets en SIO</h2>
 
-    <!-- Ajoutez ce style spécifique -->
+    <!-- Style minimaliste intégré -->
     <style>
-      /* Style pour les détails masqués */
+      /* Style minimal pour les détails */
       .project-details {
         display: none;
-        opacity: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: all 0.3s ease;
         margin-top: 15px;
-        padding: 10px;
+        padding-top: 15px;
         border-top: 1px solid rgba(124, 58, 237, 0.3);
       }
 
       .project-details.active {
         display: block;
-        opacity: 1;
-        max-height: 1000px;
+        animation: fadeIn 0.3s ease;
       }
 
-      /* Style pour le bouton dans les cartes Uiverse */
-      .uiverse-project .details-btn {
-        display: block;
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Style pour le bouton dans vos cartes existantes */
+      .card button.details-btn {
         width: 100%;
-        padding: 10px;
-        margin: 15px 0 0;
+        padding: 8px 12px;
+        margin: 12px 0 0;
         background: linear-gradient(135deg, #6a11cb, #2575fc);
         color: white;
         border: none;
-        border-radius: 8px;
+        border-radius: 6px;
         cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        margin-bottom: 10px;
+        font-weight: 500;
+        transition: all 0.2s;
       }
 
-      .uiverse-project {
-        position: relative;
-        min-height: auto !important;
-        padding-bottom: 20px;
+      .card button.details-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       }
     </style>
 
+    <!-- Grille existante conservée -->
     <div class="grid projects" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-      <!-- Projet 1 -->
-      <div class="card uiverse-project reveal">
+
+      <!-- Projet 1 - Site Vitrine -->
+      <div class="card reveal">
         <h3>Site Vitrine 🖥️ ✅</h3>
         <p class="project-subtitle">Projet réalisé en SLAM</p>
         <button class="details-btn">Voir le projet</button>
         <div class="project-details">
-          <p><strong>Objectif :</strong> Concevoir un portfolio professionnel moderne et responsive.</p>
+          <p><strong>Objectif:</strong> Création d'un site vitrine moderne</p>
           <ul>
-            <li>Conception de la structure HTML</li>
-            <li>Stylisation avec CSS moderne</li>
-            <li>Ajout d'interactivité JavaScript</li>
+            <li>Conception HTML/CSS</li>
+            <li>Responsive design</li>
+            <li>Optimisation SEO</li>
           </ul>
         </div>
       </div>
 
-      <!-- Projet 2 -->
-      <div class="card uiverse-project reveal">
+      <!-- Projet 2 - Appel d'offre PC -->
+      <div class="card reveal">
         <h3>Appel d'offre PC 💻 ✅</h3>
         <p class="project-subtitle">Projet réalisé en SISR</p>
         <button class="details-btn">Voir le projet</button>
         <div class="project-details">
-          <p><strong>Objectif :</strong> Gérer un appel d'offre complet pour l'acquisition de PC.</p>
+          <p><strong>Objectif:</strong> Gestion complète d'un appel d'offres</p>
           <ul>
-            <li>Analyse des besoins matériels</li>
-            <li>Rédaction du cahier des charges</li>
-            <li>Collecte et comparaison des offres</li>
+            <li>Analyse des besoins</li>
+            <li>Comparaison des offres</li>
+            <li>Rédaction cahier des charges</li>
           </ul>
         </div>
       </div>
 
-   
+    
       <!-- Projet 3 -->
       <div class="project-card reveal">
         <h3>Appel d'offre Câblage 💼🛠️ ✅</h3>
@@ -1771,6 +1770,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
