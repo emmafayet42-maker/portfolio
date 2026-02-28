@@ -726,13 +726,12 @@
       </svg>
       Contact
     </a>
-     <!-- Switch Nuit / Jour -->
-    <div class="switch-wrapper">
-    <label class="switch">
-      <input type="checkbox" id="theme-toggle">
-      <span class="slider round"></span>
-    </label>
-  </div>
+    
+ <!-- mode sombre/clair -->
+<div class="theme-toggle-wrapper">
+  <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème">
+    🌙
+  </button>
 </div>
     <!-- Bouton Télécharger CV -->
     <div class="nav-cta">
@@ -782,6 +781,44 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(124,58,237,0.4);
+  color: white;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(124,58,237,0.15);
+  transform: scale(1.05);
+}
+
+/* Styles du mode clair */
+body.light-mode {
+  background: #f5f5f5;
+  color: #111;
+}
+
+body.light-mode .nav {
+  background: #ffffff;
+}
+
+body.light-mode .card {
+  background: #ffffff;
+  color: #111;
+  border: 1px solid rgba(0,0,0,0.1);
 }
 </style>
 
@@ -1352,6 +1389,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
