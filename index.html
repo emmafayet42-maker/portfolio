@@ -264,6 +264,20 @@
   transform: translateY(12px);
 }
 
+   .project-card {
+  background: #0f1117;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 350px; /* limite la largeur */
+  margin-bottom: 20px; /* espace entre les cartes */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+.project-card.expanded {
+  max-width: 500px; /* s’agrandit au clic */
+  box-shadow: 0 8px 20px rgba(124,58,237,0.6);
+}
+
 /* Animation d'apparition (stagger) */
 .cards.visible .card { 
   opacity: 1; 
@@ -1439,6 +1453,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
