@@ -1591,26 +1591,11 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     const res = await fetch('assets/cv.pdf', { method:'HEAD' });
     if(!res.ok){ showLoader(); }
   }catch(e){ showLoader(); }
-});
-
-document.querySelectorAll(".details-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const details = btn.nextElementSibling;
-    details.classList.add("active");
-  });
-});
-
-document.querySelectorAll(".close-btn").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const details = e.target.parentElement;
-    details.classList.remove("active");
-  });
-});
-</script>
-            
+});   
 </script>
 </body>
 </html>
+
 
 
 
