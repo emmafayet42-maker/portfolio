@@ -1605,24 +1605,10 @@ document.querySelectorAll(".close-btn").forEach((btn) => {
     details.classList.remove("active");
   });
 });
-            <script>
-    document.querySelectorAll(".details-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const details = btn.nextElementSibling;
-        details.classList.toggle("active");
-      });
-    });
-
-    document.querySelectorAll(".close-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const details = btn.parentElement;
-        details.classList.remove("active");
-      });
-    });
-
 </script>
 </body>
 </html>
+
 
 
 
