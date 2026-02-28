@@ -1247,7 +1247,7 @@ body.light-mode .card {
 
     <div class="experiences-grid">
 
-    <div class="project-card reveal">
+  <div class="project-card reveal">
   <h3>Michelin 🛠️</h3>
   <p class="project-subtitle" style="color:var(--muted);">2022 - 2023 • Roanne</p>
 
@@ -1260,7 +1260,16 @@ body.light-mode .card {
     >
   </div>
 
+  <!-- Résumé visible par défaut -->
   <div class="project-details">
+    <p>Stage en entreprise spécialisée dans la fabrication de pneumatiques.</p>
+  </div>
+
+  <!-- Bouton pour afficher les détails supplémentaires -->
+  <button class="btn-anim details-btn">Voir les détails</button>
+
+  <!-- Détails supplémentaires masqués par défaut -->
+  <div class="additional-details">
     <ul>
       <li>Support technique aux utilisateurs</li>
       <li>Maintenance du matériel informatique</li>
@@ -1269,7 +1278,6 @@ body.light-mode .card {
     </ul>
   </div>
 </div>
-
 
 
      <div class="project-card reveal">
@@ -1640,6 +1648,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
