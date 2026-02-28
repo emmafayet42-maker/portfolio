@@ -243,18 +243,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* important */
   text-align: center;
-  height: 160px;
-  width: 240px;
+
+  width: 300px;        /* un peu plus large */
+  min-height: 160px;   /* hauteur minimum */
+  height: auto;        /* s’adapte au texte */
+
+  padding: 20px;       /* espace intérieur */
   border-radius: 16px;
-  background: #0f1117; /* noir profond */
+  background: #0f1117;
   border: 1px solid rgba(124,58,237,0.25);
   color: white;
   cursor: pointer;
   overflow: hidden;
   font-weight: 500;
   transition: all 0.4s ease;
+
   opacity: 0;
   transform: translateY(12px);
 }
@@ -714,15 +719,6 @@
       </svg>
       Expériences
     </a>
-
-    <!-- mes projets en sio -->
-    <a class="nav-item" href="#mon-parcours" aria-label="Mes Projets en SIO">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M12 2 2 7l10 5 10-5-10-5Zm0 7L2 14l10 5 10-5-10-5Z" fill="currentColor"/>
-  </svg>
-  Mes Projets en SIO
-</a>
-
     <!-- Contact -->
     <a class="nav-item" href="#contact" aria-label="Contact">
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -810,7 +806,7 @@
         </div>
         <div style="display:flex; gap:12px; margin-top:18px">
      <!-- Bouton Voir mes projets avec scroll fluide -->
-          <a class="btn-project" href="#mon-parcours">Voir mes projets</a>
+          <a class="btn-project" href="#mon-parcours">Voir mes projets en SIO </a>
           <a class="btn ghost" href="#contact">Me contacter</a>
         </div>
       </div>
@@ -1087,7 +1083,6 @@
   </div>
 </section>
 
-
 <section id="projets">
   <div class="container">
     <h2 class="section-title"> Mes Projets en SIO</h2>
@@ -1356,6 +1351,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
