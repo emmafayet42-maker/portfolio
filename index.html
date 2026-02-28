@@ -1395,26 +1395,8 @@ toggleBtn.addEventListener("click", () => {
     localStorage.setItem("theme", "dark");
   }
 });
-</script>  
-  <script>
-          document.querySelectorAll('.details-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.project');
-    const details = card.querySelector('.project-details');
-    details.style.display = 'block';
-    card.classList.add('expanded');
-  });
-});
 
-document.querySelectorAll('.close-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.project');
-    const details = card.querySelector('.project-details');
-    details.style.display = 'none';
-    card.classList.remove('expanded');
-  });
-});
-   <script>
+  
     // ─────────────────────────────────────────────────────────────────────
     // Reveal on Scroll (IntersectionObserver)
     // ─────────────────────────────────────────────────────────────────────
@@ -1480,6 +1462,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
