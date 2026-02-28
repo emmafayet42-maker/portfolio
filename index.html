@@ -1660,6 +1660,29 @@ body.light-mode .card {
       <span style="opacity:.6"></span></div>
   </footer>
 
+<script>
+// Code spécifique pour les projets
+document.addEventListener('DOMContentLoaded', function() {
+  const detailsButtons = document.querySelectorAll('.details-btn');
+
+  detailsButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const projectDetails = this.nextElementSibling;
+
+      // Basculer l'affichage des détails
+      projectDetails.classList.toggle('active');
+
+      // Changer le texte du bouton
+      this.textContent = projectDetails.classList.contains('active')
+        ? 'Masquer le projet'
+        : 'Voir le projet';
+    });
+  });
+});
+</script>
+
+
+          
           <script>
 const toggleBtn = document.getElementById("theme-toggle");
 const body = document.body;
@@ -1748,6 +1771,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
