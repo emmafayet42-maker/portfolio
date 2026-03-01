@@ -10,6 +10,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="basket.png" type="image/png">
  <style>
+/* Ajoute ce code pour les cartes de projet */
+    .projects-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .project-card {
+      flex: 1 1 300px;
+      max-width: 400px;
+      margin: 10px;
+      background: var(--card-bg); /* Assure-toi que cette variable est définie ailleurs dans ton CSS */
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Ton contenu HTML existant -->
+
+  <!-- Conteneur pour les cartes de projet -->
+  <div class="projects-container">
+    <!-- Tes cartes de projet ici -->
+    <div class="project-card reveal">
+      <!-- Contenu de la carte -->
+    </div>
+    <!-- Autres cartes... -->
+  </div>
+</body>
+</html>
+
+
+
+
+
+   
     /* ====== VARIABLES ET STYLES GLOBAUX ====== */
     :root {
       --bg: #050507;      /* noir plus profond */
@@ -413,25 +452,7 @@
   opacity: 1;
   transform: translateY(0);
 }
-.projects-container {
-  display: flex; /* Active le mode flexbox */
-  flex-wrap: wrap; /* Permet aux cartes de passer à la ligne si nécessaire */
-  gap: 20px; /* Espace entre les cartes */
-  justify-content: center; /* Centre les cartes horizontalement */
-  padding: 20px;
-}
 
-.project-card {
-  flex: 1 1 300px; /* Largeur flexible, minimum 300px */
-  max-width: 400px; /* Largeur maximale pour éviter que les cartes ne deviennent trop larges */
-  margin: 10px;
-}
-
-
-
-
-
-   
 /* ────────────────────────────────────────────── */
 /* Highlight card */
 /* ────────────────────────────────────────────── */
@@ -1728,6 +1749,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
