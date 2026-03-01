@@ -1428,27 +1428,36 @@ body.light-mode .card {
 <body>
   <!-- Votre contenu existant (navbar, hero, etc.) -->
 
-  <!-- Section Projets -->
-<!-- Projet 1 - Site Vitrine -->
-  <div class="project-card reveal">
-  <h3>Site Vitrine 🖥️ ✅</h3>
-  <p class="project-subtitle" style="color:var(--muted);">Projet réalisé en SLAM</p>
-  <!-- Supprime le bouton -->
-  <div class="project-details" style="display: block; opacity: 1; transform: none;">
-    <p><strong>Objectif :</strong> Concevoir un portfolio professionnel moderne et responsive pour présenter mon parcours et mes compétences.</p>
-    <div style="margin:10px 0; text-align:center;">
-      <img src="images/mockup-site-vitrine.png" style="width:80%;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+ <!-- Section Projets -->
+<section id="projets">
+  <div class="container">
+    <h2 class="section-title">Mes Projets en SIO</h2>
+
+    <!-- Projet 1 - Site Vitrine -->
+    <div class="project-card reveal">
+      <h3>Site Vitrine 🖥️ ✅</h3>
+      <p class="project-subtitle" style="color:var(--muted);">Projet réalisé en SLAM</p>
+
+      <!-- Détails toujours visibles -->
+      <div class="project-details" style="display: block; opacity: 1; transform: none;">
+        <p><strong>Objectif :</strong> Concevoir un portfolio professionnel moderne et responsive pour présenter mon parcours et mes compétences.</p>
+        <div style="margin:10px 0; text-align:center;">
+          <img src="images/mockup-site-vitrine.png" style="width:80%;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+        </div>
+        <p><strong>Tâches réalisées :</strong></p>
+        <ul>
+          <li>Conception de la structure HTML</li>
+          <li>Stylisation avec CSS moderne (animations)</li>
+          <li>Ajout d'interactivité JavaScript</li>
+          <li>Optimisation SEO et performance</li>
+        </ul>
+        <p><strong>Compétences développées :</strong> HTML, CSS, JS</p>
+      </div>
     </div>
-    <p><strong>Tâches réalisées :</strong></p>
-    <ul>
-      <li>Conception de la structure HTML</li>
-      <li>Stylisation avec CSS moderne (animations)</li>
-      <li>Ajout d'interactivité JavaScript</li>
-      <li>Optimisation SEO et performance</li>
-    </ul>
-    <p><strong>Compétences développées :</strong> HTML, CSS, JS</p>
+
+    <!-- Ajoute tes autres projets ici en suivant le même modèle -->
   </div>
-</div>
+</section>
 
 
 <!-- Projet 2 - Appel d'offre PC -->
@@ -1710,6 +1719,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
