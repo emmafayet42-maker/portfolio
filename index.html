@@ -1605,28 +1605,24 @@ body.light-mode .card {
   </footer>
 
 <script>
-// Code spécifique pour les projets
+// Solution simple et efficace pour afficher/masquer les détails
 document.addEventListener('DOMContentLoaded', function() {
-  const detailsButtons = document.querySelectorAll('.details-btn');
-
-  detailsButtons.forEach(button => {
+  const buttons = document.querySelectorAll('.details-btn');
+  buttons.forEach(button => {
     button.addEventListener('click', function() {
-      const projectDetails = this.nextElementSibling;
-
-      // Basculer l'affichage des détails
-      projectDetails.classList.toggle('active');
-
-      // Changer le texte du bouton
-      this.textContent = projectDetails.classList.contains('active')
-        ? 'Masquer le projet'
-        : 'Voir le projet';
+      const details = this.nextElementSibling;
+      if (details.style.display === 'block') {
+        details.style.display = 'none';
+        this.textContent = 'Voir le projet';
+      } else {
+        details.style.display = 'block';
+        this.textContent = 'Masquer le projet';
+      }
     });
   });
 });
 </script>
 
-
-          
           <script>
 const toggleBtn = document.getElementById("theme-toggle");
 const body = document.body;
@@ -1715,6 +1711,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
