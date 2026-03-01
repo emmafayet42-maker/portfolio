@@ -413,7 +413,25 @@
   opacity: 1;
   transform: translateY(0);
 }
-  
+.projects-container {
+  display: flex; /* Active le mode flexbox */
+  flex-wrap: wrap; /* Permet aux cartes de passer à la ligne si nécessaire */
+  gap: 20px; /* Espace entre les cartes */
+  justify-content: center; /* Centre les cartes horizontalement */
+  padding: 20px;
+}
+
+.project-card {
+  flex: 1 1 300px; /* Largeur flexible, minimum 300px */
+  max-width: 400px; /* Largeur maximale pour éviter que les cartes ne deviennent trop larges */
+  margin: 10px;
+}
+
+
+
+
+
+   
 /* ────────────────────────────────────────────── */
 /* Highlight card */
 /* ────────────────────────────────────────────── */
@@ -1710,6 +1728,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
