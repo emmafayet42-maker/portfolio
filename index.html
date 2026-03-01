@@ -1605,12 +1605,13 @@ body.light-mode .card {
   </footer>
 
 <script>
-// Solution simple et efficace pour afficher/masquer les détails
+// Solution garantie pour afficher/masquer les détails
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('.details-btn');
   buttons.forEach(button => {
     button.addEventListener('click', function() {
       const details = this.nextElementSibling;
+      // Basculer l'affichage avec un style inline (ignore le CSS existant)
       if (details.style.display === 'block') {
         details.style.display = 'none';
         this.textContent = 'Voir le projet';
@@ -1622,6 +1623,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
 
           <script>
 const toggleBtn = document.getElementById("theme-toggle");
@@ -1711,6 +1713,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
