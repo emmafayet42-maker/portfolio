@@ -981,7 +981,14 @@ body.light-mode .card {
         </div>
         <div style="display:flex; gap:12px; margin-top:18px">
      <!-- Bouton Voir mes projets avec scroll fluide -->
-          <a class="btn-project" href="#projets">Voir mes projets en SIO </a>
+         <div class="dropdown-projets">
+  <button class="btn-project">Voir mes projets en SIO ▾</button>
+
+  <div class="dropdown-menu">
+    <a href="#semestre1">Semestre 1</a>
+    <a href="#semestre2">Semestre 2</a>
+  </div>
+</div>
           <a class="btn ghost" href="#contact">Me contacter</a>
         </div>
       </div>
@@ -1427,149 +1434,135 @@ body.light-mode .card {
 <body>
   <!-- Votre contenu existant (navbar, hero, etc.) -->
 
- <!-- Section Projets -->
+<!-- Section Projets -->
 <section id="projets">
   <div class="container">
     <h2 class="section-title">Mes Projets en SIO</h2>
-    
-<div class="project-card reveal">
-  <h3>Site Vitrine 🖥️ ✅</h3>
-  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SLAM</p>
 
-  <div style="text-align: center; margin: 10px 0;">
-   
- </div>
+    <!-- SEMESTRE 1 -->
+    <h3 id="semestre1" class="semester-title">Semestre 1</h3>
 
-  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
-    <p><strong>Objectif :</strong> Concevoir un portfolio professionnel moderne et responsive pour présenter mon parcours et mes compétences.</p>
-    <ul style="margin-top: 10px; padding-left: 20px;">
-      <li>Conception de la structure HTML</li>
-      <li>Stylisation avec CSS moderne (animations)</li>
-      <li>Ajout d'interactivité JavaScript</li>
-      <li>Optimisation SEO et performance</li>
-    </ul>
-    <p><strong>Compétences développées :</strong> HTML, CSS, JS</p>
-  </div>
-</div>
+    <!-- Projet 1 -->
+    <div class="project-card reveal">
+      <h3>Site Vitrine 🖥️ ✅</h3>
+      <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SLAM</p>
 
-
-<div class="project-card reveal">
-  <h3>Appel d'offre PC 💻 ✅</h3>
-  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
-
-  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
-    <p><strong>Objectif :</strong> Gérer un appel d'offre complet pour l'acquisition de PC et périphériques informatiques.</p>
-    <div style="margin:10px 0; text-align:center;">
+      <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+        <p><strong>Objectif :</strong> Concevoir un portfolio professionnel moderne et responsive.</p>
+        <ul style="margin-top: 10px; padding-left: 20px;">
+          <li>Structure HTML</li>
+          <li>Stylisation CSS avec animations</li>
+          <li>Interactivité JavaScript</li>
+          <li>Optimisation SEO</li>
+        </ul>
+        <p><strong>Compétences :</strong> HTML, CSS, JavaScript</p>
+      </div>
     </div>
-    <p><strong>Tâches réalisées :</strong></p>
-    <ul style="margin-left: 20px;">
-      <li>Analyse des besoins matériels</li>
-      <li>Rédaction du cahier des charges (PC, périphériques)</li>
-      <li>Collecte et comparaison des offres fournisseurs</li>
-      <li>Recommandation finale selon budget & performance</li>
-    </ul>
-    <p><strong>Compétences développées :</strong> Analyse, Gestion des achats, SISR</p>
-  </div>
-</div>
 
+    <!-- Projet 2 -->
+    <div class="project-card reveal">
+      <h3>Appel d'offre PC 💻 ✅</h3>
+      <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
 
-   <div class="project-card reveal">
-  <h3>Appel d'offre Câblage 💼🛠️ ✅</h3>
-  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
-
-  <!-- Contenu visible directement, sans utiliser la classe project-details -->
-  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
-    <p><strong>Objectif :</strong> Gérer un appel d’offre complet pour l’installation d’un câblage réseau.</p>
-    <div style="margin:10px 0; text-align:center;">
+      <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+        <p><strong>Objectif :</strong> Gérer un appel d'offre pour l'achat de PC.</p>
+        <ul style="margin-left: 20px;">
+          <li>Analyse des besoins matériels</li>
+          <li>Rédaction du cahier des charges</li>
+          <li>Comparaison des offres fournisseurs</li>
+          <li>Choix final selon budget</li>
+        </ul>
+        <p><strong>Compétences :</strong> Analyse, gestion des achats</p>
+      </div>
     </div>
-    <p><strong>Tâches réalisées :</strong></p>
-    <ul style="margin-left: 20px;">
-      <li>Rédaction du cahier des charges</li>
-      <li>Analyse des devis fournisseurs</li>
-      <li>Coordination de l’installation du câblage</li>
-      <li>Contrôle final et tests réseau</li>
-    </ul>
-    <p><strong>Compétences développées :</strong> Gestion projet, réseau, analyse technique</p>
-  </div>
-</div>
-      <!-- Projet 4 -->
-<div class="project-card reveal">
-  <h3>Environnement Réseau 🌐⚡✅</h3>
-  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
 
-  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
-    <p><strong>Objectif :</strong> Mettre en place un environnement réseau complet avec switchs, routeurs et VLAN.</p>
-    <div style="margin:10px 0; text-align:center;">
+    <!-- Projet 3 -->
+    <div class="project-card reveal">
+      <h3>Appel d'offre Câblage 💼🛠️ ✅</h3>
+      <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
+
+      <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+        <p><strong>Objectif :</strong> Organiser l'installation d'un câblage réseau.</p>
+        <ul style="margin-left: 20px;">
+          <li>Rédaction du cahier des charges</li>
+          <li>Analyse des devis fournisseurs</li>
+          <li>Coordination de l'installation</li>
+          <li>Tests du réseau</li>
+        </ul>
+        <p><strong>Compétences :</strong> Réseau, gestion de projet</p>
+      </div>
     </div>
-    <p><strong>Tâches réalisées :</strong></p>
-    <ul style="margin-left: 20px;">
-      <li>Installation et configuration de switchs et routeurs</li>
-      <li>Création et gestion des VLAN</li>
-      <li>Configuration des routes et interconnexions</li>
-      <li>Tests de connectivité et validation réseau</li>
-    </ul>
-    <p><strong>Compétences développées :</strong> Réseau, VLAN, Routage, Sécurité</p>
-  </div>
-</div>
 
-<!-- Projet 5 -->
-<div class="project-card reveal">
-  <h3>Réseau Poste-à-Poste 💻🔗✅</h3>
-  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
 
-  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
-    <p><strong>Objectif :</strong> Configurer un réseau simple permettant le partage de fichiers et la communication entre plusieurs PC.</p>
-    <div style="margin:10px 0; text-align:center;">
+    <!-- SEMESTRE 2 -->
+    <h3 id="semestre2" class="semester-title">Semestre 2</h3>
+
+    <!-- Projet 4 -->
+    <div class="project-card reveal">
+      <h3>Environnement Réseau 🌐⚡✅</h3>
+      <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
+
+      <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+        <p><strong>Objectif :</strong> Mettre en place un réseau avec VLAN.</p>
+        <ul style="margin-left: 20px;">
+          <li>Configuration switchs et routeurs</li>
+          <li>Création VLAN</li>
+          <li>Tests réseau</li>
+        </ul>
+        <p><strong>Compétences :</strong> Réseau, VLAN</p>
+      </div>
     </div>
-    <p><strong>Tâches réalisées :</strong></p>
-    <ul style="margin-left: 20px;">
-      <li>Configuration des postes sous Windows 10</li>
-      <li>Mise en place d’un réseau poste-à-poste sécurisé</li>
-      <li>Partage de dossiers et ressources</li>
-      <li>Dépannage et tests de connectivité</li>
-    </ul>
-    <p><strong>Compétences développées :</strong> Réseau, Windows 10, Dépannage</p>
-  </div>
-</div>
 
-<!-- Projet 6 -->
-<div class="project-card reveal">
-  <h3>Clé YUMI Bootable 💾⚡✅</h3>
-  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
+    <!-- Projet 5 -->
+    <div class="project-card reveal">
+      <h3>Réseau Poste-à-Poste 💻🔗✅</h3>
+      <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
 
-  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
-    <p><strong>Objectif :</strong> Créer une clé USB multiboot permettant de lancer plusieurs systèmes d’exploitation ou outils en dépannage.</p>
-    <div style="margin:10px 0; text-align:center;">
+      <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+        <p><strong>Objectif :</strong> Créer un réseau entre plusieurs ordinateurs.</p>
+        <ul style="margin-left: 20px;">
+          <li>Configuration Windows</li>
+          <li>Partage fichiers</li>
+          <li>Tests connectivité</li>
+        </ul>
+        <p><strong>Compétences :</strong> Réseau, dépannage</p>
+      </div>
     </div>
-    <p><strong>Tâches réalisées :</strong></p>
-    <ul style="margin-left: 20px;">
-      <li>Installation de YUMI et création d'une clé USB multiboot</li>
-      <li>Ajout de systèmes (Linux, Windows PE, utilitaires)</li>
-      <li>Tests sur différents ordinateurs</li>
-      <li>Mise à jour des images bootables</li>
-    </ul>
-    <p><strong>Compétences développées :</strong> Systèmes, Boot, Maintenance informatique</p>
+
+    <!-- Projet 6 -->
+    <div class="project-card reveal">
+      <h3>Clé YUMI Bootable 💾⚡✅</h3>
+      <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
+
+      <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+        <p><strong>Objectif :</strong> Créer une clé USB multiboot.</p>
+        <ul style="margin-left: 20px;">
+          <li>Installation YUMI</li>
+          <li>Ajout systèmes Linux et utilitaires</li>
+          <li>Tests sur PC</li>
+        </ul>
+        <p><strong>Compétences :</strong> Systèmes, maintenance</p>
+      </div>
+    </div>
+
+    <!-- Projet 7 -->
+    <div class="project-card reveal">
+      <h3>Mon Portfolio 🌟✅</h3>
+      <p style="color:var(--muted); margin-bottom: 10px;">Présentation de mes projets</p>
+
+      <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+        <p><strong>Objectif :</strong> Présenter mes projets SIO.</p>
+        <ul style="margin-left: 20px;">
+          <li>Création site web</li>
+          <li>Organisation projets</li>
+          <li>Animations et design</li>
+        </ul>
+        <p><strong>Compétences :</strong> HTML, CSS, UX/UI</p>
+      </div>
+    </div>
+
   </div>
-</div>
-
-<!-- Projet 7 -->
-<div class="project-card reveal">
-  <h3>Mon Portfolio 🌟✅</h3>
-  <p style="color:var(--muted); margin-bottom: 10px;">Présentation de mes projets SIO & SLAM</p>
-
-  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
-    <p><strong>Objectif :</strong> Présenter mes projets réalisés durant ma formation SIO en SISR et SLAM.</p>
-    <p><strong>Tâches réalisées :</strong></p>
-    <ul style="margin-left: 20px;">
-      <li>Création d’un site web moderne et responsive</li>
-      <li>Organisation des projets SISR & SLAM</li>
-      <li>Ajout d'animations et mise en valeur des compétences</li>
-      <li>Optimisation pour la navigation (UX/UI)</li>
-    </ul>
-    <p><strong>Compétences développées :</strong> HTML, CSS, UX/UI, Organisation</p>
-  </div>
-</div>
-
+</section>
 
   <!-- CONTACT -->
   <section id="contact">
@@ -1696,6 +1689,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 </script>
 </body>
 </html>
+
 
 
 
