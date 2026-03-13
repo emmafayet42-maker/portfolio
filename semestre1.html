@@ -5,7 +5,6 @@
 <title>Projets Semestre 1 - Emma FAYET</title>
 
 <style>
-
 body{
   background:#070b1a;
   color:white;
@@ -14,7 +13,7 @@ body{
   padding:80px;
 }
 
-h2{
+h2, .semester-title{
   margin-bottom:40px;
 }
 
@@ -37,16 +36,7 @@ h2{
   box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-.project-card h3{
-  margin-bottom:10px;
-}
-
-.project-card ul{
-  margin-top:10px;
-  padding-left:18px;
-}
-
-/* Style du bouton Retour à l'accueil */
+/* Style des boutons */
 .btn {
   display: inline-block;
   padding:10px 20px;
@@ -55,48 +45,71 @@ h2{
   text-decoration:none;
   border-radius:8px;
   font-weight:bold;
-  margin-bottom:30px;
+  margin-bottom:20px;
+  margin-right:10px;
   transition: background-color 0.3s;
 }
 
 .btn:hover {
   background-color:#45a049;
 }
-
 </style>
 
 </head>
-
 <body>
 
 <section id="projets-semestre1">
 
-<!-- Bouton Retour à l'accueil -->
+<!-- Boutons navigation -->
 <a href="index.html" class="btn">← Retour à l'accueil</a>
-<h2>Projets Semestre 1</h2>
+<a href="semestre2.html" class="btn">→ Projets Semestre 2</a>
+
+<h2 class="semester-title">Projets Semestre 1</h2>
 
 <!-- Projet 1 -->
-<div class="project-card">
-<h3>Site Vitrine 🖥️</h3>
-<p>Projet réalisé en SLAM</p>
-<ul>
-<li>Conception HTML</li>
-<li>CSS et animations</li>
-<li>JavaScript</li>
-</ul>
+<div class="project-card reveal">
+  <h3>Site Vitrine 🖥️</h3>
+  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SLAM</p>
+  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+    <p><strong>Objectif :</strong> Créer un site vitrine pour une entreprise fictive.</p>
+    <ul style="margin-left: 20px;">
+      <li>Conception HTML</li>
+      <li>CSS et animations</li>
+      <li>JavaScript</li>
+    </ul>
+    <p><strong>Compétences :</strong> HTML, CSS, JS</p>
+  </div>
 </div>
 
 <!-- Projet 2 -->
-<div class="project-card">
-<h3>Appel d'offre PC 💻</h3>
-<p>Projet réalisé en SISR</p>
-<ul>
-<li>Analyse des besoins</li>
-<li>Rédaction cahier des charges</li>
-</ul>
+<div class="project-card reveal">
+  <h3>Appel d'offre PC 💻</h3>
+  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SISR</p>
+  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+    <p><strong>Objectif :</strong> Rédiger un cahier des charges pour un projet informatique.</p>
+    <ul style="margin-left: 20px;">
+      <li>Analyse des besoins</li>
+      <li>Rédaction du cahier des charges</li>
+    </ul>
+    <p><strong>Compétences :</strong> Analyse, rédaction technique</p>
+  </div>
+</div>
+
+<!-- Projet 3 -->
+<div class="project-card reveal">
+  <h3>Application de gestion 📱</h3>
+  <p style="color:var(--muted); margin-bottom: 10px;">Projet réalisé en SLAM</p>
+  <div style="margin-top: 10px; padding: 10px; border-top: 1px solid rgba(124, 58, 237, 0.3);">
+    <p><strong>Objectif :</strong> Développer une application simple pour gérer des tâches.</p>
+    <ul style="margin-left: 20px;">
+      <li>Backend en PHP</li>
+      <li>Base de données MySQL</li>
+      <li>Interface utilisateur responsive</li>
+    </ul>
+    <p><strong>Compétences :</strong> PHP, MySQL, UI</p>
+  </div>
 </div>
 
 </section>
-
 </body>
 </html>
