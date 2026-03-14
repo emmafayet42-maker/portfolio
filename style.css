@@ -301,3 +301,27 @@ body.light-mode .card {
 .hero-spec-card.pulse {
   animation: cardGlow 3s ease-in-out infinite;
 }
+/* Conteneur des mini-cartes */
+.infos-rapides .mini-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Mini-cartes individuelles */
+.infos-rapides .mini-card {
+  background: linear-gradient(135deg, #3b0764, #0d3b66);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(124,58,237,0.5);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.infos-rapides .mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124,58,237,0.6);
+}
