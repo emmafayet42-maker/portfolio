@@ -112,29 +112,96 @@ h1 {
   max-width: 60ch;
 }
 
-/* ===== CARTES GÉNÉRAL ===== */
+/* ==========================
+   CARTES UNIFORMES : DESIGN VIOLET/BLEU FONCÉ
+   ========================== */
+
+/* Style général des cartes */
 .card,
 .project-card,
 .hero-spec-card {
-  background: rgba(20, 12, 40, 0.7); /* violet foncé semi-transparent */
-  backdrop-filter: blur(15px);        /* effet glass */
-  border-radius: 16px;
-  border: 1px solid rgba(124, 58, 237, 0.5); /* contour violet visible */
+  background: linear-gradient(135deg, #3b0764, #0d3b66); /* violet -> bleu foncé */
+  color: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(124, 58, 237, 0.5);
   padding: 20px;
-  color: var(--text);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* ===== HOVER ===== */
+/* Hover général */
 .card:hover,
 .project-card:hover,
 .hero-spec-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: 
-    0 0 20px rgba(124, 58, 237, 0.6), /* violet */
-    0 0 15px rgba(6, 182, 212, 0.4);  /* bleu */
+    0 0 20px rgba(124, 58, 237, 0.6),
+    0 0 15px rgba(6, 182, 212, 0.4);
 }
 
+/* ==========================
+   À PROPOS : cartes carrées et horizontales
+   ========================== */
+#about .grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#about .card {
+  flex: 1 1 300px;      /* Largeur min 300px, flexible */
+  height: 300px;        /* Carrée */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+/* ==========================
+   HERO CARDS
+   ========================== */
+.hero-spec-card {
+  flex: 1 1 280px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+/* ==========================
+   COMPÉTENCES : cartes colorées uniformisées
+   ========================== */
+#skills .card {
+  background: linear-gradient(135deg, #3b0764, #0d3b66);
+  color: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(124,58,237,0.5);
+  padding: 16px;
+}
+
+/* ==========================
+   PROJETS / EXPERIENCES
+   ========================== */
+.project-card {
+  background: linear-gradient(135deg, #3b0764, #0d3b66);
+  color: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(124,58,237,0.5);
+  padding: 20px;
+}
+
+/* ==========================
+   RESPONSIVE
+   ========================== */
+@media (max-width: 900px) {
+  #about .card,
+  .hero-spec-card,
+  .project-card {
+    height: auto;       /* Sur mobile, hauteur automatique */
+    flex: 1 1 100%;     /* Prend toute la largeur */
+  }
+}
 /* ===== CARTES PULSANTES (OPTIONNEL) ===== */
 @keyframes cardGlow {
   0% { box-shadow: 0 0 10px rgba(124,58,237,0.3); }
@@ -199,42 +266,6 @@ h1 {
   box-shadow: 
     0 0 20px rgba(124, 58, 237, 0.6),
     0 0 15px rgba(6, 182, 212, 0.4);
-}
-/* ===== À PROPOS : cartes carrées et alignées ===== */
-#about .grid {
-  display: flex;           /* Flex horizontal */
-  gap: 20px;               /* Espace entre les cartes */
-  flex-wrap: wrap;         /* Permet au mobile de passer en ligne suivante */
-  justify-content: center; /* Centrer si moins de cartes */
-}
-
-#about .card {
-  flex: 1 1 300px;         /* Largeur minimale 300px, flexibilité */
-  height: 300px;           /* Carte carrée */
-  display: flex;
-  flex-direction: column;  /* Texte vertical */
-  justify-content: space-between; /* Espacement entre contenu */
-  background: linear-gradient(135deg, #3b0764, #0d3b66); /* violet -> bleu foncé */
-  border: 1px solid rgba(124, 58, 237, 0.5);
-  color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-#about .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 
-    0 0 20px rgba(124, 58, 237, 0.6),
-    0 0 15px rgba(6, 182, 212, 0.4);
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  #about .card {
-    height: auto;         /* Sur mobile, hauteur auto */
-    flex: 1 1 100%;       /* Les cartes prennent toute la largeur */
-  }
 }
 
 /* ===== DROPDOWN ===== */
