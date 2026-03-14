@@ -105,18 +105,20 @@ h1 {
   color: #fff;
   border-radius: 12px;
   border: 2px solid rgba(124,58,237,0.6);
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  padding: 16px;             /* moins de padding */
+  width: 220px;               /* largeur fixe mais flexible */
+  height: auto;               /* hauteur automatique selon le contenu */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card:hover,
-.project-card:hover,
 .hero-spec-card:hover {
   transform: translateY(-6px);
-  box-shadow: 
-    0 0 25px rgba(124,58,237,0.7),
-    0 0 20px rgba(6,182,212,0.5);
+  box-shadow: 0 0 20px rgba(124,58,237,0.6), 0 0 15px rgba(6,182,212,0.4);
 }
 
 /* ===== À PROPOS : cartes carrées et horizontales ===== */
