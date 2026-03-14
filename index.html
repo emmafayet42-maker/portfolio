@@ -626,6 +626,11 @@
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 0 25px rgba(138, 43, 226, 0.35);
 }
+   .experiences-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
 
 
 /* NAV Uiverse horizontal */
@@ -1249,11 +1254,13 @@ body.light-mode .card {
 <!-- ===================== -->
 <!-- SECTION EXPERIENCES -->
 <!-- ===================== -->
+         
 <section id="experiences">
   <div class="container">
     <h2 class="section-title">Expériences</h2>
 
     <div class="experiences-grid">
+    
 
   <div class="project-card reveal">
   <h3>Michelin 🛠️</h3>
@@ -1399,9 +1406,11 @@ body.light-mode .card {
       <li>Configuration de postes</li>
       <li>Installation de réseaux locaux</li>
       <li>Support technique aux clients</li>
-    </ul>
+    </ul> 
   </div>
 </div>
+    
+
 
 <!DOCTYPE html>
 <html lang="fr">
