@@ -229,38 +229,7 @@ h1 {
 .dropdown-projets:hover .dropdown-menu {
   display: block;
 }
-/* Dropdown pour Expériences */
-.dropdown-experiences {
-  position: relative;
-}
 
-.dropdown-experiences .dropdown-menu-experiences {
-  display: none;
-  position: absolute;
-  top: 45px;
-  left: 0;
-  background: rgba(13,17,23,0.95);
-  border-radius: 10px;
-  border: 1px solid rgba(124,58,237,0.4);
-  min-width: 180px;
-  z-index: 999;
-  flex-direction: column;
-}
-
-.dropdown-experiences .dropdown-menu-experiences a {
-  display: block;
-  padding: 10px 16px;
-  color: #fff;
-}
-
-.dropdown-experiences .dropdown-menu-experiences a:hover {
-  background: rgba(124,58,237,0.3);
-}
-
-/* Affichage au survol */
-.dropdown-experiences:hover .dropdown-menu-experiences {
-  display: flex;
-}
 /* ===== BUTTONS ===== */
 .btn, .btn-project {
   cursor: pointer;
