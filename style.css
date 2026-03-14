@@ -200,6 +200,42 @@ h1 {
     0 0 20px rgba(124, 58, 237, 0.6),
     0 0 15px rgba(6, 182, 212, 0.4);
 }
+/* ===== À PROPOS : cartes carrées et alignées ===== */
+#about .grid {
+  display: flex;           /* Flex horizontal */
+  gap: 20px;               /* Espace entre les cartes */
+  flex-wrap: wrap;         /* Permet au mobile de passer en ligne suivante */
+  justify-content: center; /* Centrer si moins de cartes */
+}
+
+#about .card {
+  flex: 1 1 300px;         /* Largeur minimale 300px, flexibilité */
+  height: 300px;           /* Carte carrée */
+  display: flex;
+  flex-direction: column;  /* Texte vertical */
+  justify-content: space-between; /* Espacement entre contenu */
+  background: linear-gradient(135deg, #3b0764, #0d3b66); /* violet -> bleu foncé */
+  border: 1px solid rgba(124, 58, 237, 0.5);
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#about .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 0 20px rgba(124, 58, 237, 0.6),
+    0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  #about .card {
+    height: auto;         /* Sur mobile, hauteur auto */
+    flex: 1 1 100%;       /* Les cartes prennent toute la largeur */
+  }
+}
 
 /* ===== DROPDOWN ===== */
 
@@ -337,40 +373,4 @@ body.light-mode .card {
 .btn-project:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 30px rgba(124,58,237,0.6);
-}
-/* ===== À PROPOS : cartes carrées et alignées ===== */
-#about .grid {
-  display: flex;           /* Flex horizontal */
-  gap: 20px;               /* Espace entre les cartes */
-  flex-wrap: wrap;         /* Permet au mobile de passer en ligne suivante */
-  justify-content: center; /* Centrer si moins de cartes */
-}
-
-#about .card {
-  flex: 1 1 300px;         /* Largeur minimale 300px, flexibilité */
-  height: 300px;           /* Carte carrée */
-  display: flex;
-  flex-direction: column;  /* Texte vertical */
-  justify-content: space-between; /* Espacement entre contenu */
-  background: linear-gradient(135deg, #3b0764, #0d3b66); /* violet -> bleu foncé */
-  border: 1px solid rgba(124, 58, 237, 0.5);
-  color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-#about .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 
-    0 0 20px rgba(124, 58, 237, 0.6),
-    0 0 15px rgba(6, 182, 212, 0.4);
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  #about .card {
-    height: auto;         /* Sur mobile, hauteur auto */
-    flex: 1 1 100%;       /* Les cartes prennent toute la largeur */
-  }
 }
