@@ -44,6 +44,19 @@ img {
   border-bottom: 1px solid rgba(124,58,237,.15);
 }
 
+.nav-inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 12px 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.brand {
+  font-weight: 700;
+}
+
 .nav-menu {
   display: flex;
   gap: 10px;
@@ -187,4 +200,63 @@ img {
   .hero-inner {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg,var(--brand),var(--brand-2));
+  color: white;
+  font-weight: 600;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(124,58,237,.35);
+}
+
+/* ===== CV BUTTON ===== */
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem 1.2rem;
+  border-radius: 1rem;
+  background: linear-gradient(270deg,#7b5cf5,#3b82f6,#7b5cf5);
+  background-size: 600% 600%;
+  color: #fff;
+  animation: gradientShift 3s ease infinite;
+}
+
+.btn-cv:hover {
+  transform: translateY(-3px);
+}
+
+@keyframes gradientShift {
+  0% {background-position:0% 50%}
+  50% {background-position:100% 50%}
+  100% {background-position:0% 50%}
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle {
+  border: 1px solid rgba(124,58,237,.4);
+  background: transparent;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* ===== LIGHT MODE ===== */
+body.light-mode {
+  background: #f5f5f5;
+  color: #111;
+}
+
+body.light-mode .card {
+  background: white;
+  border: 1px solid rgba(0,0,0,.1);
 }
