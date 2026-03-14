@@ -251,3 +251,19 @@ body.light-mode .card {
     grid-template-columns:1fr;
   }
 }
+.btn-project {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color: white;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+}
+
+.btn-project:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(124,58,237,0.6);
+}
