@@ -80,6 +80,45 @@ img {
   background: rgba(124,58,237,.15);
 }
 
+/* ===== DROPDOWN ===== */
+.nav-item.dropdown {
+  position: relative;
+  padding: 0;
+}
+
+.nav-item.dropdown .nav-link {
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(13,17,23,.95);
+  border: 1px solid rgba(124,58,237,.3);
+  border-radius: 10px;
+  min-width: 220px;
+  padding: 10px 0;
+  box-shadow: var(--shadow);
+  z-index: 2000;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: var(--text);
+}
+
+.dropdown-menu a:hover {
+  background: rgba(124,58,237,.2);
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 /* ===== HERO ===== */
 .hero-inner {
   max-width: 1100px;
@@ -120,8 +159,8 @@ img {
 }
 
 #about .card {
-  flex: 1 1 280px;   /* largeur min 280px */
-  height: 280px;     /* carrée */
+  flex: 1 1 280px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -129,7 +168,6 @@ img {
   padding: 15px;
 }
 
-/* Sous-cartes infos rapides */
 #about .chip {
   display: inline-block;
   padding: 6px 10px;
@@ -140,19 +178,30 @@ img {
   text-align: center;
 }
 
-/* ===== HERO SPEC CARDS (Points forts / Centres d'intérêts) ===== */
+/* ===== HERO SPEC CARDS ===== */
 .hero-spec-card {
-  flex: 1 1 200px;  /* plus petites */
+  flex: 1 1 200px;
   height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  gap: 10px;
+}
+
+.hero-spec-card ul {
+  padding: 0;
+  margin: 0;
+}
+
+.hero-spec-card li {
+  list-style: none;
 }
 
 /* ===== SECTION MA FORMATION ===== */
 #formation .container {
-  display: block;  /* empilement vertical */
+  display: block;
   margin-top: 40px;
 }
 
@@ -180,9 +229,6 @@ img {
 
 /* ===== PROJETS / EXPERIENCES ===== */
 .project-card {
-  background: linear-gradient(135deg, #3b0764, #0d3b66);
-  color: #fff;
-  border-radius: 12px;
   border: 1px solid rgba(124,58,237,0.5);
   padding: 20px;
 }
