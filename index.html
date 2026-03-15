@@ -566,17 +566,7 @@ toggleBtn.addEventListener("click", () => {
         o.style.transform = `translate(${x*(i+1)}px, ${y*(i+1)}px)`;
       })
     })
-            <!-- Script pour faire fonctionner le menu "Voir mes projets en SIO" -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const dropdownBtn = document.querySelector('.dropdown-projects .btn');
-  const dropdownMenu = document.querySelector('.dropdown-projects-menu');
-
-  dropdownBtn.addEventListener('click', () => {
-    dropdownMenu.classList.toggle('show');
-  });
-
-
+            
 // CV fallback → affiche un loader si assets/cv.pdf est introuvable
 function showLoader(){
   const zone = document.getElementById('cv-zone');
@@ -602,6 +592,23 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   }catch(e){ showLoader(); }
 });   
 </script>
+    <!-- Script pour afficher/masquer les projets SIO -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ===== DROPDOWN PROJETS SIO ===== */
+  const dropdownBtn = document.querySelector('.dropdown-projects .btn');
+  const dropdownMenu = document.querySelector('.dropdown-projects-menu');
+
+  if (dropdownBtn && dropdownMenu) {
+    dropdownBtn.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
+    });
+  }
+
+});
+</script>
+
 </body>
 </html>
 
