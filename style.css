@@ -403,3 +403,43 @@ body.light-mode .card {
   margin-right: 8px;
   margin-bottom: 8px;
 }
+/* ===== DROPDOWN PROJETS SIO (HERO) ===== */
+.dropdown-projects {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-projects .btn {
+  cursor: pointer;
+}
+
+/* Conteneur du menu */
+.dropdown-projects-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(13,17,23,.95);
+  border: 1px solid rgba(124,58,237,.3);
+  border-radius: 10px;
+  min-width: 200px;
+  padding: 10px 0;
+  margin-top: 6px;
+  box-shadow: var(--shadow);
+  z-index: 9999;
+}
+
+.dropdown-projects-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: var(--text);
+}
+
+.dropdown-projects-menu a:hover {
+  background: rgba(124,58,237,.2);
+}
+
+/* Classe ajoutée par ton JS */
+.dropdown-projects-menu.show {
+  display: block;
+}
