@@ -303,3 +303,45 @@ body.light-mode .card {
   background: white;
   border: 1px solid rgba(0,0,0,.1);
 }
+/* Glow animé autour des cartes */
+.hero-spec-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-spec-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  z-index: -1;
+  animation: glowRotate 4s linear infinite;
+  filter: blur(12px);
+}
+
+.hero-spec-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #3b0764, #0d3b66);
+  z-index: 1;
+}
+
+@keyframes glowRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.hero-chips {
+  margin: 10px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.hero-chips .chip {
+  background: rgba(124,58,237,0.6);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
