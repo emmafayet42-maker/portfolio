@@ -345,14 +345,17 @@ body.light-mode .card {
   border-radius: 12px;
   font-size: 0.85rem;
 }
-/* CONTENEUR TEXTE + CARTES */
 .hero-layout {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* CENTRE horizontalement */
   align-items: flex-start;
-  gap: 40px;
+  gap: 60px;
   width: 100%;
+  max-width: 1200px; /* Largeur max centrée */
+  margin: 0 auto; /* IMPORTANT : centre le bloc */
+  padding: 20px;
 }
+
 
 /* COLONNE DES CARTES À DROITE */
 .hero-cards {
