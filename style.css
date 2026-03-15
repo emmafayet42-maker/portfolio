@@ -345,3 +345,58 @@ body.light-mode .card {
   border-radius: 12px;
   font-size: 0.85rem;
 }
+/* CONTENEUR TEXTE + CARTES */
+.hero-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+/* COLONNE DES CARTES À DROITE */
+.hero-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* CARTES */
+.hero-spec-card {
+  width: 300px;
+  background: linear-gradient(135deg, #3b1fa0, #0e1b47);
+  padding: 25px;
+  border-radius: 20px;
+  position: relative;
+  color: white;
+  overflow: hidden;
+  transition: 0.4s ease;
+}
+
+/* ANIMATION LUMIÈRE */
+.hero-spec-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #8f5cff, #4daaff, #ff5ccc);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity .4s;
+  z-index: -1;
+}
+
+.hero-spec-card:hover::before {
+  opacity: 1;
+}
+
+/* BULLes (Organisation, Créativité, Dynamisme) */
+.hero-chips .chip {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
