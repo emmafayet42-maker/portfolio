@@ -1,15 +1,16 @@
 /* ===== VARIABLES ===== */
-:root {
-  --bg: #050507;
-  --panel: #0d0f14;
-  --text: #e6e6e6;
-  --muted: #a6a8ad;
-  --brand: #7c3aed;
-  --brand-2: #06b6d4;
-  --accent: #22c55e;
-  --shadow: 0 10px 30px rgba(0,0,0,.45);
-  --radius: 16px;
-}
+:root{
+      --bg: #0b0c10; /* dark base */
+      --panel: #111218;
+      --text: #e6e6e6;
+      --muted: #a6a8ad;
+      --brand: #7c3aed; /* violet */
+      --brand-2: #06b6d4; /* cyan */
+      --accent: #22c55e; /* green */
+      --ring: rgba(124,58,237,0.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --radius: 16px;
+  }
 
 /* ===== GLOBAL ===== */
 * {
