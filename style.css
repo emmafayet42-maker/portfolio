@@ -334,56 +334,61 @@ body.light-mode .card {
   100% { transform: rotate(360deg); }
 }
 .hero-chips {
-  margin: 10px 0;
+  margin: 15px 0;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
 .hero-chips .chip {
-  background: rgba(124,58,237,0.6);
+  background: rgba(124,58,237,0.4);
   padding: 6px 14px;
-  border-radius: 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
   font-size: 0.85rem;
 }
 .hero-layout {
   display: flex;
-  justify-content: center; /* CENTRE horizontalement */
+  justify-content: space-between;
   align-items: flex-start;
   gap: 60px;
-  width: 100%;
-  max-width: 1200px; /* Largeur max centrée */
-  margin: 0 auto; /* IMPORTANT : centre le bloc */
-  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 
-/* COLONNE DES CARTES À DROITE */
 .hero-cards {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* CARTES */
+/* Cartes à droite */
 .hero-spec-card {
   width: 300px;
-  background: linear-gradient(135deg, #3b1fa0, #0e1b47);
+  min-height: 200px;
   padding: 25px;
   border-radius: 20px;
-  position: relative;
+  background: linear-gradient(135deg, #3b1fa0, #0e1b47);
   color: white;
+  position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
   transition: 0.4s ease;
 }
 
-/* ANIMATION LUMIÈRE */
+/* effet glow */
 .hero-spec-card::before {
   content: "";
   position: absolute;
   inset: -2px;
   border-radius: 22px;
   background: linear-gradient(120deg, #8f5cff, #4daaff, #ff5ccc);
-  filter: blur(6px);
+  filter: blur(8px);
   opacity: 0;
   transition: opacity .4s;
   z-index: -1;
@@ -392,28 +397,11 @@ body.light-mode .card {
 .hero-spec-card:hover::before {
   opacity: 1;
 }
-
-/* BULLes (Organisation, Créativité, Dynamisme) */
-.hero-chips .chip {
-  display: inline-block;
-  background: rgba(255,255,255,0.1);
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.2);
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
-/* ===== DROPDOWN PROJETS SIO (HERO) ===== */
 .dropdown-projects {
   position: relative;
   display: inline-block;
 }
 
-.dropdown-projects .btn {
-  cursor: pointer;
-}
-
-/* Conteneur du menu */
 .dropdown-projects-menu {
   display: none;
   position: absolute;
@@ -432,14 +420,12 @@ body.light-mode .card {
 .dropdown-projects-menu a {
   display: block;
   padding: 10px 15px;
-  color: var(--text);
 }
 
 .dropdown-projects-menu a:hover {
   background: rgba(124,58,237,.2);
 }
 
-/* Classe ajoutée par ton JS */
 .dropdown-projects-menu.show {
   display: block;
 }
