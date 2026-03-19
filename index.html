@@ -123,16 +123,15 @@
 
     <div class="hero-row">
 
-      <!-- Colonne gauche : bouton -->
-      <div class="hero-left">
-        <div class="dropdown-projects">
-          <button class="btn">Voir mes projets en SIO ▾</button>
-          <div class="dropdown-projects-menu">
-            <a href="#projets-s1">Semestre 1</a>
-            <a href="#projets-s2">Semestre 2</a>
-          </div>
-        </div>
-      </div>
+     <div class="hero-left">
+  <div class="dropdown-projects">
+    <button class="btn">Voir mes projets en SIO ▾</button>
+    <div class="dropdown-projects-menu">
+      <a href="semestre1.html">Semestre 1</a>
+      <a href="semestre2.html">Semestre 2</a>
+    </div>
+  </div>
+</div>
 
       <!-- Bouton contact -->
       <a class="btn ghost" href="#contact">Me contacter</a>
@@ -490,7 +489,20 @@
     <div class="container">© <span id="year"></span> Emma Fayet — Portfolio - Tous droits réservés.
       <span style="opacity:.6"></span></div>
   </footer>
+<script>
+  const btn = document.querySelector(".dropdown-projects .btn");
+  const menu = document.querySelector(".dropdown-projects-menu");
 
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation(); // éviter que le clic se propage
+    menu.classList.toggle("show");
+  });
+
+  // Fermer le menu si on clique ailleurs
+  document.addEventListener("click", () => {
+    menu.classList.remove("show");
+  });
+</script>
 <script>
 // Solution garantie pour afficher/masquer les détails
 document.addEventListener('DOMContentLoaded', function() {
