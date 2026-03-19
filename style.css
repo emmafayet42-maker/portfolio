@@ -497,62 +497,58 @@ border:1px solid rgba(0,0,0,.1);
 
 }
 
-
 /* =========================
    DROPDOWN PROJECTS
 ========================= */
 
-.dropdown-projects{
-
-position:relative;
-
-display:inline-block;
-
+.dropdown-projects {
+  position: relative;
+  display: inline-block;
 }
 
-.dropdown-projects-menu{
+/* Menu déroulant */
+.dropdown-projects-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
 
-display:none;
+  background: rgba(13,17,23,.95);
+  border: 1px solid rgba(124,58,237,.3);
+  border-radius: 10px;
 
-position:absolute;
+  min-width: 200px;
+  padding: 10px 0;
+  margin-top: 6px;
 
-top:100%;
-left:0;
+  box-shadow: var(--shadow);
+  z-index: 9999;
 
-background:rgba(13,17,23,.95);
-
-border:1px solid rgba(124,58,237,.3);
-
-border-radius:10px;
-
-min-width:200px;
-
-padding:10px 0;
-
-margin-top:6px;
-
-box-shadow:var(--shadow);
-
-z-index:9999;
-
+  /* Animation fluide */
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: 0.25s ease;
 }
 
-.dropdown-projects-menu a{
-
-display:block;
-
-padding:10px 15px;
-
+/* Lien du menu */
+.dropdown-projects-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: var(--text);
+  text-decoration: none;
+  transition: 0.2s;
 }
 
-.dropdown-projects-menu a:hover{
-
-background:rgba(124,58,237,.2);
-
+/* Hover sur les liens */
+.dropdown-projects-menu a:hover {
+  background: rgba(124,58,237,.2);
 }
 
-.dropdown-projects-menu.show{
-display:block;
+/* Affichage au survol */
+.dropdown-projects:hover .dropdown-projects-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 /* =========================
    DROPDOWN NAVBAR (EXPÉRIENCES)
