@@ -156,18 +156,7 @@ background:rgba(124,58,237,.15);
   gap: 20px;
   justify-content: flex-start;
   align-items: flex-end; /* aligne les cartes à droite */
-}
 
-/* Animation d’apparition (fade + slide) */
-.reveal {
-  opacity: 0;
-  transform: translateX(30px); /* slide depuis la droite */
-  transition: all 0.6s ease-out;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateX(0);
 }
 /* CHIPS */
 .hero-chips {
