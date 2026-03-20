@@ -233,7 +233,70 @@ section{
 .hero-spec-card:hover::before {
   opacity: 1;
 }
+/* =========================
+   HERO CARDS (à droite)
+========================= */
 
+.hero-cards {
+  display: flex;
+  flex-direction: row;  /* côte à côte */
+  gap: 20px;
+  flex-shrink: 0;
+  align-items: flex-start;
+}
+
+.hero-spec-card {
+  width: 200px;
+  min-height: 180px;
+  padding: 25px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #3b1fa0, #0e1b47);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-spec-card ul {
+  padding: 0;
+  margin: 0;
+}
+
+.hero-spec-card li {
+  list-style: none;
+  padding: 3px 0;
+}
+
+/* Fond hero avec halos lumineux */
+.hero-layout {
+  background:
+    radial-gradient(circle at 60% 40%, rgba(124,58,237,0.35), transparent 55%),
+    radial-gradient(circle at 85% 20%, rgba(6,182,212,0.2), transparent 50%),
+    #0b0c10;
+  padding: 60px 40px;
+}
+
+/* Bordure animée bleue en bas des cartes hero */
+.hero-spec-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed);
+  background-size: 200% 100%;
+  border-radius: 2px;
+  animation: borderSlide 2.5s ease infinite;
+}
+
+@keyframes borderSlide {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 /* =========================
    CHIPS
