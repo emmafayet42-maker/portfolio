@@ -397,7 +397,40 @@ section{
   justify-content: center;
   padding: 25px;
 }
+/* =========================
+   INFOS RAPIDES
+========================= */
 
+.infos-rapides {
+  padding: 20px;
+}
+
+.infos-rapides h3 {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.mini-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mini-card {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #0d1117;
+  border: 1px solid rgba(124, 58, 237, 0.5);
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: border-color 0.25s;
+}
+
+.mini-card:hover {
+  border-color: rgba(6, 182, 212, 0.7);
+}
 
 /* =========================
    FORMATION
