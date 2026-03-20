@@ -481,144 +481,56 @@
       <span style="opacity:.6"></span></div>
   </footer>
 <script>
-  const btn = document.querySelector(".dropdown-projects .btn");
-  const menu = document.querySelector(".dropdown-projects-menu");
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation(); // éviter que le clic se propage
-    menu.classList.toggle("show");
-  });
-
-  // Fermer le menu si on clique ailleurs
-  document.addEventListener("click", () => {
-    menu.classList.remove("show");
-  });
-</script>
 <script>
-// Solution garantie pour afficher/masquer les détails
-document.addEventListener('DOMContentLoaded', function() {
-  const buttons = document.querySelectorAll('.details-btn');
-  buttons.forEach(button => {
-    button.addEventListener('click', function() {
-      const details = this.nextElementSibling;
-      // Basculer l'affichage avec un style inline (ignore le CSS existant)
-      if (details.style.display === 'block') {
-        details.style.display = 'none';
-        this.textContent = 'Voir le projet';
-      } else {
-        details.style.display = 'block';
-        this.textContent = 'Masquer le projet';
-      }
-    });
-  });
-});
-</script>
-          <script>
-const toggleBtn = document.getElementById("theme-toggle");
-const body = document.body;
+  document.addEventListener('DOMContentLoaded', () => {
 
-// Vérifie si un thème est déjà enregistré
-if (localStorage.getItem("theme") === "light") {
-  body.classList.add("light-mode");
-  toggleBtn.textContent = "☀️";
-}
-
-// Au clic sur le bouton
-toggleBtn.addEventListener("click", () => {
-  body.classList.toggle("light-mode");
-
-  if (body.classList.contains("light-mode")) {
-    toggleBtn.textContent = "☀️";  // Soleil pour le mode clair
-    localStorage.setItem("theme", "light");
-  } else {
-    toggleBtn.textContent = "🌙";  // Lune pour le mode sombre
-    localStorage.setItem("theme", "dark");
-  }
-});
-
-  
-    // ─────────────────────────────────────────────────────────────────────
-    // Reveal on Scroll (IntersectionObserver)
-    // ─────────────────────────────────────────────────────────────────────
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} })
-    }, {threshold: .12});
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-
-    // ─────────────────────────────────────────────────────────────────────
-    // 3D tilt effect
-    // ─────────────────────────────────────────────────────────────────────
-    document.querySelectorAll('.tilt').forEach(card=>{
-      const max = 10; // deg
-      card.addEventListener('mousemove', (e)=>{
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left)/r.width - .5;
-        const py = (e.clientY - r.top)/r.height - .5;
-        const rx = (+py*max).toFixed(2);
-        const ry = (-px*max).toFixed(2);
-        card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    // ── Dropdown projets SIO ──
+    const btn = document.querySelector('.dropdown-projects .btn');
+    const menu = document.querySelector('.dropdown-projects-menu');
+    if (btn && menu) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('show');
       });
-      card.addEventListener('mouseleave', ()=>{ card.style.transform=''; });
+      document.addEventListener('click', () => menu.classList.remove('show'));
+    }
+
+    // ── Reveal on Scroll ──
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ── 3D tilt effect ──
+    document.querySelectorAll('.tilt').forEach(card => {
+      const max = 10;
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - .5;
+        const py = (e.clientY - r.top) / r.height - .5;
+        card.style.transform = `rotateX(${(+py*max).toFixed(2)}deg) rotateY(${(-px*max).toFixed(2)}deg)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
 
-    // Footer year
+    // ── Footer year ──
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Optional: parallax for orbs
+    // ── Parallax orbs ──
     const orbs = document.querySelectorAll('.orb');
-    window.addEventListener('mousemove', (e)=>{
+    window.addEventListener('mousemove', (e) => {
       const x = (e.clientX / window.innerWidth - .5) * 10;
       const y = (e.clientY / window.innerHeight - .5) * 10;
-      orbs.forEach((o,i)=>{
-        o.style.transform = `translate(${x*(i+1)}px, ${y*(i+1)}px)`;
-      })
-    })
-            
-// CV fallback → affiche un loader si assets/cv.pdf est introuvable
-function showLoader(){
-  const zone = document.getElementById('cv-zone');
-  if(!zone) return;
-  zone.innerHTML = `
-    <div class="loader" aria-label="Chargement du CV">
-      <div class="text"><span>I</span></div>
-      <div class="text"><span></span></div>
-      <div class="text"><span>I</span></div>
-      <div class="text"><span></span></div>
-      <div class="text"><span>I</span></div>
-      <div class="text"><span></span></div>
-      <div class="text"><span>I</span></div>
-      <div class="text"><span></span></div>
-      <div class="text"><span>I</span></div>
-      <div class="line"></div>
-    </div>`;
-}
-document.addEventListener('DOMContentLoaded', async ()=>{
-  try{
-    const res = await fetch('assets/cv.pdf', { method:'HEAD' });
-    if(!res.ok){ showLoader(); }
-  }catch(e){ showLoader(); }
-});   
-</script>
-    <!-- Script pour afficher/masquer les projets SIO -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  /* ===== DROPDOWN PROJETS SIO ===== */
-  const dropdownBtn = document.querySelector('.dropdown-projects .btn');
-  const dropdownMenu = document.querySelector('.dropdown-projects-menu');
-
-  if (dropdownBtn && dropdownMenu) {
-    dropdownBtn.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('show');
+      orbs.forEach((o, i) => { o.style.transform = `translate(${x*(i+1)}px, ${y*(i+1)}px)`; });
     });
-  }
 
-});
+  });
 </script>
 
 </body>
 </html>
-
 
 
 
