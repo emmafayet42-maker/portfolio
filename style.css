@@ -629,11 +629,6 @@ body.light-mode .card {
   background: rgba(124,58,237,.2);
 }
 
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
 
 
 /* =========================
