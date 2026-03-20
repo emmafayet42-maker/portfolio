@@ -295,7 +295,39 @@ margin:0;
 .hero-spec-card li{
 list-style:none;
 }
+/* =========================
+   HERO LAYOUT (page about)
+========================= */
 
+.hero-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 60px 40px;
+}
+
+.hero-layout > div:first-child {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-layout .hero-chips {
+  justify-content: center;
+}
+
+.hero-layout .hero-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-layout .hero-cards {
+  min-width: 260px;
+  flex-shrink: 0;
+}
 
 /* effet glow */
 
