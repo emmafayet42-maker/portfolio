@@ -3,325 +3,1201 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Fayet Emma — Portfolio</title>
-
+  <title>Emma Fayet — Portfolio</title>
   <meta name="description" content="Portfolio étudiant : présentation, projets, CV, contact." />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="icon" href="basket.png" type="image/png">
-
-  <!-- TON CSS -->
-  <link rel="stylesheet" href="style.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+/* =============================================
+   VARIABLES
+============================================= */
+:root {
+  --bg: #060810;
+  --panel: #0d1018;
+  --surface: #111420;
+  --border: rgba(120, 80, 255, 0.18);
+  --border-bright: rgba(120, 80, 255, 0.5);
+  --text: #e8eaf0;
+  --muted: #7a7f94;
+  --brand: #7c3aed;
+  --brand2: #06b6d4;
+  --accent: #a78bfa;
+  --glow: rgba(124, 58, 237, 0.3);
+  --radius: 16px;
+  --shadow: 0 12px 40px rgba(0,0,0,0.6);
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+ 
+/* =============================================
+   RESET & BASE
+============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+html { scroll-behavior: smooth; }
+ 
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+ 
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ 
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 28px;
+}
+ 
+section { padding: 90px 0; }
+ 
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+ 
+.section-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 40px;
+}
+ 
+/* =============================================
+   NAVBAR — CORRIGÉE ET AMÉLIORÉE
+============================================= */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(6, 8, 16, 0.85);
+  border-bottom: 1px solid var(--border);
+}
+ 
+.nav-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 28px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+.nav-item {
+  padding: 8px 13px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+ 
+.nav-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+ 
+.nav-item:hover {
+  color: var(--text);
+  background: rgba(124, 58, 237, 0.12);
+}
+ 
+/* ── Dropdown Expériences ── */
+.nav-dropdown {
+  position: relative;
+}
+ 
+.nav-dropdown-toggle {
+  padding: 8px 13px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  user-select: none;
+}
+ 
+.nav-dropdown-toggle:hover,
+.nav-dropdown.active .nav-dropdown-toggle {
+  color: var(--text);
+  background: rgba(124, 58, 237, 0.12);
+}
+ 
+.nav-dropdown-toggle .chevron {
+  transition: transform 0.25s;
+  font-size: 0.7rem;
+  margin-left: 2px;
+}
+ 
+.nav-dropdown.active .nav-dropdown-toggle .chevron {
+  transform: rotate(180deg);
+}
+ 
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: rgba(13, 16, 24, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-bright);
+  border-radius: 14px;
+  min-width: 210px;
+  padding: 8px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.1);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 9999;
+}
+ 
+.nav-dropdown.active .nav-dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+ 
+.nav-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.15s, background 0.15s;
+}
+ 
+.nav-dropdown-menu a:hover {
+  color: var(--text);
+  background: rgba(124, 58, 237, 0.15);
+}
+ 
+.nav-dropdown-menu a .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex-shrink: 0;
+}
+ 
+/* Spacer pour pousser le CV à droite */
+.nav-spacer { flex: 1; }
+ 
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand), #4f46e5);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+ 
+.btn-cv:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.45);
+}
+ 
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  margin-left: auto;
+}
+ 
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+ 
+.nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; }
+.nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+ 
+/* =============================================
+   HERO
+============================================= */
+.hero-wrap {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 30%, rgba(124,58,237,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 60%, rgba(6,182,212,0.1) 0%, transparent 60%),
+    var(--bg);
+  padding: 80px 0 60px;
+}
+ 
+/* Noise overlay */
+.hero-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+ 
+.hero-layout {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 28px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 50px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+ 
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+ 
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: relative;
+}
+.pulse::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.3;
+  animation: pulseAnim 2s ease infinite;
+}
+@keyframes pulseAnim {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.8); opacity: 0; }
+}
+ 
+h1 {
+  font-family: var(--font-head);
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+ 
+.sub {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+ 
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+ 
+.chip {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  color: var(--accent);
+}
+ 
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+ 
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand), #4f46e5);
+  color: #fff;
+  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(124, 58, 237, 0.45);
+}
+ 
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  color: var(--text);
+  font-weight: 500;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover {
+  background: rgba(124, 58, 237, 0.1);
+  border-color: rgba(124, 58, 237, 0.6);
+}
+ 
+/* Dropdown Projets */
+.dropdown-projects { position: relative; display: inline-block; }
+ 
+.dropdown-projects-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: rgba(13,16,24,0.98);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-bright);
+  border-radius: 12px;
+  min-width: 190px;
+  padding: 8px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: 0.2s ease;
+  z-index: 999;
+}
+.dropdown-projects-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.dropdown-projects-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  transition: 0.15s;
+}
+.dropdown-projects-menu a::before {
+  content: '→';
+  color: var(--brand);
+  font-size: 0.8rem;
+}
+.dropdown-projects-menu a:hover {
+  color: var(--text);
+  background: rgba(124, 58, 237, 0.15);
+}
+ 
+/* Hero Cards */
+.hero-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+ 
+.hero-spec-card {
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+ 
+.hero-spec-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand), var(--brand2));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+ 
+.hero-spec-card:hover {
+  border-color: var(--border-bright);
+  transform: translateX(4px);
+}
+.hero-spec-card:hover::before { opacity: 1; }
+ 
+.hero-spec-card h3 {
+  font-family: var(--font-head);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+ 
+.hero-spec-card ul { list-style: none; }
+.hero-spec-card li {
+  font-size: 0.88rem;
+  color: var(--muted);
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-spec-card li::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--brand2);
+  flex-shrink: 0;
+}
+ 
+/* =============================================
+   CARDS COMMUNES
+============================================= */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+ 
+.card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1);
+}
+ 
+.card p { color: var(--muted); margin-bottom: 12px; font-size: 0.95rem; }
+.card p:last-child { margin-bottom: 0; }
+ 
+.grid {
+  display: grid;
+  gap: 20px;
+}
+ 
+/* =============================================
+   ABOUT
+============================================= */
+#about .about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+ 
+#about .card h3 {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+ 
+.infos-rapides h3 {
+  font-family: var(--font-head);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+ 
+.mini-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+ 
+.mini-card {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(124,58,237,0.08);
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+  transition: 0.2s;
+  text-align: center;
+}
+.mini-card:hover {
+  border-color: rgba(6,182,212,0.5);
+  color: var(--brand2);
+  background: rgba(6,182,212,0.07);
+}
+ 
+/* =============================================
+   FORMATION
+============================================= */
+#formation .formation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 10px;
+}
+ 
+#formation .intro-card {
+  grid-column: 1 / -1;
+}
+ 
+#formation .card h3 {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+ 
+#formation .card .tag-active {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.4);
+  color: #4ade80;
+  margin-bottom: 12px;
+}
+ 
+#formation .card ul {
+  list-style: none;
+  margin-top: 8px;
+}
+#formation .card li {
+  font-size: 0.875rem;
+  color: var(--muted);
+  padding: 4px 0;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+#formation .card li::before {
+  content: '·';
+  color: var(--brand);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+ 
+/* =============================================
+   PARCOURS (Timeline)
+============================================= */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+ 
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--brand), var(--brand2), transparent);
+}
+ 
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+ 
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--brand);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.3);
+}
+ 
+.timeline-item .card {
+  padding: 20px 24px;
+}
+ 
+.timeline-item .card h3 {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+ 
+.meta {
+  font-size: 0.78rem;
+  color: var(--brand2);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 10px;
+}
+ 
+/* =============================================
+   SKILLS
+============================================= */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+ 
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.skill-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+ 
+.skill-card.red::before { background: linear-gradient(90deg, #ef4444, #f97316); }
+.skill-card.blue::before { background: linear-gradient(90deg, #3b82f6, #06b6d4); }
+.skill-card.green::before { background: linear-gradient(90deg, #22c55e, #10b981); }
+.skill-card.purple::before { background: linear-gradient(90deg, #a855f7, #7c3aed); }
+.skill-card.cyan::before { background: linear-gradient(90deg, #06b6d4, #67e8f9); }
+ 
+.skill-card:hover { border-color: var(--border-bright); transform: translateY(-4px); }
+.skill-card:hover::before { opacity: 1; }
+ 
+.skill-card .icon { font-size: 1.6rem; margin-bottom: 12px; }
+.skill-card h4 {
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.skill-card.red h4 { color: #f87171; }
+.skill-card.blue h4 { color: #60a5fa; }
+.skill-card.green h4 { color: #4ade80; }
+.skill-card.purple h4 { color: var(--accent); }
+.skill-card.cyan h4 { color: var(--brand2); }
+ 
+.skill-card ul { list-style: none; }
+.skill-card li {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding: 3px 0;
+}
+ 
+/* =============================================
+   EXPERIENCES
+============================================= */
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+ 
+.exp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.exp-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.08);
+}
+ 
+.exp-card .exp-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: rgba(255,255,255,0.05);
+  padding: 4px;
+  margin-bottom: 16px;
+}
+ 
+.exp-card h3 {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+ 
+.exp-card .exp-meta {
+  font-size: 0.78rem;
+  color: var(--brand2);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+ 
+.exp-card p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+ 
+.exp-card ul { list-style: none; }
+.exp-card li {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding: 3px 0;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.exp-card li::before {
+  content: '→';
+  color: var(--brand);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+ 
+/* =============================================
+   CONTACT
+============================================= */
+#contact .contact-card {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px;
+}
+ 
+#contact .contact-card h3 {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+ 
+#contact .contact-card p {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+ 
+#contact .contact-card a.email {
+  color: var(--accent);
+  font-weight: 500;
+}
+#contact .contact-card a.email:hover { text-decoration: underline; }
+ 
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0077b5, #005e8f);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.badge:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,119,181,0.4); }
+ 
+/* =============================================
+   FOOTER
+============================================= */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+ 
+/* =============================================
+   REVEAL ANIMATIONS
+============================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+ 
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 900px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+  .hero-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  #about .about-grid {
+    grid-template-columns: 1fr;
+  }
+  #formation .formation-grid {
+    grid-template-columns: 1fr;
+  }
+  .nav-inner {
+    flex-wrap: wrap;
+  }
+}
+ 
+@media (max-width: 700px) {
+  .nav-menu-items {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 12px 0;
+    gap: 2px;
+    border-top: 1px solid var(--border);
+  }
+  .nav-menu-items.open { display: flex; }
+  .nav-inner { flex-wrap: wrap; height: auto; padding: 12px 28px; }
+  .nav-spacer { display: none; }
+  .nav-hamburger { display: flex; }
+  section { padding: 60px 0; }
+}
+  </style>
 </head>
-  <body>
-    
-  <!-- NAVBAR -->
-  <nav class="nav">
-  <input type="checkbox" id="checkbox">
-  <label for="checkbox" class="toggle" aria-label="Menu mobile">
-    <div class="bars" id="bar1"></div>
-    <div class="bars" id="bar2"></div>
-    <div class="bars" id="bar3"></div>
-  </label>
-
-  <div class="nav-menu">
-    <!-- Accueil -->
-    <a class="nav-item" href="#home" aria-label="Accueil">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M16 3l13 7-13 7L3 10l13-7Zm0 18l10-5v7l-10 5-10-5v-7l10 5Z" fill="currentColor"/>
-      </svg>
-      Accueil
-    </a>
-
-    <!-- À propos -->
-    <a class="nav-item" href="#about" aria-label="À propos">
-      <svg viewBox="0 0 16 16" aria-hidden="true">
-        <path d="m1.5 13v1a.5.5 0 0 0 .338.473 18.97 18.97 0 0 0 6.162 1.027 18.963 18.963 0 0 0 6.162-1.027.5.5 0 0 0 .338-.473v-1a6.508 6.508 0 0 0-4.461-6.168 3.5 3.5 0 1 0-4.078 0A6.508 6.508 0 0 0 1.5 13Z" fill="currentColor"/>
-      </svg>
-      À propos
-    </a>
-
-    <!-- Ma formation -->
-    <a class="nav-item" href="#formation" aria-label="Ma formation">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M16 3l13 7-13 7L3 10l13-7Zm0 18l10-5v7l-10 5-10-5v-7l10 5Z" fill="currentColor"/>
-      </svg>
-      Ma formation
-    </a>
-    
-    <!-- Mon parcours -->
-    <a class="nav-item" href="#mon-parcours" aria-label="Mon parcours">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M16 3l13 7-13 7L3 10l13-7Zm0 18l10-5v7l-10 5-10-5v-7l10 5Z" fill="currentColor"/>
-      </svg>
-      Mon parcours
-    </a>
-
-    <!-- Compétences -->
-    <a class="nav-item" href="#skills" aria-label="Compétences">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 3h8v8H3V3Zm10 0h8v8h-8V3ZM3 13h8v8H3v-8Zm10 0h8v8h-8v-8Z" fill="currentColor"/>
-      </svg>
-      Compétences
-    </a>
-    
-<div class="nav-item dropdown">
-  <a href="#" class="nav-link">Expériences ▾</a>
-
-  <div class="dropdown-menu">
-    <a href="#michelin">Michelin</a>
-    <a href="#eobs-technologies">e-Obs Technologies</a>
-    <a href="#fablab">Fablab</a>
-    <a href="#doxallia">Doxallia</a>
-    <a href="#speed-informatique">Speed Informatique</a>
-  </div>
-</div> 
-    <!-- Contact -->
-    <a class="nav-item" href="#contact" aria-label="Contact">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 4h16v16H4V4Zm2 2v12h12V6H6Z" fill="currentColor"/>
-      </svg>
-      Contact
-    </a>
-    
-    
-    <!-- Bouton Télécharger CV -->
-    <div class="nav-cta">
+<body>
+ 
+<!-- =============================================
+     NAVBAR
+============================================= -->
+<nav class="nav">
+  <div class="nav-inner">
+ 
+    <!-- Menu items (desktop) -->
+    <div class="nav-menu-items" id="navMenu" style="display:flex;align-items:center;gap:2px;flex:1;">
+ 
+      <a class="nav-item" href="#home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12L12 3l9 9M4 10v10a1 1 0 001 1h5v-6h4v6h5a1 1 0 001-1V10"/></svg>
+        Accueil
+      </a>
+ 
+      <a class="nav-item" href="#about">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        À propos
+      </a>
+ 
+      <a class="nav-item" href="#formation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3L2 9l10 6 10-6-10-6zM2 17l10 6 10-6M2 13l10 6 10-6"/></svg>
+        Formation
+      </a>
+ 
+      <a class="nav-item" href="#mon-parcours">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Parcours
+      </a>
+ 
+      <a class="nav-item" href="#skills">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Compétences
+      </a>
+ 
+      <!-- ★ DROPDOWN EXPÉRIENCES — JS pur, sans checkbox hack ★ -->
+      <div class="nav-dropdown" id="expDropdown">
+        <div class="nav-dropdown-toggle" id="expToggle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
+          Expériences
+          <span class="chevron">▾</span>
+        </div>
+        <div class="nav-dropdown-menu" id="expMenu">
+          <a href="#michelin"><span class="dot"></span>Michelin</a>
+          <a href="#eobs-technologies"><span class="dot"></span>e-Obs Technologies</a>
+          <a href="#fablab"><span class="dot"></span>Fablab</a>
+          <a href="#doxallia"><span class="dot"></span>Doxallia</a>
+          <a href="#speed-informatique"><span class="dot"></span>Speed Informatique</a>
+        </div>
+      </div>
+ 
+      <a class="nav-item" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4V4z"/><path d="M4 8l8 5 8-5"/></svg>
+        Contact
+      </a>
+ 
+      <div style="flex:1"></div>
+ 
       <a href="CV_Emma_2025_BTS.pdf" class="btn-cv" target="_blank" download>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"
-            stroke="#fff"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-        </svg>
-        <span>Télécharger CV</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v12m0 0l4-4m-4 4l-4-4M4 21h16"/></svg>
+        Télécharger CV
       </a>
     </div>
+ 
+    <!-- Hamburger mobile -->
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+ 
   </div>
 </nav>
-   
-<div class="hero-layout">
-  <div>
-    <div class="kicker"><span class="pulse"></span> Portfolio étudiant</div>
-    <h1>Emma FAYET</h1>
-    <p class="sub">
-      · Étudiante en BTS SIO spécialisée SISR - Solutions d'Infrastructures, Systèmes et Réseaux.
-    </p>
-    <div class="hero-chips">
-      <span class="chip">Organisation</span>
-      <span class="chip">Créativité</span>
-      <span class="chip">Dynamisme</span>
-    </div>
-    <div class="hero-row">
-      <div class="hero-left">
+ 
+<!-- =============================================
+     HERO
+============================================= -->
+<div id="home" class="hero-wrap">
+  <div class="hero-layout">
+    <!-- Texte gauche -->
+    <div>
+      <div class="kicker"><span class="pulse"></span> Portfolio étudiant</div>
+      <h1>Emma FAYET</h1>
+      <p class="sub">Étudiante en BTS SIO — spécialisation SISR · Solutions d'Infrastructures, Systèmes et Réseaux.</p>
+      <div class="hero-chips">
+        <span class="chip">Organisation</span>
+        <span class="chip">Créativité</span>
+        <span class="chip">Dynamisme</span>
+      </div>
+      <div class="hero-actions">
         <div class="dropdown-projects">
-          <button class="btn">Voir mes projets en SIO ▾</button>
-          <div class="dropdown-projects-menu">
+          <button class="btn-primary" id="projBtn">
+            Voir mes projets SIO
+            <span style="font-size:0.8rem">▾</span>
+          </button>
+          <div class="dropdown-projects-menu" id="projMenu">
             <a href="semestre1.html">Semestre 1</a>
             <a href="semestre2.html">Semestre 2</a>
           </div>
         </div>
+        <a class="btn-ghost" href="#contact">Me contacter</a>
       </div>
-      <!-- Bouton contact -->
-      <a class="btn ghost" href="#contact">Me contacter</a>
     </div>
-  </div> <!-- ← AJOUTÉ : ferme le bloc texte gauche -->
-
-  <!-- HERO CARDS -->
-  <div class="hero-cards">
-    <div class="hero-spec-card">
-      <h3>Points forts</h3>
-      <ul>
-        <li>• Autonomie</li>
-        <li>• Esprit d'équipe</li>
-        <li>• Capacité d'adaptation</li>
-      </ul>
+ 
+    <!-- Cartes droite -->
+    <div class="hero-cards">
+      <div class="hero-spec-card">
+        <h3>Points forts</h3>
+        <ul>
+          <li>Autonomie</li>
+          <li>Esprit d'équipe</li>
+          <li>Capacité d'adaptation</li>
+        </ul>
+      </div>
+      <div class="hero-spec-card">
+        <h3>Centres d'intérêts</h3>
+        <ul>
+          <li>Cybersécurité</li>
+          <li>Nouvelles technologies</li>
+          <li>Basketball, VTT</li>
+          <li>Réserve gendarmerie</li>
+        </ul>
+      </div>
     </div>
-    <div class="hero-spec-card">
-      <h3>Centres d'intérêts</h3>
-      <ul>
-        <li>• Cybersécurité</li>
-        <li>• Nouvelles technologies</li>
-        <li>• Basketball, VTT</li>
-        <li>• Réserve gendarmerie prévue</li>
-      </ul>
-    </div>
-  </div>
-
-</div> <!-- FIN hero-layout -->
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">À propos</h2>
-      <div class="grid" style="grid-template-columns:1.2fr 1fr">
-        <div class="card reveal">
-          <p>Je suis une étudiante passionnée, en BTS SIO avec une spécialisation en SISR, au Lycée Albert Londres situé à Cusset.</p>
-          <p>Ma formation me permet d'acquérir des compétences techniques solides dans la conception, le déploiement et la maintenance d'infrastructures informatiques.</p>
-          <p>Objectif: Administratrice systèmes et réseaux en gendarmerie</p>
-        </div>
-      <div class="card infos-rapides">
-  <h3>Infos rapides</h3>
-  <div class="mini-cards">
-    <span class="mini-card">VMware</span>
-    <span class="mini-card">HTML/CSS</span>
-    <span class="mini-card">Visual Studio Code</span>
-    <span class="mini-card">Linux</span>
-    <span class="mini-card">Git</span>
-    <span class="mini-card">JavaScript</span>
   </div>
 </div>
-
-<!-- FORMATION : BTS SIO -->
+ 
+<!-- =============================================
+     ABOUT
+============================================= -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title reveal">À propos</h2>
+    <p class="section-sub reveal">Qui suis-je ?</p>
+    <div class="about-grid reveal">
+      <div class="card">
+        <h3>Présentation</h3>
+        <p>Je suis une étudiante passionnée, en BTS SIO avec une spécialisation en SISR, au Lycée Albert Londres situé à Cusset.</p>
+        <p>Ma formation me permet d'acquérir des compétences techniques solides dans la conception, le déploiement et la maintenance d'infrastructures informatiques.</p>
+        <p style="color:var(--accent);font-weight:500">🎯 Objectif : Administratrice systèmes et réseaux en gendarmerie</p>
+      </div>
+      <div class="card infos-rapides">
+        <h3>Technologies maîtrisées</h3>
+        <div class="mini-cards">
+          <span class="mini-card">VMware</span>
+          <span class="mini-card">HTML/CSS</span>
+          <span class="mini-card">VS Code</span>
+          <span class="mini-card">Linux</span>
+          <span class="mini-card">Git</span>
+          <span class="mini-card">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- =============================================
+     FORMATION
+============================================= -->
 <section id="formation">
   <div class="container">
-    <h2 class="section-title">Ma formation</h2>
-
-    <!-- Présentation BTS -->
-    <div class="card reveal" style="margin-bottom:20px;">
-      <h3>Qu'est ce que le BTS SIO ?</h3>
-
-      <p>
-        Le BTS Services informatiques aux organisations est un diplôme BAC +2,
-        qui apprend à exploiter des données, dispense les bases de la programmation
-        et du développement d'applications, et apporte des enseignements sur le
-        fonctionnement d'une entreprise.
-      </p>
-    </div>
-
-    <!-- Cartes SISR / SLAM -->
-    <div class="grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
-
-     <!-- SISR -->
-<div class="card">
-  <h3>Option SISR ✅</h3>
-  <p style="color:var(--muted);">
-    Solutions d’Infrastructure, Systèmes et Réseaux
-  </p>
-
-  <ul>
-    <li>Administration systèmes et réseaux</li>
-    <li>Gestion des serveurs Windows & Linux</li>
-    <li>Cybersécurité et protection des données</li>
-    <li>Virtualisation et maintenance</li>
-    <li>Supervision des infrastructures</li>
-  </ul>
-</div>
-
-      <!-- SLAM -->
-      <div class="card">
-        <h3>Option SLAM</h3>
-        <p style="color:var(--muted);">
-          Solutions Logicielles et Applications Métiers
-        </p>
-
+    <h2 class="section-title reveal">Ma formation</h2>
+    <p class="section-sub reveal">BTS Services Informatiques aux Organisations</p>
+ 
+    <div class="formation-grid">
+      <div class="card intro-card reveal">
+        <h3>Qu'est-ce que le BTS SIO ?</h3>
+        <p>Le BTS Services informatiques aux organisations est un diplôme BAC +2 qui apprend à exploiter des données, dispense les bases de la programmation et du développement d'applications, et apporte des enseignements sur le fonctionnement d'une entreprise.</p>
+      </div>
+ 
+      <div class="card reveal">
+        <h3>Option SISR</h3>
+        <span class="tag-active">✅ Mon option</span>
+        <p style="color:var(--muted);font-size:0.85rem;">Solutions d'Infrastructure, Systèmes et Réseaux</p>
         <ul>
-          <li>Développement d’applications</li>
+          <li>Administration systèmes et réseaux</li>
+          <li>Gestion des serveurs Windows & Linux</li>
+          <li>Cybersécurité et protection des données</li>
+          <li>Virtualisation et maintenance</li>
+          <li>Supervision des infrastructures</li>
+        </ul>
+      </div>
+ 
+      <div class="card reveal">
+        <h3>Option SLAM</h3>
+        <p style="color:var(--muted);font-size:0.85rem;">Solutions Logicielles et Applications Métiers</p>
+        <ul>
+          <li>Développement d'applications</li>
           <li>Programmation web et logicielle</li>
           <li>Gestion de bases de données</li>
-          <li>Conception d’interfaces utilisateurs</li>
+          <li>Conception d'interfaces utilisateurs</li>
           <li>Tests et maintenance applicative</li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
-
- <!-- Mon parcours -->
+ 
+<!-- =============================================
+     PARCOURS
+============================================= -->
 <section id="mon-parcours">
   <div class="container">
-    <h2 class="section-title">Mon parcours</h2>
-
-    <div class="grid projects">
-
-      <article class="card project reveal tilt">
-        <h3 class="tilt-lift">BTS SIO - option SISR</h3>
-        <span class="meta tilt-lift">2025 - 2027 • Cusset (03)</span>
-        <p class="tilt-lift">
-          Le BTS SIO option SISR forme à l’administration des réseaux, des systèmes et à la cybersécurité.
-        </p>
-      </article>
-
-      <article class="card project reveal tilt">
-        <h3 class="tilt-lift">Baccalauréat Professionnel Systèmes Numériques - option RISC</h3>
-        <span class="meta tilt-lift">2022 - 2025 • Roanne (42)</span>
-        <p class="tilt-lift">
-          Obtention du Baccalauréat professionnel, mention Bien. C'est grâce à ce Bac Pro que j'ai découvert ma passion pour le réseau, la cybersécurité et les machines.
-        </p>
-      </article>
-
-      <article class="card project reveal tilt">
-        <h3 class="tilt-lift">Brevet des collèges</h3>
-        <span class="meta tilt-lift">2021 - 2022 • Riorges (42)</span>
-        <p class="tilt-lift">
-          Obtention du brevet des collèges avec mention Bien. J'ai pu effectuer un mini-stage lors d'une demi-journée à la Cité scolaire Carnot pour découvrir la filière.
-        </p>
-      </article>
-
+    <h2 class="section-title reveal">Mon parcours</h2>
+    <p class="section-sub reveal">Chronologie de ma formation</p>
+ 
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="card">
+          <h3>BTS SIO — option SISR</h3>
+          <span class="meta">2025 – 2027 · Cusset (03)</span>
+          <p>Le BTS SIO option SISR forme à l'administration des réseaux, des systèmes et à la cybersécurité.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="card">
+          <h3>Baccalauréat Professionnel Systèmes Numériques — RISC</h3>
+          <span class="meta">2022 – 2025 · Roanne (42) · Mention Bien</span>
+          <p>C'est grâce à ce Bac Pro que j'ai découvert ma passion pour le réseau, la cybersécurité et les machines.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="card">
+          <h3>Brevet des collèges</h3>
+          <span class="meta">2021 – 2022 · Riorges (42) · Mention Bien</span>
+          <p>J'ai pu effectuer un mini-stage à la Cité scolaire Carnot pour découvrir la filière informatique.</p>
+        </div>
+      </div>
     </div>
-
   </div>
 </section>
-
  
-
-<!-- Section Compétences avec cartes interactives -->
+<!-- =============================================
+     SKILLS
+============================================= -->
 <section id="skills">
   <div class="container">
-    <h2 class="section-title">Compétences</h2>
-
-    <div class="cards reveal">
-      <!-- Cybersécurité -->
-      <div class="card red">
-        <p class="tip">🔏 Cybersécurité 🔏</p>
-        <ul class="second-text">
+    <h2 class="section-title reveal">Compétences</h2>
+    <p class="section-sub reveal">Mes domaines de maîtrise</p>
+ 
+    <div class="skills-grid">
+      <div class="skill-card red reveal">
+        <div class="icon">🔏</div>
+        <h4>Cybersécurité</h4>
+        <ul>
           <li>Sécurité réseau</li>
           <li>Bonnes pratiques</li>
           <li>Pare-feu</li>
           <li>Vulnérabilités</li>
         </ul>
       </div>
-
-      <!-- Réseaux -->
-      <div class="card blue">
-        <p class="tip">⚡ Réseaux ⚡</p>
-        <ul class="second-text">
-          <li>TCP/IP, DNS, DHCP, HTTP/HTTPS, FTP, SMTP</li>
+      <div class="skill-card blue reveal">
+        <div class="icon">⚡</div>
+        <h4>Réseaux</h4>
+        <ul>
+          <li>TCP/IP, DNS, DHCP</li>
+          <li>HTTP/HTTPS, FTP, SMTP</li>
           <li>Routeurs, switchs, firewalls</li>
           <li>LAN, WAN, VPN</li>
         </ul>
       </div>
-
-      <!-- Systèmes -->
-      <div class="card green">
-        <p class="tip">💻 Systèmes 💻</p>
-        <ul class="second-text">
+      <div class="skill-card green reveal">
+        <div class="icon">💻</div>
+        <h4>Systèmes</h4>
+        <ul>
           <li>Windows Server, Linux</li>
-          <li>Gestion des utilisateurs et permissions</li>
-          <li>Maintenance de serveurs et postes clients</li>
+          <li>Gestion utilisateurs</li>
+          <li>Maintenance serveurs</li>
         </ul>
       </div>
-
-      <!-- Outils et Protocoles -->
-      <div class="card purple">
-        <p class="tip">🛠️ Outils et Protocoles 🛠️</p>
-        <ul class="second-text">
+      <div class="skill-card purple reveal">
+        <div class="icon">🛠️</div>
+        <h4>Outils</h4>
+        <ul>
           <li>Wireshark</li>
-          <li>Ping</li>
           <li>VMware</li>
+          <li>Git / VS Code</li>
         </ul>
       </div>
-
-      <!-- Travail d’équipe -->
-      <div class="card cyan">
-        <p class="tip">💪 Travail d’équipe 💪</p>
-        <ul class="second-text">
+      <div class="skill-card cyan reveal">
+        <div class="icon">💪</div>
+        <h4>Travail d'équipe</h4>
+        <ul>
           <li>Rigueur</li>
           <li>Communication</li>
           <li>Partage de connaissances</li>
@@ -330,209 +1206,187 @@
     </div>
   </div>
 </section>
-
-<!-- ===================== -->
-<!-- SECTION EXPERIENCES -->
-<!-- ===================== -->
-
+ 
+<!-- =============================================
+     EXPÉRIENCES
+============================================= -->
 <section id="experiences">
   <div class="container">
-    <h2 class="section-title">Expériences</h2>
-
-    <div class="experiences-grid">
-
-      <!-- Michelin -->
-      <div id="michelin" class="project-card reveal">
+    <h2 class="section-title reveal">Expériences</h2>
+    <p class="section-sub reveal">Mes stages et immersions professionnelles</p>
+ 
+    <div class="exp-grid">
+ 
+      <div id="michelin" class="exp-card reveal">
+        <img src="michelin_25.png" alt="Michelin" class="exp-logo">
         <h3>Michelin 🛠️</h3>
-        <p class="project-subtitle" style="color:var(--muted);">2022 - 2023 • Roanne</p>
-
-        <div style="text-align:center;margin:10px 0;">
-          <img src="michelin_25.png" alt="Bonhomme Michelin"
-          style="width:120px;height:auto;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);">
-        </div>
-
-        <div class="project-details">
-          <p>Stage en entreprise spécialisée dans la fabrication de pneumatiques.</p>
-
-          <ul>
-            <li>Support technique aux utilisateurs</li>
-            <li>Maintenance du matériel informatique</li>
-            <li>Configuration de postes de travail</li>
-            <li>Participation à la gestion du réseau</li>
-          </ul>
-        </div>
+        <p class="exp-meta">2022 – 2023 · Roanne</p>
+        <p>Stage en entreprise spécialisée dans la fabrication de pneumatiques.</p>
+        <ul>
+          <li>Support technique aux utilisateurs</li>
+          <li>Maintenance du matériel informatique</li>
+          <li>Configuration de postes de travail</li>
+          <li>Participation à la gestion du réseau</li>
+        </ul>
       </div>
-
-
-      <!-- e-Obs -->
-      <div id="eobs-technologies" class="project-card reveal">
+ 
+      <div id="eobs-technologies" class="exp-card reveal">
+        <img src="Eobs_2025.png" alt="e-Obs" class="exp-logo">
         <h3>e-Obs Technologies 💻</h3>
-        <p class="project-subtitle" style="color:var(--muted);">2023 • Roanne</p>
-
-        <div style="text-align:center;margin:10px 0;">
-          <img src="Eobs_2025.png" alt="Logo e-Obs"
-          style="width:120px;height:auto;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);">
-        </div>
-
-        <div class="project-details">
-          <p>Stage dans une entreprise spécialisée dans le développement web.</p>
-
-          <ul>
-            <li>Découverte du développement web</li>
-            <li>Participation à des projets applicatifs</li>
-            <li>Compréhension du fonctionnement d’une agence web</li>
-            <li>Travail en environnement professionnel</li>
-          </ul>
-        </div>
+        <p class="exp-meta">2023 · Roanne</p>
+        <p>Stage dans une entreprise spécialisée dans le développement web.</p>
+        <ul>
+          <li>Découverte du développement web</li>
+          <li>Participation à des projets applicatifs</li>
+          <li>Compréhension d'une agence web</li>
+          <li>Travail en environnement professionnel</li>
+        </ul>
       </div>
-
-
-      <!-- Fablab -->
-      <div id="fablab" class="project-card reveal">
+ 
+      <div id="fablab" class="exp-card reveal">
+        <img src="fablab_2025.png" alt="Fablab" class="exp-logo">
         <h3>Fablab 🏢</h3>
-        <p class="project-subtitle" style="color:var(--muted);">2024 • Roanne</p>
-
-        <div style="text-align:center;margin:10px 0;">
-          <img src="fablab_2025.png" alt="Logo Fablab"
-          style="width:120px;height:auto;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);">
-        </div>
-
-        <div class="project-details">
-          <p>Participation à des ateliers de fabrication numérique et prototypage.</p>
-
-          <ul>
-            <li>Utilisation d’imprimantes 3D et découpeuses laser</li>
-            <li>Création de prototypes</li>
-            <li>Travail collaboratif</li>
-            <li>Découverte des outils de fabrication numérique</li>
-          </ul>
-        </div>
+        <p class="exp-meta">2024 · Roanne</p>
+        <p>Participation à des ateliers de fabrication numérique et prototypage.</p>
+        <ul>
+          <li>Imprimantes 3D et découpeuses laser</li>
+          <li>Création de prototypes</li>
+          <li>Travail collaboratif</li>
+          <li>Outils de fabrication numérique</li>
+        </ul>
       </div>
-
-
-      <!-- Doxallia -->
-      <div id="doxallia" class="project-card reveal">
+ 
+      <div id="doxallia" class="exp-card reveal">
+        <img src="doxallia_2025.png" alt="Doxallia" class="exp-logo">
         <h3>Doxallia 🏢</h3>
-        <p class="project-subtitle" style="color:var(--muted);">2024 • Saint-Étienne</p>
-
-        <div style="text-align:center;margin:10px 0;">
-          <img src="doxallia_2025.png" alt="Logo Doxallia"
-          style="width:120px;height:auto;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);">
-        </div>
-
-        <div class="project-details">
-          <p>Stage dans une entreprise spécialisée en solutions digitales.</p>
-
-          <ul>
-            <li>Maintenance des systèmes informatiques</li>
-            <li>Participation à des projets web</li>
-            <li>Travail en équipe technique</li>
-            <li>Découverte du fonctionnement d’une entreprise digitale</li>
-          </ul>
-        </div>
+        <p class="exp-meta">2024 · Saint-Étienne</p>
+        <p>Stage dans une entreprise spécialisée en solutions digitales.</p>
+        <ul>
+          <li>Maintenance des systèmes informatiques</li>
+          <li>Participation à des projets web</li>
+          <li>Travail en équipe technique</li>
+          <li>Fonctionnement d'une entreprise digitale</li>
+        </ul>
       </div>
-
-
-      <!-- Speed Informatique -->
-      <div id="speed-informatique" class="project-card reveal">
+ 
+      <div id="speed-informatique" class="exp-card reveal">
+        <img src="speed_info.png" alt="Speed Informatique" class="exp-logo">
         <h3>Speed Informatique 🏢</h3>
-        <p class="project-subtitle" style="color:var(--muted);">2025 • Renaison</p>
-
-        <div style="text-align:center;margin:10px 0;">
-          <img src="speed_info.png" alt="Logo Speed Informatique"
-          style="width:120px;height:auto;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);">
-        </div>
-
-        <div class="project-details">
-          <p>Stage dans une entreprise de dépannage et maintenance informatique.</p>
-
-          <ul>
-            <li>Dépannage matériel et logiciel</li>
-            <li>Configuration de postes</li>
-            <li>Installation de réseaux locaux</li>
-            <li>Support technique aux clients</li>
-          </ul>
-        </div>
+        <p class="exp-meta">2025 · Renaison</p>
+        <p>Stage dans une entreprise de dépannage et maintenance informatique.</p>
+        <ul>
+          <li>Dépannage matériel et logiciel</li>
+          <li>Configuration de postes</li>
+          <li>Installation de réseaux locaux</li>
+          <li>Support technique aux clients</li>
+        </ul>
       </div>
-
+ 
     </div>
-</section>
-
- <!-- CONTACT -->
-<section id="contact">
-  <div class="card reveal">
-    <h3 style="margin:0 0 8px">Coordonnées</h3>
-    <p style="color:var(--muted)">Cusset, France · 
-      <a href="mailto:emmafayet42@gmail.com">emmafayet42@gmail.com</a>
-    </p>
-
-    <a class="badge"
-       href="https://www.linkedin.com/in/emma-fayet-1b126b306/"
-       target="_blank"
-       rel="noopener noreferrer">
-       LinkedIn
-    </a>
-
   </div>
 </section>
-
-  <footer>
-    <div class="container">© <span id="year"></span> Emma Fayet — Portfolio - Tous droits réservés.
-      <span style="opacity:.6"></span></div>
-  </footer>
+ 
+<!-- =============================================
+     CONTACT
+============================================= -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title reveal" style="text-align:center">Contact</h2>
+    <div class="card contact-card reveal">
+      <h3>Travaillons ensemble</h3>
+      <p>Cusset, France · <a class="email" href="mailto:emmafayet42@gmail.com">emmafayet42@gmail.com</a></p>
+      <a class="badge" href="https://www.linkedin.com/in/emma-fayet-1b126b306/" target="_blank" rel="noopener noreferrer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer>
+  <div class="container">
+    © <span id="year"></span> Emma Fayet — Portfolio · Tous droits réservés.
+  </div>
+</footer>
+ 
+<!-- =============================================
+     JAVASCRIPT (propre, sans doublons)
+============================================= -->
 <script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-
-    // ── Dropdown projets SIO ──
-    const btn = document.querySelector('.dropdown-projects .btn');
-    const menu = document.querySelector('.dropdown-projects-menu');
-    if (btn && menu) {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menu.classList.toggle('show');
-      });
-      document.addEventListener('click', () => menu.classList.remove('show'));
-    }
-
-    // ── Reveal on Scroll ──
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-      });
-    }, { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // ── 3D tilt effect ──
-    document.querySelectorAll('.tilt').forEach(card => {
-      const max = 10;
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - .5;
-        const py = (e.clientY - r.top) / r.height - .5;
-        card.style.transform = `rotateX(${(+py*max).toFixed(2)}deg) rotateY(${(-px*max).toFixed(2)}deg)`;
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    });
-
-    // ── Footer year ──
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ── Parallax orbs ──
-    const orbs = document.querySelectorAll('.orb');
-    window.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - .5) * 10;
-      const y = (e.clientY / window.innerHeight - .5) * 10;
-      orbs.forEach((o, i) => { o.style.transform = `translate(${x*(i+1)}px, ${y*(i+1)}px)`; });
-    });
-
+document.addEventListener('DOMContentLoaded', () => {
+ 
+  // ── Année footer ──
+  document.getElementById('year').textContent = new Date().getFullYear();
+ 
+  // ── Dropdown Expériences navbar ──
+  const expDropdown = document.getElementById('expDropdown');
+  const expToggle   = document.getElementById('expToggle');
+  const expMenu     = document.getElementById('expMenu');
+ 
+  expToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    expDropdown.classList.toggle('active');
   });
+ 
+  // Fermer en cliquant un lien du menu
+  expMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => expDropdown.classList.remove('active'));
+  });
+ 
+  // Fermer en cliquant ailleurs
+  document.addEventListener('click', (e) => {
+    if (!expDropdown.contains(e.target)) {
+      expDropdown.classList.remove('active');
+    }
+  });
+ 
+  // ── Dropdown Projets SIO (hero) ──
+  const projBtn  = document.getElementById('projBtn');
+  const projMenu = document.getElementById('projMenu');
+ 
+  projBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    projMenu.classList.toggle('show');
+  });
+ 
+  document.addEventListener('click', (e) => {
+    if (!projBtn.contains(e.target) && !projMenu.contains(e.target)) {
+      projMenu.classList.remove('show');
+    }
+  });
+ 
+  // ── Hamburger mobile ──
+  const hamburger = document.getElementById('hamburger');
+  const navMenu   = document.getElementById('navMenu');
+ 
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.style.display = navMenu.style.display === 'none' ? 'flex' : 'none';
+  });
+ 
+  // ── Reveal on scroll ──
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+ 
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 40}ms`;
+    io.observe(el);
+  });
+ 
+});
 </script>
-
+ 
 </body>
 </html>
-
-
 
 
 
