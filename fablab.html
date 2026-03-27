@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage Fablab — Emma Fayet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#070b1a;--card:#0f1a35;--border:rgba(255,255,255,0.07);--border-accent:rgba(124,58,237,0.3);--purple:#7c3aed;--purple-light:#a78bfa;--cyan:#22d3ee;--text:#f1f5f9;--muted:#94a3b8;--tag-bg:rgba(124,58,237,0.12);--accent:#10b981;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(124,58,237,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+    .blob{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;}
+    .blob-1{width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,0.1) 0%,transparent 70%);top:-150px;right:-100px;}
+    .blob-2{width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 70%);bottom:100px;left:-100px;}
+    nav.breadcrumb{position:relative;z-index:10;padding:28px 80px 0;display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--muted);}
+    nav.breadcrumb a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+    nav.breadcrumb a:hover{color:var(--purple-light);}
+    nav.breadcrumb span{color:rgba(255,255,255,0.2);}
+    nav.breadcrumb .current{color:var(--text);}
+    .hero{position:relative;z-index:10;padding:60px 80px 50px;max-width:1100px;margin:0 auto;}
+    .hero-top{display:flex;align-items:flex-start;gap:32px;margin-bottom:32px;flex-wrap:wrap;}
+    .company-logo{width:80px;height:80px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);overflow:hidden;flex-shrink:0;}
+    .company-logo img{width:60px;height:60px;object-fit:contain;}
+    .company-logo .logo-text{font-size:1.1rem;font-weight:800;color:#10b981;}
+    .hero-info{flex:1;}
+    .hero-label{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);padding:6px 14px;border-radius:100px;margin-bottom:16px;}
+    .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:10px;}
+    .hero-meta{display:flex;gap:20px;flex-wrap:wrap;}
+    .meta-pill{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:5px 14px;border-radius:100px;}
+    .meta-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);}
+    .nav-btns{display:flex;gap:12px;flex-wrap:wrap;margin:32px 0 0;}
+    .btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:all 0.2s ease;border:1px solid transparent;}
+    .btn-ghost{background:rgba(255,255,255,0.04);color:var(--muted);border-color:var(--border);}
+    .btn-ghost:hover{background:rgba(255,255,255,0.08);color:var(--text);transform:translateY(-2px);}
+    .main{position:relative;z-index:10;max-width:1100px;margin:0 auto;padding:0 80px 80px;display:grid;grid-template-columns:1fr 340px;gap:28px;}
+    .section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:20px;animation:fadeUp 0.5s ease both;}
+    .section:nth-child(1){animation-delay:0.05s}.section:nth-child(2){animation-delay:0.1s}.section:nth-child(3){animation-delay:0.15s}.section:nth-child(4){animation-delay:0.2s}
+    .section-title{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-light);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+    .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+    .section p{font-size:0.9rem;color:var(--muted);line-height:1.75;margin-bottom:12px;}
+    .section p:last-child{margin-bottom:0;}
+    .task-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .task-list li{display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--muted);line-height:1.6;}
+    .task-list li .arrow{color:var(--purple-light);font-size:0.8rem;margin-top:3px;flex-shrink:0;}
+    .skills-grid{display:flex;flex-wrap:wrap;gap:8px;}
+    .skill-tag{font-size:0.75rem;font-weight:500;padding:6px 14px;border-radius:8px;background:var(--tag-bg);border:1px solid var(--border-accent);color:var(--purple-light);}
+    .personal-note{padding:16px 18px;background:rgba(124,58,237,0.06);border-left:3px solid var(--purple);border-radius:0 10px 10px 0;font-size:0.85rem;color:var(--muted);line-height:1.7;font-style:italic;}
+    .sidebar{display:flex;flex-direction:column;gap:20px;}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;animation:fadeUp 0.5s ease both;}
+    .sidebar-card:nth-child(1){animation-delay:0.08s}.sidebar-card:nth-child(2){animation-delay:0.14s}
+    .info-row{display:flex;flex-direction:column;gap:14px;}
+    .info-item{display:flex;flex-direction:column;gap:3px;}
+    .info-label{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;}
+    .info-value{font-size:0.88rem;color:var(--text);font-weight:500;}
+    .other-stages{display:flex;flex-direction:column;gap:10px;}
+    .stage-link{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid var(--border);text-decoration:none;color:var(--muted);font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+    .stage-link:hover{background:rgba(124,58,237,0.08);border-color:var(--border-accent);color:var(--text);}
+    .stage-link .stage-emoji{font-size:1rem;}
+    .stage-link.active{background:var(--tag-bg);border-color:var(--border-accent);color:var(--purple-light);}
+    footer{position:relative;z-index:10;text-align:center;padding:32px 80px;border-top:1px solid var(--border);color:var(--muted);font-size:0.78rem;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    @media(max-width:900px){.main{grid-template-columns:1fr;padding:0 24px 60px;}nav.breadcrumb,.hero{padding-left:24px;padding-right:24px;}.hero{padding-top:36px;}}
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <nav class="breadcrumb">
+    <a href="index.html">Accueil</a><span>/</span><span>Expériences</span><span>/</span><span class="current">Fablab</span>
+  </nav>
+  <header class="hero">
+    <div class="hero-top">
+      <div class="company-logo">
+        <img src="fablab_2025.png" alt="Fablab" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=\'logo-text\'>FAB</span>'">
+      </div>
+      <div class="hero-info">
+        <div class="hero-label">🏗️ Stage fabrication numérique</div>
+        <h1>Fablab</h1>
+        <div class="hero-meta">
+          <div class="meta-pill"><span class="dot"></span>2024</div>
+          <div class="meta-pill"><span class="dot"></span>Roanne (42)</div>
+          <div class="meta-pill"><span class="dot"></span>Bac Pro RISC</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-btns">
+      <a href="index.html#fablab" class="btn btn-ghost">← Retour aux expériences</a>
+    </div>
+  </header>
+  <div class="main">
+    <div class="left-col">
+      <div class="section">
+        <div class="section-title">Présentation de l'entreprise</div>
+        <p>Le Fablab (Fabrication Laboratory) de Roanne est un espace de création et d'innovation ouverts à tous, mettant à disposition des outils de fabrication numérique avancés : imprimantes 3D, découpeuses laser, fraiseuses numériques et matériel électronique.</p>
+        <p>Ce type de structure favorise la collaboration, l'expérimentation et le prototypage rapide, dans un esprit de partage des connaissances et de l'open source.</p>
+      </div>
+      <div class="section">
+        <div class="section-title">Missions réalisées</div>
+        <ul class="task-list">
+          <li><span class="arrow">→</span> Prise en main et utilisation des imprimantes 3D (FDM) pour la création de prototypes</li>
+          <li><span class="arrow">→</span> Utilisation des découpeuses laser pour la fabrication de pièces et de maquettes</li>
+          <li><span class="arrow">→</span> Création et modélisation de prototypes numériques (CAO basique)</li>
+          <li><span class="arrow">→</span> Participation à des ateliers collaboratifs avec d'autres membres du Fablab</li>
+          <li><span class="arrow">→</span> Apprentissage des outils de fabrication numérique et de leurs domaines d'application</li>
+          <li><span class="arrow">→</span> Documentation et mise en commun des projets réalisés</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-title">Compétences mobilisées</div>
+        <div class="skills-grid">
+          <span class="skill-tag">Impression 3D</span>
+          <span class="skill-tag">Découpe laser</span>
+          <span class="skill-tag">Prototypage</span>
+          <span class="skill-tag">CAO (bases)</span>
+          <span class="skill-tag">Travail collaboratif</span>
+          <span class="skill-tag">Fabrication numérique</span>
+          <span class="skill-tag">Open source</span>
+          <span class="skill-tag">Documentation</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-title">Bilan personnel</div>
+        <div class="personal-note">
+          Cette immersion au Fablab a été une expérience très différente de mes autres stages. J'ai découvert un univers créatif et collaboratif où la technologie est au service de la fabrication physique. Cela m'a appris à penser différemment les projets, à prototyper rapidement et à ne pas avoir peur de rater pour mieux recommencer. Une expérience enrichissante qui développe la curiosité et l'esprit maker.
+        </div>
+      </div>
+    </div>
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="section-title">Informations</div>
+        <div class="info-row">
+          <div class="info-item"><span class="info-label">Structure</span><span class="info-value">Fablab Roanne</span></div>
+          <div class="info-item"><span class="info-label">Période</span><span class="info-value">2024</span></div>
+          <div class="info-item"><span class="info-label">Lieu</span><span class="info-value">Roanne, Loire (42)</span></div>
+          <div class="info-item"><span class="info-label">Contexte</span><span class="info-value">Stage Bac Pro RISC</span></div>
+          <div class="info-item"><span class="info-label">Secteur</span><span class="info-value">Fabrication numérique</span></div>
+          <div class="info-item"><span class="info-label">Domaine</span><span class="info-value">Prototypage & Making</span></div>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <div class="section-title">Autres expériences</div>
+        <div class="other-stages">
+          <a href="stage-michelin.html" class="stage-link"><span class="stage-emoji">🛠️</span> Michelin</a>
+          <a href="stage-eobs.html" class="stage-link"><span class="stage-emoji">💻</span> e-Obs Technologies</a>
+          <a href="stage-fablab.html" class="stage-link active"><span class="stage-emoji">🏗️</span> Fablab</a>
+          <a href="stage-doxallia.html" class="stage-link"><span class="stage-emoji">🏢</span> Doxallia</a>
+          <a href="stage-speed.html" class="stage-link"><span class="stage-emoji">⚡</span> Speed Informatique</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <footer>© Emma Fayet — Portfolio · Tous droits réservés.</footer>
+</body>
+</html>
