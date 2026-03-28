@@ -18,6 +18,8 @@
   --brand: #7c3aed;
   --brand2: #06b6d4;
   --accent: #a78bfa;
+  --gold: #c9a227;
+  --gold-dim: rgba(201,162,39,0.15);
   --radius: 16px;
   --font-head: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
@@ -185,6 +187,8 @@ a { color: inherit; text-decoration: none; }
 }
 .project-card.slam::before  { background: linear-gradient(to bottom, #a855f7, #7c3aed); }
 .project-card.sisr::before  { background: linear-gradient(to bottom, #06b6d4, #0284c7); }
+.project-card.commerce::before { background: linear-gradient(to bottom, #c9a227, #a07810); }
+.project-card.web::before   { background: linear-gradient(to bottom, #10b981, #059669); }
  
 .project-inner { padding: 26px 28px 26px 32px; }
  
@@ -205,6 +209,13 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
 }
  
+.project-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+ 
 .project-option-badge {
   display: inline-flex;
   align-items: center;
@@ -217,8 +228,22 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   width: fit-content;
 }
-.badge-slam { background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); color: #c084fc; }
-.badge-sisr { background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.35); color: var(--brand2); }
+.badge-slam    { background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); color: #c084fc; }
+.badge-sisr    { background: rgba(6,182,212,0.12);  border: 1px solid rgba(6,182,212,0.35);  color: var(--brand2); }
+.badge-commerce{ background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.4);  color: #e8c04a; }
+.badge-web     { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #34d399; }
+ 
+.date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
  
 .project-divider { height: 1px; background: var(--border); margin: 16px 0; }
  
@@ -236,9 +261,52 @@ a { color: inherit; text-decoration: none; }
 .project-tasks li { font-size: 0.85rem; color: var(--muted); display: flex; align-items: baseline; gap: 8px; }
 .project-tasks li::before { content: '→'; color: var(--brand); font-size: 0.75rem; flex-shrink: 0; }
  
-.project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { padding: 4px 11px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.25); color: var(--accent); }
+/* Ressources & Livrables */
+.resource-section { margin-top: 14px; }
+.resource-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+ 
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.tag {
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.25);
+  color: var(--accent);
+}
 .tag.tech { background: rgba(6,182,212,0.08); border-color: rgba(6,182,212,0.25); color: var(--brand2); }
+.tag.resource {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.1);
+  color: var(--muted);
+  font-weight: 500;
+}
+.tag.livrable {
+  background: var(--gold-dim);
+  border-color: rgba(201,162,39,0.4);
+  color: #e8c04a;
+}
+ 
+/* Citation */
+.project-quote {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-dim);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.6;
+}
  
 .project-number {
   font-family: var(--font-head);
@@ -278,7 +346,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
  
     <div class="page-kicker"><span></span> BTS SIO · SISR <span></span></div>
     <h1 class="page-title">Semestre 1</h1>
-    <p class="page-desc">Projets réalisés lors du premier semestre de BTS SIO, couvrant les disciplines SISR et SLAM.</p>
+    <p class="page-desc">Projets réalisés lors du premier semestre de BTS SIO, couvrant les disciplines SISR, SLAM, commerce et développement web.</p>
  
     <div class="nav-btns">
       <a href="index.html" class="btn-back">
@@ -292,8 +360,8 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
     </div>
  
     <div class="page-stats">
-      <div class="stat"><span class="stat-value">3</span><span class="stat-label">Projets</span></div>
-      <div class="stat"><span class="stat-value">2</span><span class="stat-label">Options couvertes</span></div>
+      <div class="stat"><span class="stat-value">5</span><span class="stat-label">Projets</span></div>
+      <div class="stat"><span class="stat-value">3</span><span class="stat-label">Options couvertes</span></div>
       <div class="stat"><span class="stat-value">S1</span><span class="stat-label">2025 – 2026</span></div>
     </div>
   </div>
@@ -303,13 +371,15 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
   <div class="container">
     <div class="projects-list">
  
-      <!-- Projet 1 -->
+      <!-- Projet 1 — Site Vitrine -->
       <div class="project-card slam reveal">
         <div class="project-inner">
           <div class="project-header">
             <div class="project-title-group">
               <div class="project-title">🖥️ Site Vitrine</div>
-              <span class="project-option-badge badge-slam">SLAM</span>
+              <div class="project-meta-row">
+                <span class="project-option-badge badge-slam">SLAM</span>
+              </div>
             </div>
           </div>
           <div class="project-divider"></div>
@@ -333,28 +403,47 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
         </div>
       </div>
  
-      <!-- Projet 2 -->
-      <div class="project-card sisr reveal">
+      <!-- Projet 2 — Appel d'Offres PC Fixes & Portables -->
+      <div class="project-card commerce reveal">
         <div class="project-inner">
           <div class="project-header">
             <div class="project-title-group">
-              <div class="project-title">💻 Appel d'offre PC</div>
-              <span class="project-option-badge badge-sisr">SISR</span>
+              <div class="project-title">📊 Appel d'Offres — PC Fixes &amp; Portables</div>
+              <div class="project-meta-row">
+                <span class="project-option-badge badge-commerce">BUREAUTIQUE</span>
+                <span class="project-option-badge badge-sisr">COMMERCE</span>
+                <span class="date-pill">05/11/25 → 26/12/25</span>
+              </div>
             </div>
           </div>
           <div class="project-divider"></div>
           <div class="project-body">
             <div>
-              <p class="project-objective"><strong>Objectif :</strong> Rédiger un cahier des charges complet pour un projet d'acquisition de matériel informatique.</p>
+              <p class="project-objective"><strong>Objectif :</strong> Répondre à un appel d'offres d'une organisation publique ou privée pour la fourniture de matériel informatique. Analyse des exigences et production des livrables commerciaux avec IT Partner.</p>
               <ul class="project-tasks">
-                <li>Analyse et recueil des besoins clients</li>
-                <li>Rédaction du cahier des charges technique</li>
-                <li>Comparaison et sélection des offres</li>
+                <li>Analyse des exigences du cahier des charges</li>
+                <li>Sélection et comparaison du matériel informatique</li>
+                <li>Rédaction d'un devis et d'une lettre d'accompagnement professionnelle</li>
               </ul>
-              <div class="project-tags">
-                <span class="tag">Analyse des besoins</span>
-                <span class="tag">Rédaction technique</span>
-                <span class="tag tech">Documentation</span>
+ 
+              <div class="resource-section">
+                <div class="resource-label">Ressources fournies</div>
+                <div class="project-tags">
+                  <span class="tag resource">Descriptif AO</span>
+                  <span class="tag resource">Présentation IT Partner</span>
+                </div>
+              </div>
+ 
+              <div class="resource-section">
+                <div class="resource-label">Livrables produits</div>
+                <div class="project-tags">
+                  <span class="tag livrable">Devis Excel</span>
+                  <span class="tag livrable">Lettre d'accompagnement</span>
+                </div>
+              </div>
+ 
+              <div class="project-quote">
+                « Cette mission a été bénéfique pour la compréhension d'un appel d'offres et les exigences de l'entreprise — j'ai également progressé sur l'utilisation d'un tableur. »
               </div>
             </div>
             <div class="project-number">02</div>
@@ -362,13 +451,15 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
         </div>
       </div>
  
-      <!-- Projet 3 -->
+      <!-- Projet 3 — Application de gestion -->
       <div class="project-card slam reveal">
         <div class="project-inner">
           <div class="project-header">
             <div class="project-title-group">
               <div class="project-title">📱 Application de gestion</div>
-              <span class="project-option-badge badge-slam">SLAM</span>
+              <div class="project-meta-row">
+                <span class="project-option-badge badge-slam">SLAM</span>
+              </div>
             </div>
           </div>
           <div class="project-divider"></div>
@@ -388,6 +479,53 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
               </div>
             </div>
             <div class="project-number">03</div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Projet 4 — Conception et Réalisation d'un Site Web -->
+      <div class="project-card web reveal">
+        <div class="project-inner">
+          <div class="project-header">
+            <div class="project-title-group">
+              <div class="project-title">🌐 Conception et Réalisation d'un Site Web</div>
+              <div class="project-meta-row">
+                <span class="project-option-badge badge-web">DÉVELOPPEMENT WEB</span>
+                <span class="date-pill">05/11/25 → 17/12/25</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-divider"></div>
+          <div class="project-body">
+            <div>
+              <p class="project-objective"><strong>Objectif :</strong> Développer un site vitrine complet : étude et choix de l'hébergeur, intégration HTML/CSS, hébergement, référencement et présentation orale du travail effectué.</p>
+              <ul class="project-tasks">
+                <li>Étude comparative des hébergeurs web</li>
+                <li>Intégration HTML/CSS du site vitrine</li>
+                <li>Mise en ligne et référencement SEO</li>
+                <li>Présentation orale du projet réalisé</li>
+              </ul>
+ 
+              <div class="resource-section">
+                <div class="resource-label">Ressources fournies</div>
+                <div class="project-tags">
+                  <span class="tag resource">Mission PDF</span>
+                </div>
+              </div>
+ 
+              <div class="resource-section">
+                <div class="resource-label">Livrables produits</div>
+                <div class="project-tags">
+                  <span class="tag livrable">Site Internet</span>
+                  <span class="tag livrable">Tuto hébergement &amp; SEO</span>
+                </div>
+              </div>
+ 
+              <div class="project-quote">
+                « Cette mission m'a permis de comprendre les bases de l'HTML, l'hébergement et les fondamentaux du référencement. »
+              </div>
+            </div>
+            <div class="project-number">04</div>
           </div>
         </div>
       </div>
