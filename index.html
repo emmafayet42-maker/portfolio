@@ -1093,12 +1093,30 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
  
-  const expDropdown = document.getElementById('expDropdown');
-  const expToggle   = document.getElementById('expToggle');
-  const expMenu     = document.getElementById('expMenu');
-  expToggle.addEventListener('click', (e) => { e.stopPropagation(); expDropdown.classList.toggle('active'); });
-  expMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => expDropdown.classList.remove('active')); });
-  document.addEventListener('click', (e) => { if (!expDropdown.contains(e.target)) expDropdown.classList.remove('active'); });
+// Gestion générique de tous les dropdowns nav
+document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+  const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+  const menu   = dropdown.querySelector('.nav-dropdown-menu');
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    // Ferme les autres
+    document.querySelectorAll('.nav-dropdown').forEach(d => {
+      if (d !== dropdown) d.classList.remove('active');
+    });
+    dropdown.classList.toggle('active');
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => dropdown.classList.remove('active'));
+  });
+});
+
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.nav-dropdown').forEach(d => {
+    if (!d.contains(e.target)) d.classList.remove('active');
+  });
+});
  
   const projBtn  = document.getElementById('projBtn');
   const projMenu = document.getElementById('projMenu');
