@@ -843,16 +843,6 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
       <span class="chip">Dynamisme</span>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <div class="dropdown-projects">
-        <button class="btn-primary" id="projBtn">
-          Voir mes projets SIO
-          <span style="font-size:0.8rem">▾</span>
-        </button>
-        <div class="dropdown-projects-menu" id="projMenu">
-          <a href="semestre1.html">Semestre 1</a>
-          <a href="semestre2.html">Semestre 2</a>
-        </div>
-      </div>
       <a class="btn-ghost" href="#contact">Me contacter</a>
     </div>
   </div>
@@ -1118,10 +1108,6 @@ document.addEventListener('click', (e) => {
   });
 });
  
-  const projBtn  = document.getElementById('projBtn');
-  const projMenu = document.getElementById('projMenu');
-  projBtn.addEventListener('click', (e) => { e.stopPropagation(); projMenu.classList.toggle('show'); });
-  document.addEventListener('click', (e) => { if (!projBtn.contains(e.target) && !projMenu.contains(e.target)) projMenu.classList.remove('show'); });
  
   const hamburger = document.getElementById('hamburger');
   const navMenu   = document.getElementById('navMenu');
