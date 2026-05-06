@@ -756,6 +756,60 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
   .nav-hamburger { display: flex; }
   section { padding: 60px 0; }
 }
+
+    /* =============================================
+   SALLES DU LYCÉE
+============================================= */
+#salles { background: var(--bg); }
+.salles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.salle-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+.salle-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1);
+}
+.salle-img-wrap {
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+}
+.salle-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+.salle-card:hover .salle-img-wrap img { transform: scale(1.05); }
+.salle-info { padding: 14px 16px; }
+.salle-info h3 {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.salle-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
   </style>
 </head>
 <body>
@@ -776,6 +830,10 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3L2 9l10 6 10-6-10-6zM2 17l10 6 10-6M2 13l10 6 10-6"/></svg>
         Formation
       </a>
+      <a class="nav-item" href="#salles">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+  Salles
+</a>
       <a class="nav-item" href="#mon-parcours">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         Parcours
@@ -1023,6 +1081,57 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
       </div>
     </div>
  
+  </div>
+</section>
+  
+  <!-- SALLES DU LYCÉE -->
+<section id="salles">
+  <div class="container">
+    <h2 class="section-title reveal">🏫 Salles du Lycée</h2>
+    <p class="section-sub reveal">Les salles informatiques du BTS SIO — Lycée Albert Londres</p>
+    <div class="salles-grid">
+
+      <div class="salle-card reveal">
+        <div class="salle-img-wrap">
+          <img src="assets/salles/A214_1.jpg" alt="Salle A214 — Labo réseau vue 1" loading="lazy">
+        </div>
+        <div class="salle-info">
+          <h3>Salle A214</h3>
+          <span class="salle-tag">Labo réseau — Vue 1</span>
+        </div>
+      </div>
+
+      <div class="salle-card reveal">
+        <div class="salle-img-wrap">
+          <img src="assets/salles/A214_2.jpg" alt="Salle A214 — Labo réseau vue 2" loading="lazy">
+        </div>
+        <div class="salle-info">
+          <h3>Salle A214</h3>
+          <span class="salle-tag">Labo réseau — Vue 2</span>
+        </div>
+      </div>
+
+      <div class="salle-card reveal">
+        <div class="salle-img-wrap">
+          <img src="assets/salles/A212_4.jpg" alt="Salle A212 — Salle informatique" loading="lazy">
+        </div>
+        <div class="salle-info">
+          <h3>Salle A212</h3>
+          <span class="salle-tag">Salle informatique</span>
+        </div>
+      </div>
+
+      <div class="salle-card reveal">
+        <div class="salle-img-wrap">
+          <img src="assets/salles/A210_2.jpg" alt="Salle A210 — Salle informatique" loading="lazy">
+        </div>
+        <div class="salle-info">
+          <h3>Salle A210</h3>
+          <span class="salle-tag">Salle informatique</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
  
