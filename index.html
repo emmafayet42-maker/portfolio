@@ -810,6 +810,39 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
   padding: 3px 10px;
   border-radius: 20px;
 }
+    /* Mega-dropdown Expériences 2 colonnes */
+.exp-mega {
+  display: none;
+  flex-direction: row;
+  gap: 0;
+  min-width: 400px;
+  padding: 14px 8px;
+}
+.nav-dropdown.active .exp-mega {
+  display: flex;
+}
+.exp-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+}
+.exp-col-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 4px 14px 10px;
+  border-bottom: 1px solid rgba(167, 139, 250, 0.25);
+  margin-bottom: 4px;
+}
+.exp-col-divider {
+  width: 1px;
+  background: rgba(120, 80, 255, 0.2);
+  margin: 4px 0;
+  flex-shrink: 0;
+}
   </style>
 </head>
 <body>
