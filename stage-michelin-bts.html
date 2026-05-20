@@ -284,20 +284,28 @@
     @keyframes growBar { from { width: 0 } }
 
     /* Apports */
-    .apports-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-    .apports-list li {
-      display: flex; align-items: flex-start; gap: 0.8rem;
-      font-size: 0.88rem; line-height: 1.65;
-      color: var(--text-muted);
-    }
-    .apports-list li::before {
-      content: '→';
-      color: var(--accent);
-      font-family: 'Space Mono', monospace;
-      flex-shrink: 0; margin-top: 0.05rem;
-      opacity: 0.8;
-    }
-    .apports-list li strong { color: var(--text); }
+.apports-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.apports-list li {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: baseline;
+  gap: 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.apports-list li::before {
+  content: '→';
+  color: var(--accent);
+  font-family: 'Space Mono', monospace;
+  position: absolute;
+  left: 0;
+}
+.apports-list li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+.apports-list li strong { color: var(--text); white-space: nowrap; }
 
     /* ─── SIDEBAR ─── */
     .sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
