@@ -843,6 +843,86 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
   margin: 4px 0;
   flex-shrink: 0;
 }
+    /* OBJECTIF PROFESSIONNEL */
+.objectif-card {
+  margin-top: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.objectif-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand), var(--brand2));
+}
+.objectif-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1);
+}
+.objectif-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.objectif-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.objectif-kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.objectif-title {
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text);
+}
+.objectif-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.7;
+  border-left: 2px solid var(--brand);
+  padding-left: 14px;
+  margin-bottom: 16px;
+}
+.objectif-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.objectif-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(6,182,212,0.08);
+  border: 1px solid rgba(6,182,212,0.25);
+  color: var(--brand2);
+  transition: 0.2s;
+}
+.objectif-tag:hover {
+  background: rgba(6,182,212,0.15);
+  border-color: rgba(6,182,212,0.5);
+}
   </style>
 </head>
 <body>
