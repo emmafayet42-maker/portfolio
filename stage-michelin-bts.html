@@ -36,7 +36,7 @@
       flex-direction: column;
     }
 
-    /* ─── NAV ─── */
+    /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(13,13,15,0.88);
@@ -65,7 +65,7 @@
     }
     .nav-links a:hover { color: var(--text); }
 
-    /* ─── BREADCRUMB ─── */
+    /* BREADCRUMB */
     .breadcrumb {
       padding: 0.9rem 2rem;
       max-width: 1100px;
@@ -82,7 +82,7 @@
     .breadcrumb .sep { opacity: 0.4; }
     .breadcrumb .current { color: var(--accent); }
 
-    /* ─── HERO ─── */
+    /* HERO */
     .hero {
       position: relative;
       background: var(--bg2);
@@ -96,7 +96,6 @@
       background: radial-gradient(ellipse 55% 90% at 85% 50%, var(--accent-glow), transparent 70%);
       pointer-events: none;
     }
-    /* subtle grid texture */
     .hero::after {
       content: '';
       position: absolute; inset: 0;
@@ -155,7 +154,7 @@
     }
     .meta-chip strong { color: var(--text); font-weight: 600; }
 
-    /* ─── LAYOUT ─── */
+    /* LAYOUT */
     .layout {
       max-width: 1100px; margin: 0 auto;
       padding: 2.5rem 2rem 5rem;
@@ -165,7 +164,7 @@
       align-items: start;
     }
 
-    /* ─── MAIN ─── */
+    /* MAIN */
     .main-content { display: flex; flex-direction: column; gap: 1.5rem; }
 
     .card {
@@ -232,7 +231,13 @@
       color: var(--accent);
       flex-shrink: 0;
       position: relative; z-index: 1;
-       margin-bottom: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+    .flow-body h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.4rem;
     }
     .flow-body p {
       font-size: 0.86rem;
@@ -284,48 +289,47 @@
     @keyframes growBar { from { width: 0 } }
 
     /* Apports */
-/* Apports */
-.apports-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-.apports-list li {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0 1.5rem;
-  font-size: 0.88rem;
-  line-height: 1.6;
-  align-items: baseline;
-  color: var(--text-muted);
-}
-.apports-list li strong {
-  color: var(--text);
-  font-weight: 700;
-  white-space: nowrap;
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-.apports-list li strong::before {
-  content: '→';
-  color: var(--accent);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  opacity: 0.8;
-  flex-shrink: 0;
-}
+    .apports-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .apports-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.5rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      align-items: baseline;
+      color: var(--text-muted);
+    }
+    .apports-list li strong {
+      color: var(--text);
+      font-weight: 700;
+      white-space: nowrap;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .apports-list li strong::before {
+      content: '→';
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      opacity: 0.8;
+      flex-shrink: 0;
+    }
 
-    /* ─── SIDEBAR ─── */
+    /* SIDEBAR */
     .sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
-.side-card {
-  background: var(--bg2);
-  border: 1px solid rgba(124,154,184,0.25);
-  border-radius: var(--radius);
-  padding: 1.4rem;
-  box-shadow: 0 0 20px rgba(124,154,184,0.08), 0 0 60px rgba(124,154,184,0.04);
-  transition: box-shadow 0.3s, border-color 0.3s;
-}
-.side-card:hover {
-  border-color: rgba(124,154,184,0.45);
-  box-shadow: 0 0 25px rgba(124,154,184,0.18), 0 0 70px rgba(124,154,184,0.08);
-}
+    .side-card {
+      background: var(--bg2);
+      border: 1px solid rgba(124,154,184,0.25);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      box-shadow: 0 0 20px rgba(124,154,184,0.08), 0 0 60px rgba(124,154,184,0.04);
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .side-card:hover {
+      border-color: rgba(124,154,184,0.45);
+      box-shadow: 0 0 25px rgba(124,154,184,0.18), 0 0 70px rgba(124,154,184,0.08);
+    }
     .side-title {
       font-size: 0.66rem;
       font-family: 'Space Mono', monospace;
@@ -384,7 +388,6 @@
       50% { opacity: 0.4; transform: scale(0.7); }
     }
 
-    /* Voir aussi link */
     .voir-aussi-link {
       display: flex; align-items: center; gap: 0.75rem;
       text-decoration: none;
@@ -411,7 +414,6 @@
       letter-spacing: 0.03em;
     }
 
-    /* ─── AUTRES EXPÉRIENCES ─── */
     .other-links { display: flex; flex-direction: column; gap: 0.5rem; }
     .other-link {
       display: flex; align-items: center; gap: 0.6rem;
@@ -427,7 +429,6 @@
     }
     .other-link:hover { border-color: rgba(124,154,184,0.25); color: var(--text); }
 
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
       .layout { grid-template-columns: 1fr; }
       .sidebar { order: -1; }
@@ -501,42 +502,42 @@
       </div>
 
       <div class="card">
-        <div class="card-title">Déroulé du projet</div>
+        <div class="card-title">Tâches réalisées</div>
         <div class="flow">
 
           <div class="flow-step">
             <div class="flow-num">01</div>
             <div class="flow-body">
-              <h3>Prise en main de l'existant</h3>
-              <p>Analyse du fichier Excel de suivi du stock du service CTI. Compréhension des données, de la structure des colonnes et des règles de gestion déjà en place.</p>
-              <span class="tag">Excel · Analyse</span>
+              <h3>Mastérisation de tablettes</h3>
+              <p>Déploiement et configuration de tablettes du service CTI via mastérisation : installation de l'image système, paramétrage des profils utilisateurs et intégration dans l'environnement réseau Michelin.</p>
+              <span class="tag">MDT · Mastérisation · Déploiement</span>
             </div>
           </div>
 
           <div class="flow-step">
             <div class="flow-num">02</div>
             <div class="flow-body">
-              <h3>Exploration de Power Apps</h3>
-              <p>Étude de l'application existante : navigation dans les écrans, compréhension des sources de données, des formulaires et de la logique de l'interface de gestion du stock.</p>
-              <span class="tag">Power Apps · Microsoft 365</span>
+              <h3>Création du fichier Excel de stock CTI</h3>
+              <p>Conception d'un fichier Excel structuré pour le suivi du stock de matériel informatique du service CTI : définition des colonnes, des règles de gestion et mise en place de la logique de suivi des entrées/sorties.</p>
+              <span class="tag">Excel · Gestion de stock · CTI</span>
             </div>
           </div>
 
           <div class="flow-step">
             <div class="flow-num">03</div>
             <div class="flow-body">
-              <h3>Configuration du flux Power Automate</h3>
-              <p>Prise en main du flux relié à la Power App et au fichier Excel : automatisation des mises à jour du stock, envoi d'alertes selon les seuils définis.</p>
-              <span class="tag">Power Automate · Automatisation</span>
+              <h3>Inventaire du matériel informatique</h3>
+              <p>Réalisation d'un inventaire complet du parc matériel du service : recensement des souris, claviers, écrans et autres périphériques, avec saisie et mise à jour des données dans le fichier de suivi.</p>
+              <span class="tag">Inventaire · Excel · Matériel IT</span>
             </div>
           </div>
 
           <div class="flow-step">
             <div class="flow-num">04</div>
             <div class="flow-body">
-              <h3>Déploiement sur tablette</h3>
-              <p>Installation et configuration de la solution complète (Power App + Power Automate) sur les tablettes du service CTI. Tests de fonctionnement et validation avec l'équipe.</p>
-              <span class="tag">MDT · Déploiement · Tablette</span>
+              <h3>Création de Microsoft Forms pour les externes</h3>
+              <p>Conception et déploiement de formulaires Microsoft Forms à destination des prestataires et intervenants externes de Michelin, pour faciliter la collecte d'informations et standardiser les demandes de matériel.</p>
+              <span class="tag">Microsoft Forms · Microsoft 365 · Externes</span>
             </div>
           </div>
 
@@ -562,7 +563,7 @@
             <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-label">Déploiement tablette</div>
+            <div class="skill-label">Mastérisation tablette</div>
             <div class="skill-cat">Sys. Administration</div>
             <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
           </div>
@@ -572,9 +573,19 @@
             <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
           </div>
           <div class="skill-item">
+            <div class="skill-label">Microsoft Forms</div>
+            <div class="skill-cat">Formulaires</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
+          </div>
+          <div class="skill-item">
             <div class="skill-label">Gestion de stock</div>
             <div class="skill-cat">Métier</div>
             <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Inventaire IT</div>
+            <div class="skill-cat">Métier</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
           </div>
         </div>
       </div>
@@ -582,11 +593,11 @@
       <div class="card">
         <div class="card-title">Ce que ce stage m'apporte</div>
         <ul class="apports-list">
-         <li><strong>Découverte de Power Automate</strong><span>en situation réelle, dans un environnement professionnel exigeant</span></li>
-         <li><strong>Reprise d'un projet existant</strong><span>savoir s'approprier un travail déjà commencé par quelqu'un d'autre</span></li>
-         <li><strong>Maîtrise de la Power Platform</strong><span>Microsoft 365 (Apps + Automate + Excel connecté)</span></li>
-         <li><strong>Déploiement terrain</strong><span>configurer et tester une solution sur des appareils physiques du service</span></li>
-        <li><strong>Contexte industriel</strong><span>comprendre les contraintes IT d'un grand groupe international</span></li>
+         <li><strong>Mastérisation terrain</strong><span>configurer et déployer des tablettes dans un environnement industriel réel</span></li>
+         <li><strong>Gestion de stock en conditions réelles</strong><span>créer un outil de suivi Excel adapté aux besoins du service CTI</span></li>
+         <li><strong>Sens de l'inventaire</strong><span>recenser et fiabiliser les données d'un parc matériel complet</span></li>
+         <li><strong>Relation avec les externes</strong><span>concevoir des formulaires clairs et adaptés à des interlocuteurs non-techniques</span></li>
+         <li><strong>Contexte industriel</strong><span>comprendre les contraintes IT d'un grand groupe international</span></li>
         </ul>
       </div>
 
@@ -640,6 +651,7 @@
           <span class="tech-pill">Power Apps</span>
           <span class="tech-pill">Excel</span>
           <span class="tech-pill">SharePoint</span>
+          <span class="tech-pill">Microsoft Forms</span>
           <span class="tech-pill">Microsoft 365</span>
           <span class="tech-pill">Windows</span>
           <span class="tech-pill">Tablette</span>
@@ -647,8 +659,7 @@
         </div>
       </div>
 
-      <!-- Voir aussi → stage Bac Pro -->
-    <div class="side-card">
+      <div class="side-card">
         <div class="side-title">Voir aussi</div>
         <a href="michelin.html" class="voir-aussi-link">
           <span class="arrow">←</span>
@@ -659,7 +670,6 @@
         </a>
       </div>
 
-      <!-- Autres expériences -->
       <div class="side-card">
         <div class="side-title">Autres expériences</div>
         <div class="other-links">
