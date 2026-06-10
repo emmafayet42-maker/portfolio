@@ -24,10 +24,10 @@
   --font-head: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
 }
- 
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
- 
+
 body {
   font-family: var(--font-body);
   background: var(--bg);
@@ -35,11 +35,11 @@ body {
   line-height: 1.7;
   min-height: 100vh;
 }
- 
+
 a { color: inherit; text-decoration: none; }
- 
+
 .container { max-width: 1000px; margin: auto; padding: 0 28px; }
- 
+
 /* ── Header ── */
 .page-header {
   position: relative;
@@ -51,7 +51,7 @@ a { color: inherit; text-decoration: none; }
   padding: 60px 0 50px;
   border-bottom: 1px solid var(--border);
 }
- 
+
 .page-header::before {
   content: '';
   position: absolute;
@@ -60,7 +60,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   opacity: 0.35;
 }
- 
+
 .page-header-inner {
   position: relative;
   z-index: 1;
@@ -68,7 +68,7 @@ a { color: inherit; text-decoration: none; }
   margin: auto;
   padding: 0 28px;
 }
- 
+
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -81,7 +81,7 @@ a { color: inherit; text-decoration: none; }
 .breadcrumb a:hover { color: var(--accent); }
 .breadcrumb .sep { color: rgba(255,255,255,0.15); }
 .breadcrumb .current { color: var(--accent); font-weight: 500; }
- 
+
 .page-kicker {
   display: inline-flex;
   align-items: center;
@@ -94,7 +94,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 12px;
 }
 .page-kicker span { display: inline-block; width: 24px; height: 1px; background: var(--brand2); }
- 
+
 .page-title {
   font-family: var(--font-head);
   font-size: clamp(30px, 5vw, 52px);
@@ -107,16 +107,16 @@ a { color: inherit; text-decoration: none; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
- 
+
 .page-desc {
   color: var(--muted);
   font-size: 0.95rem;
   max-width: 520px;
   margin-bottom: 28px;
 }
- 
+
 .nav-btns { display: flex; gap: 10px; flex-wrap: wrap; }
- 
+
 .btn-back {
   display: inline-flex;
   align-items: center;
@@ -132,7 +132,7 @@ a { color: inherit; text-decoration: none; }
   transition: 0.2s;
 }
 .btn-back:hover { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.6); }
- 
+
 .btn-next {
   display: inline-flex;
   align-items: center;
@@ -147,7 +147,7 @@ a { color: inherit; text-decoration: none; }
   transition: 0.2s;
 }
 .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(124,58,237,0.4); }
- 
+
 .page-stats {
   display: flex;
   gap: 24px;
@@ -159,11 +159,11 @@ a { color: inherit; text-decoration: none; }
 .stat { display: flex; flex-direction: column; gap: 2px; }
 .stat-value { font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; }
 .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
- 
+
 /* ── Projets ── */
 .projects-section { padding: 60px 0 80px; }
 .projects-list { display: flex; flex-direction: column; gap: 20px; }
- 
+
 .project-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -177,7 +177,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-4px);
   box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(124,58,237,0.08);
 }
- 
+
 .project-card::before {
   content: '';
   position: absolute;
@@ -185,13 +185,15 @@ a { color: inherit; text-decoration: none; }
   width: 3px;
   border-radius: 3px 0 0 3px;
 }
-.project-card.slam::before  { background: linear-gradient(to bottom, #a855f7, #7c3aed); }
-.project-card.sisr::before  { background: linear-gradient(to bottom, #06b6d4, #0284c7); }
-.project-card.commerce::before { background: linear-gradient(to bottom, #c9a227, #a07810); }
-.project-card.web::before   { background: linear-gradient(to bottom, #10b981, #059669); }
- 
+.project-card.slam::before    { background: linear-gradient(to bottom, #a855f7, #7c3aed); }
+.project-card.sisr::before    { background: linear-gradient(to bottom, #06b6d4, #0284c7); }
+.project-card.commerce::before{ background: linear-gradient(to bottom, #c9a227, #a07810); }
+.project-card.web::before     { background: linear-gradient(to bottom, #10b981, #059669); }
+.project-card.reseau::before  { background: linear-gradient(to bottom, #f59e0b, #d97706); }
+.project-card.rh::before      { background: linear-gradient(to bottom, #ec4899, #db2777); }
+
 .project-inner { padding: 26px 28px 26px 32px; }
- 
+
 .project-header {
   display: flex;
   align-items: flex-start;
@@ -200,22 +202,22 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 16px;
   flex-wrap: wrap;
 }
- 
+
 .project-title-group { display: flex; flex-direction: column; gap: 6px; }
- 
+
 .project-title {
   font-family: var(--font-head);
   font-size: 1.15rem;
   font-weight: 700;
 }
- 
+
 .project-meta-row {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
- 
+
 .project-option-badge {
   display: inline-flex;
   align-items: center;
@@ -232,7 +234,9 @@ a { color: inherit; text-decoration: none; }
 .badge-sisr    { background: rgba(6,182,212,0.12);  border: 1px solid rgba(6,182,212,0.35);  color: var(--brand2); }
 .badge-commerce{ background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.4);  color: #e8c04a; }
 .badge-web     { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #34d399; }
- 
+.badge-reseau  { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.35); color: #fbbf24; }
+.badge-rh      { background: rgba(236,72,153,0.12); border: 1px solid rgba(236,72,153,0.35); color: #f472b6; }
+
 .date-pill {
   display: inline-flex;
   align-items: center;
@@ -244,24 +248,23 @@ a { color: inherit; text-decoration: none; }
   padding: 3px 10px;
   border-radius: 20px;
 }
- 
+
 .project-divider { height: 1px; background: var(--border); margin: 16px 0; }
- 
+
 .project-body {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 20px;
   align-items: start;
 }
- 
+
 .project-objective { font-size: 0.9rem; color: var(--muted); margin-bottom: 14px; }
 .project-objective strong { color: var(--text); font-weight: 600; }
- 
+
 .project-tasks { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 .project-tasks li { font-size: 0.85rem; color: var(--muted); display: flex; align-items: baseline; gap: 8px; }
 .project-tasks li::before { content: '→'; color: var(--brand); font-size: 0.75rem; flex-shrink: 0; }
- 
-/* Ressources & Livrables */
+
 .resource-section { margin-top: 14px; }
 .resource-label {
   font-size: 0.68rem;
@@ -271,7 +274,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
   margin-bottom: 7px;
 }
- 
+
 .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .tag {
   padding: 4px 11px;
@@ -294,8 +297,7 @@ a { color: inherit; text-decoration: none; }
   border-color: rgba(201,162,39,0.4);
   color: #e8c04a;
 }
- 
-/* Citation */
+
 .project-quote {
   margin-top: 16px;
   padding: 12px 16px;
@@ -307,7 +309,7 @@ a { color: inherit; text-decoration: none; }
   font-style: italic;
   line-height: 1.6;
 }
- 
+
 .project-number {
   font-family: var(--font-head);
   font-size: 2.8rem;
@@ -317,14 +319,12 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
   user-select: none;
 }
- 
-/* ── Reveal ── */
+
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .reveal.visible { opacity: 1; transform: none; }
- 
-/* ── Footer ── */
+
 footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
- 
+
 @media (max-width: 600px) {
   .project-body { grid-template-columns: 1fr; }
   .project-number { display: none; }
@@ -333,7 +333,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
   </style>
 </head>
 <body>
- 
+
 <div class="page-header">
   <div class="page-header-inner">
     <nav class="breadcrumb">
@@ -343,11 +343,11 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
       <span class="sep">/</span>
       <span class="current">Semestre 1</span>
     </nav>
- 
+
     <div class="page-kicker"><span></span> BTS SIO · SISR <span></span></div>
     <h1 class="page-title">Semestre 1</h1>
-    <p class="page-desc">Projets réalisés lors du premier semestre de BTS SIO, couvrant les disciplines SISR, SLAM, commerce et développement web.</p>
- 
+    <p class="page-desc">Projets réalisés lors du premier semestre de BTS SIO, couvrant les disciplines SISR, SLAM, commerce, développement web et réseau.</p>
+
     <div class="nav-btns">
       <a href="index.html" class="btn-back">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
@@ -358,51 +358,53 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
     </div>
- 
+
     <div class="page-stats">
       <div class="stat"><span class="stat-value">5</span><span class="stat-label">Projets</span></div>
-      <div class="stat"><span class="stat-value">3</span><span class="stat-label">Options couvertes</span></div>
+      <div class="stat"><span class="stat-value">4</span><span class="stat-label">Options couvertes</span></div>
       <div class="stat"><span class="stat-value">S1</span><span class="stat-label">2025 – 2026</span></div>
     </div>
   </div>
 </div>
- 
+
 <section class="projects-section">
   <div class="container">
     <div class="projects-list">
- 
-      <!-- Projet 1 — Site Vitrine -->
-      <div class="project-card slam reveal">
+
+      <!-- Projet 1 — Recherches métiers, CV, Mail motivé et entretien -->
+      <div class="project-card rh reveal">
         <div class="project-inner">
           <div class="project-header">
             <div class="project-title-group">
-              <div class="project-title">🖥️ Site Vitrine</div>
+              <div class="project-title">💼 Recherches métiers, CV, Mail motivé &amp; Entretien</div>
               <div class="project-meta-row">
-                <span class="project-option-badge badge-slam">SLAM</span>
+                <span class="project-option-badge badge-rh">PROFESSIONNEL</span>
+                <span class="project-option-badge badge-commerce">COMMUNICATION</span>
               </div>
             </div>
           </div>
           <div class="project-divider"></div>
           <div class="project-body">
             <div>
-              <p class="project-objective"><strong>Objectif :</strong> Créer un site vitrine pour une entreprise fictive en utilisant les technologies web fondamentales.</p>
+              <p class="project-objective"><strong>Objectif :</strong> Explorer les métiers du secteur informatique, construire un CV professionnel, rédiger un mail de motivation et se préparer à un entretien.</p>
               <ul class="project-tasks">
-                <li>Conception et structuration en HTML sémantique</li>
-                <li>Mise en forme CSS et animations</li>
-                <li>Ajout d'interactivité avec JavaScript</li>
+                <li>Recherche et analyse des métiers de l'IT (SISR, SLAM, cybersécurité…)</li>
+                <li>Création d'un CV professionnel mis en forme</li>
+                <li>Rédaction d'un mail de motivation ciblé</li>
+                <li>Préparation et simulation d'un entretien professionnel</li>
               </ul>
               <div class="project-tags">
-                <span class="tag tech">HTML</span>
-                <span class="tag tech">CSS</span>
-                <span class="tag tech">JavaScript</span>
-                <span class="tag">Intégration web</span>
+                <span class="tag">CV</span>
+                <span class="tag">Mail professionnel</span>
+                <span class="tag">Entretien</span>
+                <span class="tag">Métiers IT</span>
               </div>
             </div>
             <div class="project-number">01</div>
           </div>
         </div>
       </div>
- 
+
       <!-- Projet 2 — Appel d'Offres PC Fixes & Portables -->
       <div class="project-card commerce reveal">
         <div class="project-inner">
@@ -425,7 +427,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
                 <li>Sélection et comparaison du matériel informatique</li>
                 <li>Rédaction d'un devis et d'une lettre d'accompagnement professionnelle</li>
               </ul>
- 
+
               <div class="resource-section">
                 <div class="resource-label">Ressources fournies</div>
                 <div class="project-tags">
@@ -433,7 +435,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
                   <span class="tag resource">Présentation IT Partner</span>
                 </div>
               </div>
- 
+
               <div class="resource-section">
                 <div class="resource-label">Livrables produits</div>
                 <div class="project-tags">
@@ -441,7 +443,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
                   <span class="tag livrable">Lettre d'accompagnement</span>
                 </div>
               </div>
- 
+
               <div class="project-quote">
                 « Cette mission a été bénéfique pour la compréhension d'un appel d'offres et les exigences de l'entreprise — j'ai également progressé sur l'utilisation d'un tableur. »
               </div>
@@ -450,40 +452,75 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
           </div>
         </div>
       </div>
- 
-      <!-- Projet 3 — Application de gestion -->
-      <div class="project-card slam reveal">
+
+      <!-- Projet 3 — Mise en place d'un réseau poste à poste -->
+      <div class="project-card reseau reveal">
         <div class="project-inner">
           <div class="project-header">
             <div class="project-title-group">
-              <div class="project-title">📱 Application de gestion</div>
+              <div class="project-title">🖧 Mise en place d'un réseau poste à poste</div>
               <div class="project-meta-row">
-                <span class="project-option-badge badge-slam">SLAM</span>
+                <span class="project-option-badge badge-sisr">SISR</span>
+                <span class="project-option-badge badge-reseau">RÉSEAU</span>
               </div>
             </div>
           </div>
           <div class="project-divider"></div>
           <div class="project-body">
             <div>
-              <p class="project-objective"><strong>Objectif :</strong> Développer une application simple de gestion de tâches avec persistance des données.</p>
+              <p class="project-objective"><strong>Objectif :</strong> Configurer et mettre en place un réseau poste à poste entre plusieurs machines, gérer les partages et les droits d'accès.</p>
               <ul class="project-tasks">
-                <li>Développement du backend en PHP</li>
-                <li>Conception et gestion de la base de données MySQL</li>
-                <li>Interface utilisateur responsive et intuitive</li>
+                <li>Configuration IP et partage réseau entre postes</li>
+                <li>Gestion des utilisateurs et des droits d'accès</li>
+                <li>Tests de connectivité et validation du réseau</li>
               </ul>
               <div class="project-tags">
-                <span class="tag tech">PHP</span>
-                <span class="tag tech">MySQL</span>
-                <span class="tag">UI/UX</span>
-                <span class="tag">Base de données</span>
+                <span class="tag tech">Windows</span>
+                <span class="tag">Réseau local</span>
+                <span class="tag">Partage de fichiers</span>
+                <span class="tag">Droits NTFS</span>
               </div>
             </div>
             <div class="project-number">03</div>
           </div>
         </div>
       </div>
- 
-      <!-- Projet 4 — Conception et Réalisation d'un Site Web -->
+
+      <!-- Projet 4 — Préparation mise en réseau d'une salle -->
+      <div class="project-card reseau reveal">
+        <div class="project-inner">
+          <div class="project-header">
+            <div class="project-title-group">
+              <div class="project-title">🏫 Préparation mise en réseau d'une salle</div>
+              <div class="project-meta-row">
+                <span class="project-option-badge badge-sisr">SISR</span>
+                <span class="project-option-badge badge-reseau">RÉSEAU</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-divider"></div>
+          <div class="project-body">
+            <div>
+              <p class="project-objective"><strong>Objectif :</strong> Préparer et planifier la mise en réseau d'une salle informatique : câblage, topologie, équipements actifs et documentation.</p>
+              <ul class="project-tasks">
+                <li>Étude de la topologie réseau de la salle</li>
+                <li>Choix et planification du câblage réseau</li>
+                <li>Identification et configuration des équipements actifs</li>
+                <li>Rédaction de la documentation technique</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tag">Câblage réseau</span>
+                <span class="tag">Topologie</span>
+                <span class="tag">Documentation</span>
+                <span class="tag">Commutation</span>
+              </div>
+            </div>
+            <div class="project-number">04</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projet 5 — Conception et Réalisation d'un Site Web -->
       <div class="project-card web reveal">
         <div class="project-inner">
           <div class="project-header">
@@ -505,14 +542,14 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
                 <li>Mise en ligne et référencement SEO</li>
                 <li>Présentation orale du projet réalisé</li>
               </ul>
- 
+
               <div class="resource-section">
                 <div class="resource-label">Ressources fournies</div>
                 <div class="project-tags">
                   <span class="tag resource">Mission PDF</span>
                 </div>
               </div>
- 
+
               <div class="resource-section">
                 <div class="resource-label">Livrables produits</div>
                 <div class="project-tags">
@@ -520,27 +557,27 @@ footer { border-top: 1px solid var(--border); padding: 22px 0; text-align: cente
                   <span class="tag livrable">Tuto hébergement &amp; SEO</span>
                 </div>
               </div>
- 
+
               <div class="project-quote">
                 « Cette mission m'a permis de comprendre les bases de l'HTML, l'hébergement et les fondamentaux du référencement. »
               </div>
             </div>
-            <div class="project-number">04</div>
+            <div class="project-number">05</div>
           </div>
         </div>
       </div>
- 
+
     </div>
   </div>
 </section>
- 
+
 <footer>
   <div class="container">© <span id="year"></span> Emma Fayet — Portfolio · Tous droits réservés.</div>
 </footer>
- 
+
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
- 
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -550,9 +587,9 @@ const io = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.1 });
- 
+
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
- 
+
 </body>
 </html>
