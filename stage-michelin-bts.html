@@ -6,683 +6,527 @@
   <title>Stage Michelin BTS — Emma Fayet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #0d0d0f;
-      --bg2: #13131a;
-      --bg3: #1a1a24;
+      --bg: #070b1a;
+      --card: #0f1a35;
+      --card-hover: #132040;
       --border: rgba(255,255,255,0.07);
-      --text: #e8e8f0;
-      --text-muted: #7a7a9a;
-      --accent: #7c9ab8;
-      --accent2: #a0b8cc;
-      --accent-dim: rgba(124,154,184,0.10);
-      --accent-glow: rgba(124,154,184,0.15);
-      --sidebar-w: 300px;
-      --radius: 12px;
+      --border-accent: rgba(124,58,237,0.3);
+      --purple: #7c3aed;
+      --purple-light: #a78bfa;
+      --cyan: #22d3ee;
+      --green: #10b981;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --tag-bg: rgba(124,58,237,0.12);
+      --accent: #f59e0b;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      overflow-x: hidden;
     }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
+    .blob { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+    .blob-1 { width:500px;height:500px;background:radial-gradient(circle,rgba(245,158,11,0.1) 0%,transparent 70%);top:-150px;right:-100px; }
+    .blob-2 { width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 70%);bottom:100px;left:-100px; }
 
     /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(13,13,15,0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
+    nav.breadcrumb {
+      position: relative; z-index: 10;
+      padding: 28px 80px 0;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; color: var(--muted);
     }
-    .nav-logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
-
-    /* BREADCRUMB */
-    .breadcrumb {
-      padding: 0.9rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: var(--text); }
-    .breadcrumb .sep { opacity: 0.4; }
-    .breadcrumb .current { color: var(--accent); }
+    nav.breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    nav.breadcrumb a:hover { color: var(--purple-light); }
+    nav.breadcrumb span { color: rgba(255,255,255,0.2); }
+    nav.breadcrumb .current { color: var(--text); }
 
     /* HERO */
     .hero {
-      position: relative;
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      padding: 3.5rem 2rem 3rem;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 55% 90% at 85% 50%, var(--accent-glow), transparent 70%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(124,154,184,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124,154,184,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
-    .hero-inner {
+      position: relative; z-index: 10;
+      padding: 60px 80px 50px;
       max-width: 1100px; margin: 0 auto;
-      position: relative; z-index: 1;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--accent-dim);
-      border: 1px solid rgba(124,154,184,0.25);
-      color: var(--accent);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.85rem;
-      border-radius: 100px;
-      margin-bottom: 1.3rem;
+    .hero-top {
+      display: flex; align-items: flex-start; gap: 32px; margin-bottom: 32px; flex-wrap: wrap;
     }
-    .hero-badge::before { content: '●'; font-size: 0.45rem; }
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.6rem;
+    .company-logo {
+      width: 80px; height: 80px; border-radius: 20px;
+      background: white;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); overflow: hidden; flex-shrink: 0;
     }
-    .hero h1 span { color: var(--accent); }
-    .hero-sub {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      display: flex; align-items: center; gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
+    .company-logo img { width: 60px; height: 60px; object-fit: contain; }
+    .company-logo .logo-text {
+      font-size: 1.1rem; font-weight: 800; color: #f59e0b; letter-spacing: -0.02em;
     }
-    .hero-sub .dot { opacity: 0.3; }
-    .hero-meta {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      margin-top: 2rem;
+    .hero-info { flex: 1; }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.25);
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 16px;
     }
-    .meta-chip {
-      display: flex; align-items: center; gap: 0.5rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.9rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .hero h1 { font-size: clamp(2rem,5vw,3rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .hero-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 0; }
+    .meta-pill {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.78rem; color: var(--muted);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      padding: 5px 14px; border-radius: 100px;
     }
-    .meta-chip strong { color: var(--text); font-weight: 600; }
+    .meta-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+    .meta-pill.active .dot { background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
 
-    /* LAYOUT */
-    .layout {
+    .nav-btns { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0 0; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 20px; border-radius: 10px;
+      font-size: 0.82rem; font-weight: 600; text-decoration: none;
+      transition: all 0.2s ease; border: 1px solid transparent;
+    }
+    .btn-ghost { background:rgba(255,255,255,0.04);color:var(--muted);border-color:var(--border); }
+    .btn-ghost:hover { background:rgba(255,255,255,0.08);color:var(--text);transform:translateY(-2px); }
+
+    /* MAIN GRID */
+    .main {
+      position: relative; z-index: 10;
       max-width: 1100px; margin: 0 auto;
-      padding: 2.5rem 2rem 5rem;
-      display: grid;
-      grid-template-columns: 1fr var(--sidebar-w);
-      gap: 2rem;
-      align-items: start;
+      padding: 0 80px 80px;
+      display: grid; grid-template-columns: 1fr 340px; gap: 28px;
     }
 
-    /* MAIN */
-    .main-content { display: flex; flex-direction: column; gap: 1.5rem; }
-
-    .card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.8rem;
+    /* SECTIONS */
+    .section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 32px; margin-bottom: 20px;
       animation: fadeUp 0.5s ease both;
     }
-    .card:nth-child(1) { animation-delay: 0.05s; }
-    .card:nth-child(2) { animation-delay: 0.12s; }
-    .card:nth-child(3) { animation-delay: 0.19s; }
-    .card:nth-child(4) { animation-delay: 0.26s; }
+    .section:nth-child(1){animation-delay:0.05s}
+    .section:nth-child(2){animation-delay:0.1s}
+    .section:nth-child(3){animation-delay:0.15s}
+    .section:nth-child(4){animation-delay:0.2s}
+    .section:nth-child(5){animation-delay:0.25s}
 
-    .card-title {
-      font-size: 0.68rem;
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.3rem;
-      display: flex; align-items: center; gap: 0.7rem;
+    .section-title {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple-light);
+      margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
     }
-    .card-title::before {
-      content: '';
-      display: block; width: 18px; height: 2px;
-      background: var(--accent);
-      opacity: 0.7;
-    }
+    .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
 
-    .mission-intro {
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: var(--text);
-    }
-    .mission-intro strong { color: var(--accent2); font-weight: 700; }
+    .section p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin-bottom: 12px; }
+    .section p:last-child { margin-bottom: 0; }
 
-    /* Flow */
-    .flow { display: flex; flex-direction: column; position: relative; }
-    .flow::before {
-      content: '';
-      position: absolute; left: 19px; top: 8px; bottom: 8px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      opacity: 0.4;
+    /* YEAR LABEL */
+    .year-block { margin-bottom: 28px; }
+    .year-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cyan); background: rgba(34,211,238,0.08);
+      border: 1px solid rgba(34,211,238,0.2);
+      padding: 5px 14px; border-radius: 100px;
+      margin-bottom: 18px;
     }
-    .flow-step {
-      display: grid;
-      grid-template-columns: 40px 1fr;
-      gap: 1rem;
-      padding-bottom: 1.6rem;
-      position: relative;
-    }
-    .flow-step:last-child { padding-bottom: 0; }
-    .flow-num {
-      width: 38px; height: 38px;
-      background: var(--accent-dim);
-      border: 1.5px solid rgba(124,154,184,0.35);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--accent);
-      flex-shrink: 0;
-      position: relative; z-index: 1;
-      margin-bottom: 0.4rem;
-    }
-    .flow-body h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-    .flow-body p {
-      font-size: 0.86rem;
-      line-height: 1.65;
-      color: var(--text-muted);
-    }
-    .flow-body .tag {
-      display: inline-block;
-      background: var(--accent-dim);
-      border: 1px solid rgba(124,154,184,0.18);
-      color: var(--accent2);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.63rem;
-      padding: 0.15rem 0.55rem;
-      border-radius: 4px;
-      margin-top: 0.55rem;
-      letter-spacing: 0.05em;
-    }
+    .year-label.an2 { color: var(--accent); background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2); }
 
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 0.8rem;
-    }
-    .skill-item {
-      background: var(--bg3);
+    /* REALISATION CARDS */
+    .realisation-list { display: flex; flex-direction: column; gap: 14px; }
+    .real-card {
+      background: rgba(255,255,255,0.025);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      transition: border-color 0.2s, transform 0.2s;
+      border-radius: 12px; padding: 18px 20px;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .skill-item:hover {
-      border-color: rgba(124,154,184,0.3);
-      transform: translateY(-2px);
+    .real-card:hover { border-color: var(--border-accent); background: rgba(124,58,237,0.05); }
+    .real-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+    .real-title { font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .real-date { font-size: 0.68rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+    .real-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+    .real-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .real-tag {
+      font-size: 0.68rem; font-weight: 500; padding: 3px 10px; border-radius: 6px;
+      background: var(--tag-bg); border: 1px solid var(--border-accent);
+      color: var(--purple-light);
     }
-    .skill-label { font-size: 0.82rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
-    .skill-cat { font-family: 'Space Mono', monospace; font-size: 0.63rem; color: var(--accent); letter-spacing: 0.06em; }
-    .skill-bar-wrap {
-      margin-top: 0.65rem; height: 3px;
-      background: var(--border); border-radius: 2px; overflow: hidden;
-    }
-    .skill-bar {
-      height: 100%;
-      background: linear-gradient(to right, var(--accent), var(--accent2));
-      border-radius: 2px;
-      animation: growBar 1.1s ease forwards;
-    }
-    @keyframes growBar { from { width: 0 } }
+    .real-tag.cyan { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.2); color: var(--cyan); }
+    .real-tag.green { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.2); color: var(--green); }
+    .real-tag.amber { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2); color: var(--accent); }
 
-    /* Apports */
-    .apports-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .apports-list li {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 1.5rem;
-      font-size: 0.88rem;
-      line-height: 1.6;
-      align-items: baseline;
-      color: var(--text-muted);
+    /* SKILLS GRID */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      font-size: 0.75rem; font-weight: 500; padding: 6px 14px; border-radius: 8px;
+      background: var(--tag-bg); border: 1px solid var(--border-accent);
+      color: var(--purple-light);
     }
-    .apports-list li strong {
-      color: var(--text);
-      font-weight: 700;
-      white-space: nowrap;
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
-    }
-    .apports-list li strong::before {
-      content: '→';
-      color: var(--accent);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      opacity: 0.8;
-      flex-shrink: 0;
+
+    /* PERSONAL NOTE */
+    .personal-note {
+      padding: 16px 18px;
+      background: rgba(124,58,237,0.06);
+      border-left: 3px solid var(--purple);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-style: italic;
     }
 
     /* SIDEBAR */
-    .sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
-    .side-card {
-      background: var(--bg2);
-      border: 1px solid rgba(124,154,184,0.25);
-      border-radius: var(--radius);
-      padding: 1.4rem;
-      box-shadow: 0 0 20px rgba(124,154,184,0.08), 0 0 60px rgba(124,154,184,0.04);
-      transition: box-shadow 0.3s, border-color 0.3s;
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .sidebar-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      animation: fadeUp 0.5s ease both;
     }
-    .side-card:hover {
-      border-color: rgba(124,154,184,0.45);
-      box-shadow: 0 0 25px rgba(124,154,184,0.18), 0 0 70px rgba(124,154,184,0.08);
-    }
-    .side-title {
-      font-size: 0.66rem;
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      opacity: 0.9;
-    }
+    .sidebar-card:nth-child(1){animation-delay:0.08s}
+    .sidebar-card:nth-child(2){animation-delay:0.14s}
+    .sidebar-card:nth-child(3){animation-delay:0.2s}
 
-    .info-rows { display: flex; flex-direction: column; gap: 0.7rem; }
-    .info-row { display: flex; flex-direction: column; gap: 0.15rem; }
-    .info-row .label {
-      font-size: 0.65rem;
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .info-row .value { font-size: 0.87rem; font-weight: 600; color: var(--text); }
-    .info-divider { border: none; border-top: 1px solid var(--border); margin: 0.2rem 0; }
+    .info-row { display: flex; flex-direction: column; gap: 14px; }
+    .info-item { display: flex; flex-direction: column; gap: 3px; }
+    .info-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+    .info-value { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+    .info-value.live { color: var(--green); }
+    .info-divider { border: none; border-top: 1px solid var(--border); }
 
-    .tech-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .tech-pill {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.66rem;
-      padding: 0.3rem 0.65rem;
-      border-radius: 6px;
-      letter-spacing: 0.04em;
-      transition: border-color 0.2s, color 0.2s;
+    .other-stages { display: flex; flex-direction: column; gap: 10px; }
+    .stage-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 10px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      text-decoration: none; color: var(--muted);
+      font-size: 0.82rem; font-weight: 500;
+      transition: all 0.2s;
     }
-    .tech-pill:hover { border-color: rgba(124,154,184,0.35); color: var(--accent); }
+    .stage-link:hover { background: rgba(124,58,237,0.08); border-color: var(--border-accent); color: var(--text); }
+    .stage-link .stage-emoji { font-size: 1rem; }
+    .stage-link.active { background: var(--tag-bg); border-color: var(--border-accent); color: var(--purple-light); }
 
-    .status-badge {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.7rem 1rem;
-      background: var(--accent-dim);
-      border: 1px solid rgba(124,154,184,0.22);
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--accent2);
-    }
-    .status-dot {
-      width: 7px; height: 7px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-      flex-shrink: 0;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
+    /* COMPÉTENCES BTS CHART */
+    .compet-list { display: flex; flex-direction: column; gap: 12px; }
+    .compet-item {}
+    .compet-header { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.78rem; }
+    .compet-name { color: var(--text); font-weight: 500; }
+    .compet-pct { color: var(--muted); }
+    .compet-bar-bg { height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+    .compet-bar { height: 100%; border-radius: 2px; background: linear-gradient(to right, var(--purple), var(--cyan)); animation: grow 1.2s ease forwards; }
+    @keyframes grow { from { width: 0 } }
 
-    .voir-aussi-link {
-      display: flex; align-items: center; gap: 0.75rem;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.84rem;
-      font-weight: 600;
-      padding: 0.7rem 0;
-      border-radius: 8px;
-      transition: color 0.2s;
-    }
-    .voir-aussi-link:hover { color: var(--text); }
-    .voir-aussi-link .arrow {
-      font-size: 1.1rem;
-      color: var(--accent);
-      opacity: 0.7;
-    }
-    .voir-aussi-link small {
-      display: block;
-      font-weight: 400;
-      font-size: 0.73rem;
-      color: var(--text-muted);
-      margin-top: 0.1rem;
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.03em;
-    }
-
-    .other-links { display: flex; flex-direction: column; gap: 0.5rem; }
-    .other-link {
-      display: flex; align-items: center; gap: 0.6rem;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.5rem 0.7rem;
-      border-radius: 8px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .other-link:hover { border-color: rgba(124,154,184,0.25); color: var(--text); }
-
-    @media (max-width: 768px) {
-      .layout { grid-template-columns: 1fr; }
-      .sidebar { order: -1; }
-      nav .nav-links { display: none; }
-      .breadcrumb { padding: 0.8rem 1rem; }
-      .hero { padding: 2.5rem 1rem 2rem; }
-      .layout { padding: 1.5rem 1rem 3rem; }
+    footer {
+      position: relative; z-index: 10;
+      text-align: center; padding: 32px 80px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 0.78rem;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { opacity:0;transform:translateY(20px); }
+      to   { opacity:1;transform:translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .main { grid-template-columns: 1fr; padding: 0 24px 60px; }
+      nav.breadcrumb, .hero { padding-left: 24px; padding-right: 24px; }
+      .hero { padding-top: 36px; }
     }
   </style>
 </head>
 <body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="index.html">← Portfolio</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
+  <nav class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span>/</span>
+    <span>Expériences</span>
+    <span>/</span>
+    <span class="current">Michelin · BTS SIO</span>
   </nav>
 
-  <!-- BREADCRUMB -->
-  <div class="breadcrumb">
-    <a href="index.html">Accueil</a>
-    <span class="sep">/</span>
-    <a href="index.html#expériences">Expériences</a>
-    <span class="sep">/</span>
-    <span class="current">Michelin · BTS SIO</span>
-  </div>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-badge">1er stage · BTS SIO SISR</div>
-      <h1>Stage chez <span>Michelin</span></h1>
-      <div class="hero-sub">
-        <span>Service CTI</span>
-        <span class="dot">·</span>
-        <span>Roanne</span>
+  <header class="hero">
+    <div class="hero-top">
+      <div class="company-logo">
+        <img src="michelin_25.png" alt="Michelin" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=\'logo-text\'>M</span>'">
       </div>
-      <div class="hero-meta">
-        <div class="meta-chip"><span>📅</span><strong>18 mai – 19 juin 2026</strong></div>
-        <div class="meta-chip"><span>🏢</span><strong>Michelin</strong></div>
-        <div class="meta-chip"><span>🎓</span><strong>BTS SIO SISR</strong></div>
-        <div class="meta-chip"><span>⏱</span><strong>5 semaines</strong></div>
+      <div class="hero-info">
+        <div class="hero-label">🎓 1er stage · BTS SIO SISR</div>
+        <h1>Michelin <span style="color:var(--muted);font-weight:400;font-size:clamp(1.2rem,3vw,1.8rem)">— BTS</span></h1>
+        <div class="hero-meta">
+          <div class="meta-pill active"><span class="dot"></span>Stage en cours</div>
+          <div class="meta-pill"><span class="dot"></span>18 mai – 19 juin 2026</div>
+          <div class="meta-pill"><span class="dot"></span>Service CTI · Roanne</div>
+          <div class="meta-pill"><span class="dot"></span>BTS SIO SISR</div>
+        </div>
       </div>
     </div>
-  </section>
+    <div class="nav-btns">
+      <a href="index.html#experiences" class="btn btn-ghost">← Retour aux expériences</a>
+      <a href="michelin.html" class="btn btn-ghost">🛠️ Voir le stage Bac Pro</a>
+    </div>
+  </header>
 
-  <!-- LAYOUT -->
-  <div class="layout">
+  <div class="main">
+    <!-- COLONNE GAUCHE -->
+    <div class="left-col">
 
-    <!-- MAIN -->
-    <main class="main-content">
-
-      <div class="card">
-        <div class="card-title">Mission principale</div>
-        <p class="mission-intro">
-          Dans le cadre de mon <strong>1er stage BTS</strong> au sein du service <strong>CTI de Michelin</strong>, ma mission principale porte sur la 
-          <strong>gestion et l'automatisation du stock de matériel informatique</strong> (écrans, souris, chargeurs).
-          <br><br>
-          Je travaille sur un projet déjà existant reposant sur trois outils Microsoft : un <strong>fichier Excel</strong> de suivi du stock, 
-          une <strong>Power App</strong> pour l'interface de gestion, et un <strong>flux Power Automate</strong> pour les automatisations. 
-          L'objectif final est de <strong>déployer l'ensemble sur des tablettes</strong> du service.
-        </p>
+      <!-- PRÉSENTATION -->
+      <div class="section">
+        <div class="section-title">Contexte du stage</div>
+        <p>Dans le cadre de mon <strong style="color:var(--text)">1er stage BTS SIO SISR</strong>, j'effectue 5 semaines au sein du <strong style="color:var(--text)">service CTI de Michelin Roanne</strong>. Ce service gère l'ensemble de l'infrastructure IT du site industriel : réseau, serveurs, postes de travail et équipements actifs.</p>
+        <p>Ma mission principale porte sur la <strong style="color:var(--text)">gestion et l'automatisation du stock de matériel informatique</strong> (écrans, souris, chargeurs), via un écosystème Microsoft 365 : Excel, Power Apps et Power Automate, avec un déploiement final sur tablettes du service.</p>
       </div>
 
-      <div class="card">
-        <div class="card-title">Tâches réalisées</div>
-        <div class="flow">
+      <!-- RÉALISATIONS EN MILIEU PRO (STAGE) -->
+      <div class="section">
+        <div class="section-title">Réalisations en milieu professionnel — Stage Michelin CTI</div>
 
-          <div class="flow-step">
-            <div class="flow-num">01</div>
-            <div class="flow-body">
-              <h3>Mastérisation de tablettes</h3>
-              <p>Déploiement et configuration de tablettes du service CTI via mastérisation : installation de l'image système, paramétrage des profils utilisateurs et intégration dans l'environnement réseau Michelin.</p>
-              <span class="tag">MDT · Mastérisation · Déploiement</span>
+        <div class="year-block">
+          <div class="year-label an2">Stage · Mai – Juin 2026</div>
+          <div class="realisation-list">
+
+            <div class="real-card">
+              <div class="real-header">
+                <div class="real-title">Mastérisation tablette Microsoft — Gestion de stock CTI</div>
+                <div class="real-date">19/05/26</div>
+              </div>
+              <div class="real-desc">Mastérisation d'une tablette Microsoft destinée au contrôle du stock de matériel CTI : préparation de l'image système, déploiement via outil de mastérisation (clonage/image), configuration post-déploiement et vérification du bon fonctionnement.</div>
+              <div class="real-tags">
+                <span class="real-tag amber">Mastérisation</span>
+                <span class="real-tag cyan">Déploiement</span>
+                <span class="real-tag">Tablette Microsoft</span>
+                <span class="real-tag">Patrimoine</span>
+              </div>
             </div>
-          </div>
 
-          <div class="flow-step">
-            <div class="flow-num">02</div>
-            <div class="flow-body">
-              <h3>Création du fichier Excel de stock CTI</h3>
-              <p>Conception d'un fichier Excel structuré pour le suivi du stock de matériel informatique du service CTI : définition des colonnes, des règles de gestion et mise en place de la logique de suivi des entrées/sorties.</p>
-              <span class="tag">Excel · Gestion de stock · CTI</span>
+            <div class="real-card">
+              <div class="real-header">
+                <div class="real-title">Inventaire du stock CTI</div>
+                <div class="real-date">20–21/05/26</div>
+              </div>
+              <div class="real-desc">Réalisation de l'inventaire complet du stock matériel du service CTI : recensement, identification et vérification des équipements informatiques (serveurs, switchs, câblage, périphériques). Mise à jour du référentiel de gestion du patrimoine.</div>
+              <div class="real-tags">
+                <span class="real-tag cyan">Inventaire</span>
+                <span class="real-tag">Gestion de patrimoine</span>
+                <span class="real-tag amber">Excel</span>
+              </div>
             </div>
-          </div>
 
-          <div class="flow-step">
-            <div class="flow-num">03</div>
-            <div class="flow-body">
-              <h3>Inventaire du matériel informatique</h3>
-              <p>Réalisation d'un inventaire complet du parc matériel du service : recensement des souris, claviers, écrans et autres périphériques, avec saisie et mise à jour des données dans le fichier de suivi.</p>
-              <span class="tag">Inventaire · Excel · Matériel IT</span>
+            <div class="real-card">
+              <div class="real-header">
+                <div class="real-title">Reconfiguration d'adresse IP serveur via machine virtuelle</div>
+                <div class="real-date">20/05/26</div>
+              </div>
+              <div class="real-desc">Modification de l'adresse IP d'un serveur physique en passant par une machine virtuelle Windows sous VMware vSphere : connexion à la VM, accès aux paramètres réseau, changement de l'IP statique et vérification de la connectivité après modification.</div>
+              <div class="real-tags">
+                <span class="real-tag cyan">VMware vSphere</span>
+                <span class="real-tag cyan">IP statique</span>
+                <span class="real-tag">Virtualisation</span>
+                <span class="real-tag">Réseau</span>
+              </div>
             </div>
-          </div>
 
-          <div class="flow-step">
-            <div class="flow-num">04</div>
-            <div class="flow-body">
-              <h3>Création de Microsoft Forms pour les externes</h3>
-              <p>Conception et déploiement de formulaires Microsoft Forms à destination des prestataires et intervenants externes de Michelin, pour faciliter la collecte d'informations et standardiser les demandes de matériel.</p>
-              <span class="tag">Microsoft Forms · Microsoft 365 · Externes</span>
+            <div class="real-card">
+              <div class="real-header">
+                <div class="real-title">Création de formulaires Microsoft Forms — Demande d'accès Firewall</div>
+                <div class="real-date">21/05/26</div>
+              </div>
+              <div class="real-desc">Réalisation de 2 formulaires Microsoft Forms destinés aux utilisateurs externes Michelin (comptes UFR/GRV) souhaitant demander un accès au firewall. Conception des champs de saisie, règles de validation et acheminement des réponses vers l'équipe CTI.</div>
+              <div class="real-tags">
+                <span class="real-tag amber">Microsoft Forms</span>
+                <span class="real-tag">Firewall</span>
+                <span class="real-tag">Microsoft 365</span>
+                <span class="real-tag cyan">Sécurité réseau</span>
+              </div>
             </div>
-          </div>
 
+            <div class="real-card">
+              <div class="real-header">
+                <div class="real-title">Découverte infrastructure réseau usine — Visite avec équipe GMA</div>
+                <div class="real-date">22–23/05/26</div>
+              </div>
+              <div class="real-desc">Deux jours d'immersion avec des équipiers du service GMA : visite des chantiers en cours, découverte des réseaux de l'usine (architecture physique, câblage industriel, équipements actifs), compréhension du fonctionnement global de l'infrastructure IT Michelin Roanne.</div>
+              <div class="real-tags">
+                <span class="real-tag cyan">Infrastructure réseau</span>
+                <span class="real-tag">Câblage industriel</span>
+                <span class="real-tag green">Immersion terrain</span>
+              </div>
+            </div>
+
+            <div class="real-card">
+              <div class="real-header">
+                <div class="real-title">Configuration d'imprimantes réseau Zebra ZD621</div>
+                <div class="real-date">02–04/06/26</div>
+              </div>
+              <div class="real-desc">Configuration de 3 imprimantes réseau Zebra ZD621 sur le sous-réseau 10.128.33.x : attribution d'adresses IP statiques, paramétrage via interface web de l'imprimante, intégration au réseau CTI et tests d'impression. Résolution de plusieurs incidents (mauvaise détection réseau, conflits IP, paramètres de communication) jusqu'à validation complète des 3 imprimantes.</div>
+              <div class="real-tags">
+                <span class="real-tag cyan">Zebra ZD621</span>
+                <span class="real-tag cyan">IP statique</span>
+                <span class="real-tag">Résolution d'incidents</span>
+                <span class="real-tag amber">Imprimantes réseau</span>
+                <span class="real-tag">Sous-réseau</span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-title">Compétences mobilisées</div>
+      <!-- COMPÉTENCES -->
+      <div class="section">
+        <div class="section-title">Compétences mobilisées</div>
         <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-label">Power Automate</div>
-            <div class="skill-cat">Automatisation</div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label">Power Apps</div>
-            <div class="skill-cat">No-Code</div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label">Excel / SharePoint</div>
-            <div class="skill-cat">Données</div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label">Mastérisation tablette</div>
-            <div class="skill-cat">Sys. Administration</div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label">Microsoft 365</div>
-            <div class="skill-cat">Environnement</div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label">Microsoft Forms</div>
-            <div class="skill-cat">Formulaires</div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label">Gestion de stock</div>
-            <div class="skill-cat">Métier</div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label">Inventaire IT</div>
-            <div class="skill-cat">Métier</div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
-          </div>
+          <span class="skill-tag">Power Automate</span>
+          <span class="skill-tag">Power Apps</span>
+          <span class="skill-tag">Excel / SharePoint</span>
+          <span class="skill-tag">Microsoft Forms</span>
+          <span class="skill-tag">Microsoft 365</span>
+          <span class="skill-tag">VMware vSphere</span>
+          <span class="skill-tag">Mastérisation</span>
+          <span class="skill-tag">IP statique</span>
+          <span class="skill-tag">Cisco Packet Tracer</span>
+          <span class="skill-tag">Commutation / Routage</span>
+          <span class="skill-tag">VTP / TFTP</span>
+          <span class="skill-tag">Câblage réseau</span>
+          <span class="skill-tag">Gestion de stock</span>
+          <span class="skill-tag">Inventaire IT</span>
+          <span class="skill-tag">HTML / CSS</span>
+          <span class="skill-tag">Rédaction technique</span>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-title">Ce que ce stage m'apporte</div>
-        <ul class="apports-list">
-         <li><strong>Mastérisation terrain</strong><span>configurer et déployer des tablettes dans un environnement industriel réel</span></li>
-         <li><strong>Gestion de stock en conditions réelles</strong><span>créer un outil de suivi Excel adapté aux besoins du service CTI</span></li>
-         <li><strong>Sens de l'inventaire</strong><span>recenser et fiabiliser les données d'un parc matériel complet</span></li>
-         <li><strong>Relation avec les externes</strong><span>concevoir des formulaires clairs et adaptés à des interlocuteurs non-techniques</span></li>
-         <li><strong>Contexte industriel</strong><span>comprendre les contraintes IT d'un grand groupe international</span></li>
-        </ul>
+      <!-- BILAN -->
+      <div class="section">
+        <div class="section-title">Bilan personnel</div>
+        <div class="personal-note">
+          Ce premier stage BTS me plonge dans un environnement industriel d'envergure internationale, bien différent d'un simple support utilisateur. Travailler sur des imprimantes réseau, des serveurs virtuels et une infrastructure réelle m'a permis de consolider les notions vues en formation — notamment en commutation, routage et adressage IP. La découverte du réseau usine avec l'équipe GMA a été particulièrement marquante : voir concrètement comment une infrastructure IT soutient des lignes de production, ça ancre vraiment les apprentissages.
+        </div>
       </div>
 
-    </main>
+    </div>
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
 
-      <div class="side-card">
-        <div class="side-title">Statut</div>
-        <div class="status-badge">
-          <div class="status-dot"></div>
-          Stage en cours
+      <div class="sidebar-card">
+        <div class="section-title">Informations</div>
+        <div class="info-row">
+          <div class="info-item">
+            <span class="info-label">Statut</span>
+            <span class="info-value live">● Stage en cours</span>
+          </div>
+          <hr class="info-divider">
+          <div class="info-item">
+            <span class="info-label">Entreprise</span>
+            <span class="info-value">Michelin</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Service</span>
+            <span class="info-value">CTI — Roanne (42)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Période</span>
+            <span class="info-value">18 mai → 19 juin 2026</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Durée</span>
+            <span class="info-value">5 semaines</span>
+          </div>
+          <hr class="info-divider">
+          <div class="info-item">
+            <span class="info-label">Formation</span>
+            <span class="info-value">BTS SIO SISR</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Lycée</span>
+            <span class="info-value">Albert Londres — Cusset</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Numéro de stage</span>
+            <span class="info-value">1er stage BTS</span>
+          </div>
         </div>
       </div>
 
-      <div class="side-card">
-        <div class="side-title">Informations</div>
-        <div class="info-rows">
-          <div class="info-row">
-            <span class="label">Entreprise</span>
-            <span class="value">Michelin</span>
+      <div class="sidebar-card">
+        <div class="section-title">Compétences BTS couvertes</div>
+        <div class="compet-list">
+          <div class="compet-item">
+            <div class="compet-header">
+              <span class="compet-name">Gérer le patrimoine informatique</span>
+              <span class="compet-pct">✓</span>
+            </div>
+            <div class="compet-bar-bg"><div class="compet-bar" style="width:90%"></div></div>
           </div>
-          <hr class="info-divider">
-          <div class="info-row">
-            <span class="label">Service</span>
-            <span class="value">CTI</span>
+          <div class="compet-item">
+            <div class="compet-header">
+              <span class="compet-name">Répondre aux incidents</span>
+              <span class="compet-pct">✓</span>
+            </div>
+            <div class="compet-bar-bg"><div class="compet-bar" style="width:80%"></div></div>
           </div>
-          <hr class="info-divider">
-          <div class="info-row">
-            <span class="label">Formation</span>
-            <span class="value">BTS SIO SISR</span>
+          <div class="compet-item">
+            <div class="compet-header">
+              <span class="compet-name">Développer la présence en ligne</span>
+              <span class="compet-pct">✓</span>
+            </div>
+            <div class="compet-bar-bg"><div class="compet-bar" style="width:70%"></div></div>
           </div>
-          <hr class="info-divider">
-          <div class="info-row">
-            <span class="label">Période</span>
-            <span class="value">18 mai → 19 juin 2026</span>
+          <div class="compet-item">
+            <div class="compet-header">
+              <span class="compet-name">Travailler en mode projet</span>
+              <span class="compet-pct">✓</span>
+            </div>
+            <div class="compet-bar-bg"><div class="compet-bar" style="width:75%"></div></div>
           </div>
-          <hr class="info-divider">
-          <div class="info-row">
-            <span class="label">Numéro de stage</span>
-            <span class="value">1er stage BTS</span>
+          <div class="compet-item">
+            <div class="compet-header">
+              <span class="compet-name">Mettre à disposition un service</span>
+              <span class="compet-pct">✓</span>
+            </div>
+            <div class="compet-bar-bg"><div class="compet-bar" style="width:65%"></div></div>
+          </div>
+          <div class="compet-item">
+            <div class="compet-header">
+              <span class="compet-name">Développement professionnel</span>
+              <span class="compet-pct">✓</span>
+            </div>
+            <div class="compet-bar-bg"><div class="compet-bar" style="width:85%"></div></div>
           </div>
         </div>
       </div>
 
-      <div class="side-card">
-        <div class="side-title">Stack technique</div>
-        <div class="tech-pills">
-          <span class="tech-pill">Power Automate</span>
-          <span class="tech-pill">Power Apps</span>
-          <span class="tech-pill">Excel</span>
-          <span class="tech-pill">SharePoint</span>
-          <span class="tech-pill">Microsoft Forms</span>
-          <span class="tech-pill">Microsoft 365</span>
-          <span class="tech-pill">Windows</span>
-          <span class="tech-pill">Tablette</span>
-          <span class="tech-pill">MDT</span>
-        </div>
-      </div>
-
-      <div class="side-card">
-        <div class="side-title">Voir aussi</div>
-        <a href="michelin.html" class="voir-aussi-link">
-          <span class="arrow">←</span>
-          <span>
-            Stage Michelin · Bac Pro
-            <small>Support & Maintenance IT · 2023</small>
-          </span>
-        </a>
-      </div>
-
-      <div class="side-card">
-        <div class="side-title">Autres expériences</div>
-        <div class="other-links">
-          <a href="Eobs_tech.html" class="other-link">💻 e-Obs Technologies</a>
-          <a href="fablab.html" class="other-link">🏗️ Fablab</a>
-          <a href="doxallia.html" class="other-link">🏢 Doxallia</a>
-          <a href="speed_info.html" class="other-link">⚡ Speed Informatique</a>
+      <div class="sidebar-card">
+        <div class="section-title">Autres expériences</div>
+        <div class="other-stages">
+          <a href="stage-michelin-bts.html" class="stage-link active"><span class="stage-emoji">🎓</span> Michelin BTS</a>
+          <a href="michelin.html" class="stage-link"><span class="stage-emoji">🛠️</span> Michelin Bac Pro</a>
+          <a href="Eobs_tech.html" class="stage-link"><span class="stage-emoji">💻</span> e-Obs Technologies</a>
+          <a href="fablab.html" class="stage-link"><span class="stage-emoji">🏗️</span> Fablab</a>
+          <a href="doxallia.html" class="stage-link"><span class="stage-emoji">🏢</span> Doxallia</a>
+          <a href="speed_info.html" class="stage-link"><span class="stage-emoji">⚡</span> Speed Informatique</a>
         </div>
       </div>
 
     </aside>
-
   </div>
 
+  <footer>© Emma Fayet — Portfolio · Tous droits réservés.</footer>
 </body>
 </html>
