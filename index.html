@@ -1373,14 +1373,34 @@ document.addEventListener('click', (e) => {
 });
  
  
-  const hamburger = document.getElementById('hamburger');
-  const navMenu   = document.getElementById('navMenu');
-  hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.style.display = navMenu.style.display === 'none' ? 'flex' : 'none'; });
- 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 40}ms`; io.observe(el); });
+  // ─────────────────────────────────────────────────────────────
+// PATCH HAMBURGER — remplace la logique existante du hamburger
+// Colle ce bloc à la place de l'ancien listener "hamburger"
+// dans ton DOMContentLoaded
+// ─────────────────────────────────────────────────────────────
+
+const hamburger = document.getElementById('hamburger');
+const navMenu   = document.getElementById('navMenu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('mobile-open');
+});
+
+// Fermer le menu quand on clique sur un lien simple
+navMenu.querySelectorAll('a.nav-item').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('mobile-open');
+  });
+});
+
+// Fermer si on clique en dehors
+document.addEventListener('click', (e) => {
+  if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('mobile-open');
+  }
 });
 </script>
   <canvas id="bg-particles" style="position:fixed;inset:0;pointer-events:none;z-index:0;"></canvas>
