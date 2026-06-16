@@ -32,7 +32,7 @@
   --font-head: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
 }
- 
+
 /* =============================================
    RESET & BASE
 ============================================= */
@@ -57,7 +57,7 @@ section { padding: 90px 0; }
   letter-spacing: -0.02em;
 }
 .section-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 40px; }
- 
+
 /* =============================================
    NAVBAR
 ============================================= */
@@ -79,6 +79,15 @@ section { padding: 90px 0; }
   align-items: center;
   gap: 6px;
 }
+
+/* Menu desktop : visible par défaut */
+#navMenu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+
 .nav-item {
   padding: 8px 13px;
   border-radius: 10px;
@@ -143,7 +152,6 @@ section { padding: 90px 0; }
 }
 .nav-dropdown-menu a:hover { color: var(--text); background: rgba(124, 58, 237, 0.15); }
 .nav-dropdown-menu a .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); flex-shrink: 0; }
-.nav-spacer { flex: 1; }
 .btn-cv {
   display: inline-flex;
   align-items: center;
@@ -159,6 +167,8 @@ section { padding: 90px 0; }
   white-space: nowrap;
 }
 .btn-cv:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(124, 58, 237, 0.45); }
+
+/* Hamburger : caché sur desktop */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -166,12 +176,111 @@ section { padding: 90px 0; }
   cursor: pointer;
   padding: 6px;
   margin-left: auto;
+  background: none;
+  border: none;
 }
 .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
 .nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-hamburger.active span:nth-child(2) { opacity: 0; }
 .nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
- 
+
+/* =============================================
+   RESPONSIVE NAVBAR
+============================================= */
+@media (max-width: 768px) {
+  .nav-hamburger { display: flex; }
+  .nav-inner { height: 56px; padding: 0 18px; }
+
+  /* Menu mobile : caché par défaut */
+  #navMenu {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(6, 8, 16, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    padding: 16px 14px 30px;
+    overflow-y: auto;
+    z-index: 1005;
+  }
+  /* Ouvert via JS */
+  #navMenu.open {
+    display: flex;
+  }
+
+  .nav-item {
+    padding: 13px 16px;
+    font-size: 0.95rem;
+    width: 100%;
+    color: var(--text);
+  }
+
+  /* Spacer flex inutile en mobile */
+  #navMenu > div:last-of-type {
+    display: none;
+  }
+
+  .btn-cv {
+    margin-top: 8px;
+    padding: 13px 18px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+    justify-content: center;
+  }
+
+  /* Dropdowns en accordéon */
+  .nav-dropdown { width: 100%; }
+  .nav-dropdown-toggle {
+    padding: 13px 16px;
+    font-size: 0.95rem;
+    width: 100%;
+    color: var(--text);
+  }
+  .nav-dropdown-menu {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    display: none;
+    border: none;
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    margin: 4px 0 4px 12px;
+    padding: 6px;
+    box-shadow: none;
+  }
+  .nav-dropdown.active .nav-dropdown-menu { display: block; }
+
+  /* Mega-dropdown : colonne unique */
+  .exp-mega {
+    flex-direction: column !important;
+    min-width: unset !important;
+    padding: 6px !important;
+  }
+  .exp-col-divider {
+    width: 100% !important;
+    height: 1px !important;
+    margin: 6px 0 !important;
+  }
+  .nav-dropdown-menu a {
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .nav-item, .nav-dropdown-toggle { padding: 7px 9px; font-size: 0.82rem; }
+  .btn-cv { padding: 7px 12px; font-size: 0.8rem; }
+}
+
 /* =============================================
    HERO
 ============================================= */
@@ -203,6 +312,18 @@ section { padding: 90px 0; }
   position: relative;
   z-index: 1;
 }
+@media (max-width: 900px) {
+  .hero-wrap { padding: 50px 0 40px; }
+  .hero-layout { grid-template-columns: 1fr; gap: 32px; padding: 0 20px; }
+  .hero-cards { flex-direction: row !important; flex-wrap: wrap; gap: 14px; }
+  .hero-spec-card { flex: 1 1 calc(50% - 7px); min-width: 140px; width: auto !important; }
+}
+@media (max-width: 500px) {
+  .hero-cards { flex-direction: column !important; }
+  .hero-spec-card { width: 100% !important; flex: unset; }
+  .btn-ghost { width: 100%; justify-content: center; }
+}
+
 .kicker {
   display: inline-flex;
   align-items: center;
@@ -347,7 +468,7 @@ h1 {
 .hero-spec-card ul { list-style: none; }
 .hero-spec-card li { font-size: 0.88rem; color: var(--muted); padding: 3px 0; display: flex; align-items: center; gap: 8px; }
 .hero-spec-card li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--brand2); flex-shrink: 0; }
- 
+
 /* =============================================
    CARDS COMMUNES
 ============================================= */
@@ -362,7 +483,7 @@ h1 {
 .card p { color: var(--muted); margin-bottom: 12px; font-size: 0.95rem; }
 .card p:last-child { margin-bottom: 0; }
 .grid { display: grid; gap: 20px; }
- 
+
 /* =============================================
    ABOUT
 ============================================= */
@@ -390,9 +511,12 @@ h1 {
   text-align: center;
 }
 .mini-card:hover { border-color: rgba(6,182,212,0.5); color: var(--brand2); background: rgba(6,182,212,0.07); }
- 
+@media (max-width: 768px) {
+  #about .about-grid { grid-template-columns: 1fr; }
+}
+
 /* =============================================
-   FORMATION — ENRICHIE
+   FORMATION
 ============================================= */
 #formation .formation-grid {
   display: grid;
@@ -416,8 +540,11 @@ h1 {
 #formation .card ul { list-style: none; margin-top: 8px; }
 #formation .card li { font-size: 0.875rem; color: var(--muted); padding: 4px 0; display: flex; gap: 8px; align-items: baseline; }
 #formation .card li::before { content: '·'; color: var(--brand); font-weight: 700; flex-shrink: 0; }
- 
-/* ── Carte établissement ── */
+@media (max-width: 900px) {
+  #formation .formation-grid { grid-template-columns: 1fr; }
+  .formation-row { grid-template-columns: 1fr !important; }
+}
+
 .etab-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -426,224 +553,97 @@ h1 {
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .etab-card:hover { border-color: var(--border-bright); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1); }
- 
-.etab-photo {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: block;
-}
- 
+.etab-photo { width: 100%; height: 160px; object-fit: cover; display: block; }
 .etab-photo-placeholder {
-  width: 100%;
-  height: 160px;
+  width: 100%; height: 160px;
   background: linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(6,182,212,0.1) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
+  display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
 }
- 
 .etab-body { padding: 22px 24px; }
- 
 .etab-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 20px;
-  background: rgba(201,162,39,0.12);
-  border: 1px solid rgba(201,162,39,0.35);
-  color: var(--gold-light);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 20px;
+  background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.35);
+  color: var(--gold-light); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px;
 }
- 
-.etab-name {
-  font-family: var(--font-head);
-  font-size: 1.5rem;
-  font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 12px;
-}
+.etab-name { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
 .etab-name span { color: var(--gold-light); }
- 
 .etab-meta { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-.etab-meta-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
+.etab-meta-row { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--muted); }
 .etab-meta-row strong { color: var(--text); }
 .etab-meta-row svg { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
- 
 .etab-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
- 
 .etab-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 16px;
-  border-radius: 10px;
-  background: rgba(6,182,212,0.1);
-  border: 1px solid rgba(6,182,212,0.25);
-  color: var(--brand2);
-  font-size: 0.82rem;
-  font-weight: 500;
-  transition: 0.2s;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: 10px;
+  background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25);
+  color: var(--brand2); font-size: 0.82rem; font-weight: 500; transition: 0.2s;
 }
 .etab-link:hover { background: rgba(6,182,212,0.18); border-color: rgba(6,182,212,0.5); transform: translateX(3px); }
- 
-/* ── Carte BTS SIO ── */
+
 .bts-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .bts-card:hover { border-color: var(--border-bright); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1); }
- 
 .bts-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
 .bts-icon {
-  width: 48px; height: 48px;
-  border-radius: 12px;
-  background: var(--panel);
-  border: 1px solid var(--border);
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--panel); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem;
-  flex-shrink: 0;
+  font-size: 1.4rem; flex-shrink: 0;
 }
-.bts-title-block {}
-.bts-kicker {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 4px;
-}
-.bts-name {
-  font-family: var(--font-head);
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1.2;
-}
+.bts-kicker { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 4px; }
+.bts-name { font-family: var(--font-head); font-size: 1rem; font-weight: 800; line-height: 1.2; }
 .bts-school { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
- 
 .bts-divider { height: 1px; background: var(--border); margin: 16px 0; }
- 
 .bts-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
- 
-.bts-key-label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
- 
+.bts-key-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
 .bts-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-.bts-chip {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+.bts-chip { padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .bts-chip.gold   { background: rgba(201,162,39,0.15);  border: 1px solid rgba(201,162,39,0.4);  color: var(--gold-light); }
 .bts-chip.blue   { background: rgba(6,182,212,0.1);    border: 1px solid rgba(6,182,212,0.3);   color: var(--brand2); }
 .bts-chip.purple { background: rgba(124,58,237,0.12);  border: 1px solid rgba(124,58,237,0.35); color: var(--accent); }
 .bts-chip.green  { background: rgba(34,197,94,0.12);   border: 1px solid rgba(34,197,94,0.35);  color: #4ade80; }
- 
-/* ── Domaines & Matières ── */
-.formation-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 20px;
-}
- 
+
+.formation-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
 .domaines-card, .matieres-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .domaines-card:hover, .matieres-card:hover { border-color: var(--border-bright); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1); }
- 
-.domaines-card h3, .matieres-card h3 {
-  font-family: var(--font-head);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  margin-bottom: 16px;
-}
- 
+.domaines-card h3, .matieres-card h3 { font-family: var(--font-head); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 16px; }
 .domaine-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.domaine-tag {
-  padding: 5px 13px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+.domaine-tag { padding: 5px 13px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .dt-blue   { background: rgba(6,182,212,0.1);   border: 1px solid rgba(6,182,212,0.3);   color: var(--brand2); }
 .dt-purple { background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.35); color: var(--accent); }
 .dt-gold   { background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.35); color: var(--gold-light); }
 .dt-green  { background: rgba(34,197,94,0.1);   border: 1px solid rgba(34,197,94,0.3);   color: #4ade80; }
 .dt-cyan   { background: rgba(6,182,212,0.07);  border: 1px solid rgba(6,182,212,0.2);   color: #67e8f9; }
 .dt-gray   { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--muted); }
- 
 .matiere-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-.matiere-tag {
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: var(--muted);
-  transition: 0.2s;
-}
+.matiere-tag { padding: 5px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--muted); transition: 0.2s; }
 .matiere-tag:hover { border-color: rgba(124,58,237,0.4); color: var(--accent); background: rgba(124,58,237,0.08); }
 .matiere-tag.mt-blue   { background: rgba(6,182,212,0.07);  border-color: rgba(6,182,212,0.2);   color: var(--brand2); }
 .matiere-tag.mt-gold   { background: rgba(201,162,39,0.08); border-color: rgba(201,162,39,0.25); color: var(--gold-light); }
 .matiere-tag.mt-green  { background: rgba(34,197,94,0.08);  border-color: rgba(34,197,94,0.25);  color: #4ade80; }
- 
+
 /* =============================================
    PARCOURS (Timeline)
 ============================================= */
 .timeline { position: relative; padding-left: 32px; }
 .timeline::before {
-  content: '';
-  position: absolute;
-  left: 8px; top: 8px; bottom: 8px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--brand), var(--brand2), transparent);
+  content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px;
+  width: 1px; background: linear-gradient(to bottom, var(--brand), var(--brand2), transparent);
 }
 .timeline-item { position: relative; margin-bottom: 28px; }
 .timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -28px; top: 20px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--brand);
-  border: 2px solid var(--bg);
+  content: ''; position: absolute; left: -28px; top: 20px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--brand); border: 2px solid var(--bg);
   box-shadow: 0 0 0 3px rgba(124,58,237,0.3);
 }
 .timeline-item .card { padding: 20px 24px; }
@@ -651,20 +651,12 @@ h1 {
 .meta { font-size: 0.78rem; color: var(--brand2); font-weight: 600; letter-spacing: 0.05em; display: block; margin-bottom: 10px; }
 .school-link { color: var(--brand2); text-decoration: none; transition: all 0.2s ease; }
 .school-link:hover { color: var(--brand); text-decoration: underline; }
- 
+
 /* =============================================
    SKILLS
 ============================================= */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-.skill-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  transition: 0.3s;
-  position: relative;
-  overflow: hidden;
-}
+.skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; transition: 0.3s; position: relative; overflow: hidden; }
 .skill-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; transition: opacity 0.3s; opacity: 0; }
 .skill-card.red::before   { background: linear-gradient(90deg, #ef4444, #f97316); }
 .skill-card.blue::before  { background: linear-gradient(90deg, #3b82f6, #06b6d4); }
@@ -682,29 +674,13 @@ h1 {
 .skill-card.cyan h4   { color: var(--brand2); }
 .skill-card ul { list-style: none; }
 .skill-card li { font-size: 0.82rem; color: var(--muted); padding: 3px 0; }
- 
-/* =============================================
-   EXPERIENCES
-============================================= */
-.exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.exp-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  transition: 0.3s;
-  position: relative;
-  overflow: hidden;
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
 }
-.exp-card:hover { border-color: var(--border-bright); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.08); }
-.exp-card .exp-logo { width: 56px; height: 56px; border-radius: 12px; object-fit: contain; background: rgba(255,255,255,0.05); padding: 4px; margin-bottom: 16px; }
-.exp-card h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
-.exp-card .exp-meta { font-size: 0.78rem; color: var(--brand2); font-weight: 600; margin-bottom: 12px; }
-.exp-card p { font-size: 0.875rem; color: var(--muted); margin-bottom: 12px; }
-.exp-card ul { list-style: none; }
-.exp-card li { font-size: 0.82rem; color: var(--muted); padding: 3px 0; display: flex; gap: 8px; align-items: baseline; }
-.exp-card li::before { content: '→'; color: var(--brand); font-size: 0.7rem; flex-shrink: 0; }
- 
+@media (max-width: 360px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+
 /* =============================================
    CONTACT
 ============================================= */
@@ -713,105 +689,29 @@ h1 {
 #contact .contact-card p { color: var(--muted); margin-bottom: 24px; }
 #contact .contact-card a.email { color: var(--accent); font-weight: 500; }
 #contact .contact-card a.email:hover { text-decoration: underline; }
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 22px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #0077b5, #005e8f);
-  color: #fff;
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: 0.2s;
-}
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 10px; background: linear-gradient(135deg, #0077b5, #005e8f); color: #fff; font-size: 0.875rem; font-weight: 600; transition: 0.2s; }
 .badge:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,119,181,0.4); }
- 
-/* =============================================
-   FOOTER
-============================================= */
-footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; font-size: 0.82rem; color: var(--muted); }
- 
-/* =============================================
-   REVEAL ANIMATIONS
-============================================= */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.visible { opacity: 1; transform: none; }
- 
-/* =============================================
-   RESPONSIVE
-============================================= */
-@media (max-width: 900px) {
-  .hero-layout { grid-template-columns: 1fr; }
-  .hero-cards { flex-direction: row; flex-wrap: wrap; }
-  #about .about-grid { grid-template-columns: 1fr; }
-  #formation .formation-grid { grid-template-columns: 1fr; }
-  .formation-row { grid-template-columns: 1fr; }
-  .nav-inner { flex-wrap: wrap; }
-}
-@media (max-width: 700px) {
-  .nav-menu-items { display: none; flex-direction: column; width: 100%; padding: 12px 0; gap: 2px; border-top: 1px solid var(--border); }
-  .nav-menu-items.open { display: flex; }
-  .nav-inner { flex-wrap: wrap; height: auto; padding: 12px 28px; }
-  .nav-spacer { display: none; }
-  .nav-hamburger { display: flex; }
-  section { padding: 60px 0; }
-}
 
-    /* =============================================
+/* =============================================
    SALLES DU LYCÉE
 ============================================= */
 #salles { background: var(--bg); }
-.salles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-}
-.salle-card {
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  cursor: default;
-}
-.salle-card:hover {
-  border-color: var(--border-bright);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1);
-}
-.salle-img-wrap {
-  width: 100%;
-  height: 170px;
-  overflow: hidden;
-}
-.salle-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-  display: block;
-}
+.salles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.salle-card { border-radius: var(--radius); overflow: hidden; background: var(--surface); border: 1px solid var(--border); transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; cursor: default; }
+.salle-card:hover { border-color: var(--border-bright); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1); }
+.salle-img-wrap { width: 100%; height: 170px; overflow: hidden; }
+.salle-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
 .salle-card:hover .salle-img-wrap img { transform: scale(1.05); }
 .salle-info { padding: 14px 16px; }
-.salle-info h3 {
-  font-family: var(--font-head);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 6px;
+.salle-info h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.salle-tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent); background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.3); padding: 3px 10px; border-radius: 20px; }
+@media (max-width: 500px) {
+  .salles-grid { grid-template-columns: 1fr; }
 }
-.salle-tag {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--accent);
-  background: rgba(124,58,237,0.12);
-  border: 1px solid rgba(124,58,237,0.3);
-  padding: 3px 10px;
-  border-radius: 20px;
-}
-    /* Mega-dropdown Expériences 2 colonnes */
+
+/* =============================================
+   MEGA-DROPDOWN EXPÉRIENCES
+============================================= */
 .exp-mega {
   display: none;
   flex-direction: row;
@@ -819,119 +719,56 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
   min-width: 400px;
   padding: 14px 8px;
 }
-.nav-dropdown.active .exp-mega {
-  display: flex;
-}
-.exp-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 0 8px;
-}
-.exp-col-title {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--accent);
-  padding: 4px 14px 10px;
-  border-bottom: 1px solid rgba(167, 139, 250, 0.25);
-  margin-bottom: 4px;
-}
-.exp-col-divider {
-  width: 1px;
-  background: rgba(120, 80, 255, 0.2);
-  margin: 4px 0;
-  flex-shrink: 0;
-}
-    /* OBJECTIF PROFESSIONNEL */
-.objectif-card {
-  margin-top: 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-.objectif-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--brand), var(--brand2));
-}
-.objectif-card:hover {
-  border-color: var(--border-bright);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1);
-}
-.objectif-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 16px;
-}
-.objectif-icon {
-  width: 48px; height: 48px;
-  border-radius: 12px;
-  background: rgba(124,58,237,0.12);
-  border: 1px solid rgba(124,58,237,0.3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem;
-  flex-shrink: 0;
-}
-.objectif-kicker {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-.objectif-title {
-  font-family: var(--font-head);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--text);
-}
-.objectif-desc {
-  font-size: 0.875rem;
-  color: var(--muted);
-  line-height: 1.7;
-  border-left: 2px solid var(--brand);
-  padding-left: 14px;
-  margin-bottom: 16px;
-}
+.nav-dropdown.active .exp-mega { display: flex; }
+.exp-col { flex: 1; display: flex; flex-direction: column; padding: 0 8px; }
+.exp-col-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); padding: 4px 14px 10px; border-bottom: 1px solid rgba(167, 139, 250, 0.25); margin-bottom: 4px; }
+.exp-col-divider { width: 1px; background: rgba(120, 80, 255, 0.2); margin: 4px 0; flex-shrink: 0; }
+
+/* =============================================
+   OBJECTIF PROFESSIONNEL
+============================================= */
+.objectif-card { margin-top: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+.objectif-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--brand), var(--brand2)); }
+.objectif-card:hover { border-color: var(--border-bright); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(124,58,237,0.1); }
+.objectif-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.objectif-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.objectif-kicker { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.objectif-title { font-family: var(--font-head); font-size: 1.05rem; font-weight: 800; color: var(--text); }
+.objectif-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; border-left: 2px solid var(--brand); padding-left: 14px; margin-bottom: 16px; }
 .objectif-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.objectif-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 13px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: rgba(6,182,212,0.08);
-  border: 1px solid rgba(6,182,212,0.25);
-  color: var(--brand2);
-  transition: 0.2s;
+.objectif-tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 13px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.25); color: var(--brand2); transition: 0.2s; }
+.objectif-tag:hover { background: rgba(6,182,212,0.15); border-color: rgba(6,182,212,0.5); }
+
+/* =============================================
+   FOOTER
+============================================= */
+footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; font-size: 0.82rem; color: var(--muted); }
+
+/* =============================================
+   REVEAL ANIMATIONS
+============================================= */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* =============================================
+   SECTIONS PADDING MOBILE
+============================================= */
+@media (max-width: 768px) {
+  section { padding: 60px 0; }
+  .container { padding: 0 18px; }
 }
-.objectif-tag:hover {
-  background: rgba(6,182,212,0.15);
-  border-color: rgba(6,182,212,0.5);
+@media (max-width: 400px) {
+  section { padding: 48px 0; }
 }
   </style>
 </head>
 <body>
- 
+
 <!-- NAVBAR -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-menu-items" id="navMenu" style="display:flex;align-items:center;gap:2px;flex:1;">
+    <!-- Menu (pas de style inline ici !) -->
+    <div id="navMenu">
       <a class="nav-item" href="#home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12L12 3l9 9M4 10v10a1 1 0 001 1h5v-6h4v6h5a1 1 0 001-1V10"/></svg>
         Accueil
@@ -945,9 +782,9 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
         Formation
       </a>
       <a class="nav-item" href="#salles">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-  Salles
-</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Salles
+      </a>
       <a class="nav-item" href="#mon-parcours">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         Parcours
@@ -957,29 +794,29 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
         Compétences
       </a>
 
-    <!-- Dropdown Expériences -->
-<div class="nav-dropdown" id="expDropdown">
-  <div class="nav-dropdown-toggle" id="expToggle">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
-    Expériences
-    <span class="chevron">▾</span>
-  </div>
-  <div class="nav-dropdown-menu exp-mega" id="expMenu">
-    <div class="exp-col">
-      <span class="exp-col-title">BAC PRO SN</span>
-      <a href="michelin.html"><span class="dot"></span>Michelin</a>
-      <a href="Eobs_tech.html"><span class="dot"></span>e-Obs Technologies</a>
-      <a href="fablab.html"><span class="dot"></span>Fablab</a>
-      <a href="doxallia.html"><span class="dot"></span>Doxallia</a>
-      <a href="speed_info.html"><span class="dot"></span>Speed Informatique</a>
-    </div>
-    <div class="exp-col-divider"></div>
-    <div class="exp-col">
-      <span class="exp-col-title">BTS SIO SISR</span>
-      <a href="stage-michelin-bts.html"><span class="dot"></span>Michelin</a>
-    </div>
-  </div>
-</div>
+      <!-- Dropdown Expériences -->
+      <div class="nav-dropdown" id="expDropdown">
+        <div class="nav-dropdown-toggle" id="expToggle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
+          Expériences
+          <span class="chevron">▾</span>
+        </div>
+        <div class="nav-dropdown-menu exp-mega" id="expMenu">
+          <div class="exp-col">
+            <span class="exp-col-title">BAC PRO SN</span>
+            <a href="michelin.html"><span class="dot"></span>Michelin</a>
+            <a href="Eobs_tech.html"><span class="dot"></span>e-Obs Technologies</a>
+            <a href="fablab.html"><span class="dot"></span>Fablab</a>
+            <a href="doxallia.html"><span class="dot"></span>Doxallia</a>
+            <a href="speed_info.html"><span class="dot"></span>Speed Informatique</a>
+          </div>
+          <div class="exp-col-divider"></div>
+          <div class="exp-col">
+            <span class="exp-col-title">BTS SIO SISR</span>
+            <a href="stage-michelin-bts.html"><span class="dot"></span>Michelin</a>
+          </div>
+        </div>
+      </div>
 
       <!-- Dropdown Missions -->
       <div class="nav-dropdown" id="missionsDropdown">
@@ -1004,12 +841,13 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
         Télécharger CV
       </a>
     </div>
+    <!-- Hamburger -->
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-   
+
 <!-- HERO -->
 <div id="home" class="hero-wrap">
 <div class="hero-layout">
@@ -1027,7 +865,7 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
     </div>
   </div>
 
-  <div class="hero-cards" style="align-self: start;">
+  <div class="hero-cards" style="align-self:start;">
     <div class="hero-spec-card">
       <h3>Points forts</h3>
       <ul>
@@ -1047,8 +885,7 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
     </div>
   </div>
 </div>
- 
-<!-- ABOUT -->
+
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
@@ -1072,8 +909,6 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
         </div>
       </div>
     </div>
-
-    <!-- OBJECTIF PROFESSIONNEL -->
     <div class="objectif-card reveal">
       <div class="objectif-header">
         <div class="objectif-icon">🖥️</div>
@@ -1093,60 +928,44 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
         <span class="objectif-tag">🏢 Environnements critiques</span>
       </div>
     </div>
-
   </div>
 </section>
- 
-<!-- FORMATION — ENRICHIE -->
+
+<!-- FORMATION -->
 <section id="formation">
   <div class="container">
     <h2 class="section-title reveal">Ma formation</h2>
     <p class="section-sub reveal">BTS Services Informatiques aux Organisations</p>
- 
-    <!-- Ligne 1 : Établissement + BTS SIO -->
-     <div style="margin-bottom: 20px;">
- 
-      <!-- Carte Lycée Albert Londres -->
+    <div style="margin-bottom: 20px;">
       <div class="etab-card reveal">
         <img class="etab-photo" src="Entrée_principale_photo2.jpg" alt="Lycée Albert Londres - Cusset" />
-<div class="etab-body">
-  <div class="etab-badge">🎓 Établissement</div>
-  <div class="etab-name">Lycée <span>Albert Londres</span></div>
-  <div class="etab-meta">
-    <div class="etab-meta-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-      <strong>Cusset</strong> — Auvergne-Rhône-Alpes
-    </div>
-    <div class="etab-meta-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      <strong>2025 – 2027</strong>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:8px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-      Bac+2 · 2 ans
-    </div>
-  </div>
-  <p class="etab-desc">Lycée Général et Technologique Albert Londres — Formation en BTS SIO spécialisée dans les infrastructures, systèmes et réseaux, permettant d'acquérir des compétences techniques approfondies en administration système, gestion des réseaux et cybersécurité.</p>
-  <a href="https://albert-londres-cusset.ent.auvergnerhonealpes.fr/" target="_blank" rel="noopener noreferrer" class="etab-link">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-    lyc-albert-londres-cusset.fr ↗
-  </a>
+        <div class="etab-body">
+          <div class="etab-badge">🎓 Établissement</div>
+          <div class="etab-name">Lycée <span>Albert Londres</span></div>
+          <div class="etab-meta">
+            <div class="etab-meta-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              <strong>Cusset</strong> — Auvergne-Rhône-Alpes
+            </div>
+            <div class="etab-meta-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              <strong>2025 – 2027</strong>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:8px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Bac+2 · 2 ans
+            </div>
+          </div>
+          <p class="etab-desc">Lycée Général et Technologique Albert Londres — Formation en BTS SIO spécialisée dans les infrastructures, systèmes et réseaux, permettant d'acquérir des compétences techniques approfondies en administration système, gestion des réseaux et cybersécurité.</p>
+          <a href="https://albert-londres-cusset.ent.auvergnerhonealpes.fr/" target="_blank" rel="noopener noreferrer" class="etab-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            lyc-albert-londres-cusset.fr ↗
+          </a>
+          <div style="margin-top: 16px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(120, 80, 255, 0.18);">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2765.0796940115943!2d3.43712347526089!3d46.12924238882249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f6cce2f711b747%3A0x6734d71eceb5b08d!2sLyc%C3%A9e%20g%C3%A9n%C3%A9ral%20et%20technologique%20Albert%20Londres!5e0!3m2!1sfr!2sfr!4v1776875467604!5m2!1sfr!2sfr" width="100%" height="180" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
 
-  <!-- CARTE GOOGLE MAPS -->
-  <div style="margin-top: 16px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(120, 80, 255, 0.18);">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2765.0796940115943!2d3.43712347526089!3d46.12924238882249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f6cce2f711b747%3A0x6734d71eceb5b08d!2sLyc%C3%A9e%20g%C3%A9n%C3%A9ral%20et%20technologique%20Albert%20Londres!5e0!3m2!1sfr!2sfr!4v1776875467604!5m2!1sfr!2sfr"
-      width="100%"
-      height="180"
-      style="border:0; display:block;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
-
-</div>
- 
-      <!-- Carte BTS SIO -->
-      <div class="bts-card reveal">
+      <div class="bts-card reveal" style="margin-top:20px;">
         <div class="bts-header">
           <div class="bts-icon">🎓</div>
           <div class="bts-title-block">
@@ -1166,13 +985,11 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
           <span class="bts-chip gold">2 Options</span>
         </div>
       </div>
- 
     </div>
- 
-   <!-- Ligne 2 : Options SISR / SLAM -->
-<div class="formation-grid" style="margin-top:20px; align-items: start;">
-      <div class="card reveal" style="height: fit-content;">
-  <h3>Option SISR</h3>
+
+    <div class="formation-grid" style="margin-top:20px; align-items:start;">
+      <div class="card reveal" style="height:fit-content;">
+        <h3>Option SISR</h3>
         <span class="tag-active">✅ Mon option</span>
         <p style="color:var(--muted);font-size:0.85rem;">Solutions d'Infrastructure, Systèmes et Réseaux</p>
         <ul>
@@ -1183,8 +1000,8 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
           <li>Supervision des infrastructures</li>
         </ul>
       </div>
-      <div class="card reveal" style="height: fit-content;">
-  <h3>Option SLAM</h3>
+      <div class="card reveal" style="height:fit-content;">
+        <h3>Option SLAM</h3>
         <p style="color:var(--muted);font-size:0.85rem;">Solutions Logicielles et Applications Métiers</p>
         <ul>
           <li>Développement d'applications</li>
@@ -1195,8 +1012,7 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
         </ul>
       </div>
     </div>
- 
-    <!-- Ligne 3 : Domaines + Matières enseignées -->
+
     <div class="formation-row">
       <div class="domaines-card reveal">
         <h3>🌐 Domaines couverts</h3>
@@ -1224,61 +1040,35 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
         </div>
       </div>
     </div>
- 
   </div>
 </section>
-  
-  <!-- SALLES DU LYCÉE -->
+
+<!-- SALLES DU LYCÉE -->
 <section id="salles">
   <div class="container">
     <h2 class="section-title reveal">🏫 Salles du Lycée</h2>
     <p class="section-sub reveal">Les salles informatiques du BTS SIO — Lycée Albert Londres</p>
     <div class="salles-grid">
-
       <div class="salle-card reveal">
-        <div class="salle-img-wrap">
-          <img src="A214_1.jpg" alt="Salle A214 — Labo réseau vue 1" loading="lazy">
-        </div>
-        <div class="salle-info">
-          <h3>Salle A214</h3>
-          <span class="salle-tag">Labo réseau — Vue 1</span>
-        </div>
+        <div class="salle-img-wrap"><img src="A214_1.jpg" alt="Salle A214 — Labo réseau vue 1" loading="lazy"></div>
+        <div class="salle-info"><h3>Salle A214</h3><span class="salle-tag">Labo réseau — Vue 1</span></div>
       </div>
-
       <div class="salle-card reveal">
-        <div class="salle-img-wrap">
-          <img src="A214_2.jpg" alt="Salle A214 — Labo réseau vue 2" loading="lazy">
-        </div>
-        <div class="salle-info">
-          <h3>Salle A214</h3>
-          <span class="salle-tag">Labo réseau — Vue 2</span>
-        </div>
+        <div class="salle-img-wrap"><img src="A214_2.jpg" alt="Salle A214 — Labo réseau vue 2" loading="lazy"></div>
+        <div class="salle-info"><h3>Salle A214</h3><span class="salle-tag">Labo réseau — Vue 2</span></div>
       </div>
-
       <div class="salle-card reveal">
-        <div class="salle-img-wrap">
-          <img src="A212_4.jpg" alt="Salle A212 — Salle informatique" loading="lazy">
-        </div>
-        <div class="salle-info">
-          <h3>Salle A212</h3>
-          <span class="salle-tag">Salle informatique</span>
-        </div>
+        <div class="salle-img-wrap"><img src="A212_4.jpg" alt="Salle A212 — Salle informatique" loading="lazy"></div>
+        <div class="salle-info"><h3>Salle A212</h3><span class="salle-tag">Salle informatique</span></div>
       </div>
-
       <div class="salle-card reveal">
-        <div class="salle-img-wrap">
-          <img src="A210_2.jpg" alt="Salle A210 — Salle informatique" loading="lazy">
-        </div>
-        <div class="salle-info">
-          <h3>Salle A210</h3>
-          <span class="salle-tag">Salle informatique</span>
-        </div>
+        <div class="salle-img-wrap"><img src="A210_2.jpg" alt="Salle A210 — Salle informatique" loading="lazy"></div>
+        <div class="salle-info"><h3>Salle A210</h3><span class="salle-tag">Salle informatique</span></div>
       </div>
-
     </div>
   </div>
 </section>
- 
+
 <!-- PARCOURS -->
 <section id="mon-parcours">
   <div class="container">
@@ -1309,7 +1099,7 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
     </div>
   </div>
 </section>
- 
+
 <!-- SKILLS -->
 <section id="skills">
   <div class="container">
@@ -1320,9 +1110,10 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
       <div class="skill-card blue reveal"><div class="icon">⚡</div><h4>Réseaux</h4><ul><li>TCP/IP, DNS, DHCP</li><li>HTTP/HTTPS, FTP, SMTP</li><li>Routeurs, switchs, firewalls</li><li>LAN, WAN, VPN</li></ul></div>
       <div class="skill-card green reveal"><div class="icon">💻</div><h4>Systèmes</h4><ul><li>Windows Server, Linux</li><li>Gestion utilisateurs</li><li>Maintenance serveurs</li></ul></div>
       <div class="skill-card purple reveal"><div class="icon">🛠️</div><h4>Outils</h4><ul><li>Wireshark</li><li>VMware</li><li>Git / VS Code</li></ul></div>
+    </div>
   </div>
 </section>
- 
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -1337,74 +1128,62 @@ footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: cente
     </div>
   </div>
 </section>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="container">© <span id="year"></span> Emma Fayet — Portfolio · Tous droits réservés.</div>
 </footer>
- 
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
- 
-// Gestion générique de tous les dropdowns nav
-document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
-  const toggle = dropdown.querySelector('.nav-dropdown-toggle');
-  const menu   = dropdown.querySelector('.nav-dropdown-menu');
 
-  toggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    // Ferme les autres
-    document.querySelectorAll('.nav-dropdown').forEach(d => {
-      if (d !== dropdown) d.classList.remove('active');
+  // Dropdowns nav
+  document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+    const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.nav-dropdown').forEach(d => { if (d !== dropdown) d.classList.remove('active'); });
+      dropdown.classList.toggle('active');
     });
-    dropdown.classList.toggle('active');
+    dropdown.querySelectorAll('.nav-dropdown-menu a').forEach(link => {
+      link.addEventListener('click', () => dropdown.classList.remove('active'));
+    });
+  });
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.nav-dropdown').forEach(d => { if (!d.contains(e.target)) d.classList.remove('active'); });
   });
 
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => dropdown.classList.remove('active'));
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('open');
   });
-});
-
-document.addEventListener('click', (e) => {
-  document.querySelectorAll('.nav-dropdown').forEach(d => {
-    if (!d.contains(e.target)) d.classList.remove('active');
+  navMenu.querySelectorAll('a.nav-item').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('open');
+    });
   });
-});
- 
- 
-  // ─────────────────────────────────────────────────────────────
-// PATCH HAMBURGER — remplace la logique existante du hamburger
-// Colle ce bloc à la place de l'ancien listener "hamburger"
-// dans ton DOMContentLoaded
-// ─────────────────────────────────────────────────────────────
-
-const hamburger = document.getElementById('hamburger');
-const navMenu   = document.getElementById('navMenu');
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navMenu.classList.toggle('mobile-open');
-});
-
-// Fermer le menu quand on clique sur un lien simple
-navMenu.querySelectorAll('a.nav-item').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('mobile-open');
+  document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('open');
+    }
   });
-});
 
-// Fermer si on clique en dehors
-document.addEventListener('click', (e) => {
-  if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('mobile-open');
-  }
+  // Reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 40}ms`; io.observe(el); });
 });
 </script>
-  <canvas id="bg-particles" style="position:fixed;inset:0;pointer-events:none;z-index:0;"></canvas>
 
+<canvas id="bg-particles" style="position:fixed;inset:0;pointer-events:none;z-index:0;"></canvas>
 <script>
 (function(){
   const canvas = document.getElementById('bg-particles');
@@ -1421,128 +1200,5 @@ document.addEventListener('click', (e) => {
   window.addEventListener('resize',resize);
 })();
 </script>
- 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
